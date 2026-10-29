@@ -26,4 +26,4 @@ Everything is saved on the device in the browser's `localStorage`. **Recipes →
 
 ## Credits
 
-Icons are inlined SVG from [Tabler Icons](https://github.com/tabler/tabler-icons) (MIT License). Fonts: Yeseva One, Onest and IBM Plex Mono (all with Cyrillic), from Google Fonts (SIL Open Font License).
+Icons are inlined SVG from [Tabler Icons](https://github.com/tabler/tabler-icons) (MIT License). Fonts: Unbounded and Nunito (both with Cyrillic), from Google Fonts (SIL Open Font License).

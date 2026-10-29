@@ -1,38 +1,37 @@
 <title>Meal Planner</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Yeseva+One&family=Onest:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap">
 <style>
-/* Layout: a kitchen notebook. Squared-paper background, solid white cards with hairline borders, today's meals up top, the week as seven day cards
-   with a flat coloured tile per meal (breakfast yolk, lunch lettuce, dinner tomato, snack radish). Tomato red for actions, a yolk-yellow highlighter for emphasis.
-   Colours and fonts are this app's own: none of KK's other apps use tomato red with yolk yellow, or Yeseva One with Onest.
-   Type: Yeseva One for headings, Onest for text, IBM Plex Mono for amounts and labels. */
+/* Layout: "Citrus & herbs". Clean warm-white page, white cards, today's meals up top, the week as seven day cards with a juicy tile per meal
+   (breakfast mango, lunch lime, dinner papaya, snack strawberry). Orange for actions and emphasis, lime green for ticks.
+   Colours and fonts are this app's own: none of KK's other apps use orange, or Unbounded with Nunito (both have Cyrillic). */
 :root {
-  --bg: #FFF9EC; --dot: #F3E6C8; --surface: #FFFFFF; --surface-2: #FFF4DE; --ink: #2A1A12; --muted: #7A6558; --line: #EEDFC6; --line-strong: #2A1A12;
-  --accent: #D2381C; --accent-ink: #FFFFFF; --accent-soft: #FFE1D8; --pop: #FFC93C;
-  --bf-1: #FFEBAE; --bf-ink: #8A5B00;
-  --ln-1: #E2F1CC; --ln-ink: #3D6B12;
-  --dn-1: #FFDCD2; --dn-ink: #B3311A;
-  --sn-1: #FCE0EC; --sn-ink: #A4245F;
-  --warn: #B3311A; --warn-soft: #FFDCD2; --ok: #3D7A1E;
-  --shadow: 0 2px 0 var(--line); --shadow-lg: 0 18px 50px rgba(42, 26, 18, .22);
-  --display: "Yeseva One", "Iowan Old Style", Georgia, serif;
-  --sans: "Onest", "Avenir Next", "Segoe UI", sans-serif;
-  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --bg: #FFFBF5; --dot: transparent; --surface: #FFFFFF; --surface-2: #FFF4E8; --ink: #23180F; --muted: #7D6A5B; --line: #F3E3D2; --line-strong: #23180F;
+  --accent: #F2661B; --accent-ink: #FFFFFF; --accent-soft: #FFE6D6; --pop: #FFE2B0;
+  --bf-1: #FFE2B0; --bf-ink: #A45A00;
+  --ln-1: #E4F4C2; --ln-ink: #4E7A10;
+  --dn-1: #FFD2BF; --dn-ink: #B83A12;
+  --sn-1: #FFD7E1; --sn-ink: #B12A55;
+  --warn: #C73A12; --warn-soft: #FFD2BF; --ok: #6FA626;
+  --shadow: 0 1px 2px rgba(120, 60, 20, .05), 0 6px 18px rgba(120, 60, 20, .07); --shadow-lg: 0 18px 50px rgba(35, 24, 15, .22);
+  --display: "Unbounded", "Avenir Next", "Segoe UI", sans-serif;
+  --sans: "Nunito", "Avenir Next", "Segoe UI", sans-serif;
+  --mono: "Nunito", "Avenir Next", "Segoe UI", sans-serif;
   --s1: #6BBF59; --s2: #E0603F; --s3: #5B9BD5; --s4: #C47AC0; --s5: #E8A93A; --s6: #8C8C8C; --s7: #B98552; --s8: #6CC3D5; --s9: #A0785A; --s10: #E8C547;
 }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
-  --bg: #17110D; --dot: #241A14; --surface: #211812; --surface-2: #2A1F18; --ink: #F8EEE2; --muted: #B9A595; --line: #3A2C22; --line-strong: #F8EEE2;
-  --accent: #FF7A5C; --accent-ink: #17110D; --accent-soft: #3D1F17; --pop: #B98A12;
-  --bf-1: #3A2D0E; --bf-ink: #FFD36B; --ln-1: #22311A; --ln-ink: #B5DB8A; --dn-1: #3F1C14; --dn-ink: #FF9C85; --sn-1: #3A1A2A; --sn-ink: #F5A3C7;
-  --warn: #FF9C85; --warn-soft: #3F1C14; --ok: #9BD27A;
-  --shadow: 0 2px 0 rgba(0, 0, 0, .35); --shadow-lg: 0 18px 50px rgba(0, 0, 0, .6); color-scheme: dark } }
+  --bg: #1B1410; --dot: transparent; --surface: #261C16; --surface-2: #2E231C; --ink: #FFF1E6; --muted: #C2A994; --line: #3A2B21; --line-strong: #FFF1E6;
+  --accent: #FF8A47; --accent-ink: #1B1410; --accent-soft: #42261A; --pop: #4A3311;
+  --bf-1: #4A3311; --bf-ink: #FFC56B; --ln-1: #2E4214; --ln-ink: #BDE57A; --dn-1: #4D2414; --dn-ink: #FF9D78; --sn-1: #4D1E2B; --sn-ink: #FF9DB8;
+  --warn: #FF9D78; --warn-soft: #4D2414; --ok: #A6D65A;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 6px 18px rgba(0, 0, 0, .3); --shadow-lg: 0 18px 50px rgba(0, 0, 0, .6); color-scheme: dark } }
 :root[data-theme="dark"] {
-  --bg: #17110D; --dot: #241A14; --surface: #211812; --surface-2: #2A1F18; --ink: #F8EEE2; --muted: #B9A595; --line: #3A2C22; --line-strong: #F8EEE2;
-  --accent: #FF7A5C; --accent-ink: #17110D; --accent-soft: #3D1F17; --pop: #B98A12;
-  --bf-1: #3A2D0E; --bf-ink: #FFD36B; --ln-1: #22311A; --ln-ink: #B5DB8A; --dn-1: #3F1C14; --dn-ink: #FF9C85; --sn-1: #3A1A2A; --sn-ink: #F5A3C7;
-  --warn: #FF9C85; --warn-soft: #3F1C14; --ok: #9BD27A;
-  --shadow: 0 2px 0 rgba(0, 0, 0, .35); --shadow-lg: 0 18px 50px rgba(0, 0, 0, .6); color-scheme: dark }
+  --bg: #1B1410; --dot: transparent; --surface: #261C16; --surface-2: #2E231C; --ink: #FFF1E6; --muted: #C2A994; --line: #3A2B21; --line-strong: #FFF1E6;
+  --accent: #FF8A47; --accent-ink: #1B1410; --accent-soft: #42261A; --pop: #4A3311;
+  --bf-1: #4A3311; --bf-ink: #FFC56B; --ln-1: #2E4214; --ln-ink: #BDE57A; --dn-1: #4D2414; --dn-ink: #FF9D78; --sn-1: #4D1E2B; --sn-ink: #FF9DB8;
+  --warn: #FF9D78; --warn-soft: #4D2414; --ok: #A6D65A;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 6px 18px rgba(0, 0, 0, .3); --shadow-lg: 0 18px 50px rgba(0, 0, 0, .6); color-scheme: dark }
 
 * { box-sizing: border-box }
 html { min-height: 100% }
@@ -45,17 +44,17 @@ body { min-height: 100%; color: var(--ink); font: 400 15px/1.55 var(--sans); bac
 
 .wrap { max-width: 1260px; margin: 0 auto; padding-block: 28px 56px;
   padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: grid; gap: 24px }
-h1, h2, h3 { margin: 0; font-family: var(--display); font-weight: 400; text-wrap: balance; letter-spacing: -.01em }
-h1 { font-size: clamp(40px, 6vw, 60px); font-weight: 400; line-height: 1; letter-spacing: -.02em }
-h1 em, .today-intro .date em { font-style: normal; background: linear-gradient(transparent 55%, var(--pop) 55% 88%, transparent 88%); padding-inline: 2px }
-h2 { font-size: 28px; font-weight: 400; line-height: 1.15 }
-h3 { font-size: 19px; font-weight: 400; line-height: 1.25; letter-spacing: 0 }
+h1, h2, h3 { margin: 0; font-family: var(--display); font-weight: 700; text-wrap: balance; letter-spacing: -.02em }
+h1 { font-size: clamp(34px, 5vw, 52px); font-weight: 700; line-height: 1; letter-spacing: -.03em }
+h1 em, .today-intro .date em { font-style: normal; color: var(--accent) }
+h2 { font-size: 24px; font-weight: 700; line-height: 1.15 }
+h3 { font-size: 16px; font-weight: 700; line-height: 1.25; letter-spacing: -.01em }
 p { margin: 0 }
 button, input, select, textarea { font: inherit; color: inherit }
 button { cursor: pointer }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
 .muted { color: var(--muted) }
-.eyebrow { font: 500 11px/1.4 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted) }
+.eyebrow { font: 800 11px/1.4 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted) }
 
 header.top { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px 24px }
 .brand { display: grid; gap: 8px }
@@ -70,7 +69,7 @@ nav.tabs button[aria-selected="true"], .lang button[aria-pressed="true"] { backg
 
 /* Buttons */
 a.btn { text-decoration: none; color: inherit }
-.btn { border: 1px solid var(--line); background: var(--surface); border-radius: 10px; padding: 7px 14px; font-weight: 500; transition: border-color .2s, background .2s; min-height: 38px }
+.btn { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 7px 16px; font-weight: 700; transition: border-color .2s, background .2s; min-height: 38px }
 .btn:hover { border-color: var(--ink) }
 .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 600 }
 .btn.primary:hover { background: color-mix(in srgb, var(--accent) 88%, var(--ink)) }
@@ -86,7 +85,7 @@ a.btn { text-decoration: none; color: inherit }
 .pills button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--bg) }
 .tag { display: inline-block; font-size: 12px; font-weight: 600; padding: 2px 9px; border-radius: 6px; background: var(--accent-soft); color: var(--accent) }
 .chip { display: inline-block; font: 500 10.5px/1.6 var(--mono); letter-spacing: .05em; text-transform: uppercase; padding: 0 7px; border-radius: 5px; background: var(--m1); color: var(--mi); white-space: nowrap }
-.chip.example { background: var(--pop); color: #2A1A12 }
+.chip.example { background: var(--accent-soft); color: var(--accent) }
 
 /* Icons */
 .thumb { display: inline-grid; place-items: center; border-radius: 12px; flex: none; background: var(--m1); color: var(--mi) }
@@ -97,12 +96,12 @@ svg.i { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: rou
 /* Today */
 .today { padding: 22px; display: grid; grid-template-columns: minmax(200px, .8fr) repeat(2, minmax(0, 1fr)); gap: 14px; align-items: stretch }
 .today-intro { display: grid; align-content: start; gap: 12px; padding: 4px; min-width: 0; grid-column: 1; grid-row: 1 }
-.today-intro .date { font: 400 36px/1.05 var(--display); letter-spacing: -.02em }
+.today-intro .date { font: 700 30px/1.1 var(--display); letter-spacing: -.03em }
 .meal { border-radius: 14px; padding: 16px 18px; display: grid; gap: 8px; align-content: start; min-width: 0; text-align: left; border: 1px solid transparent; color: var(--ink);
   background: var(--m1); transition: border-color .2s, transform .2s }
 .meal:hover { border-color: var(--mi) }
-.meal-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; font: 500 11px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--mi) }
-.meal h3 { font-size: 22px; overflow-wrap: anywhere }
+.meal-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; font: 800 11px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--mi) }
+.meal h3 { font-size: 18px; overflow-wrap: anywhere }
 .meal .meta { font: 400 12.5px var(--mono); color: var(--muted) }
 .meal .add { color: var(--mi); font-weight: 600 }
 .tomorrow { display: grid; gap: 6px; font-size: 13.5px; padding: 12px 4px 4px; border-top: 1px dashed var(--line); align-content: start; grid-column: 1; grid-row: 2 }
@@ -117,22 +116,22 @@ svg.i { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: rou
 .pager .btn { min-width: 38px; font-size: 18px; line-height: 1; padding: 6px 12px }
 .week { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 10px }
 .day { padding: 12px 10px 10px; border-radius: 16px; display: grid; gap: 6px; align-content: start; min-width: 0 }
-.day.is-today { border: 2px solid var(--line-strong); box-shadow: 0 3px 0 var(--line-strong) }
+.day.is-today { border: 2px solid var(--accent) }
 .day.is-past { opacity: .7 }
 .quiet-note { font-size: 13px; padding-inline: 4px }
 .day.is-quiet { align-self: start }
 .day-head { display: flex; align-items: baseline; justify-content: space-between; gap: 6px; padding: 0 4px 4px }
 .day-head .dow { font: 500 11px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted) }
-.day-head .num { font: 400 30px/.95 var(--display); font-variant-numeric: tabular-nums }
-.day.is-today .num { background: linear-gradient(transparent 50%, var(--pop) 50% 92%, transparent 92%); padding-inline: 3px }
+.day-head .num { font: 700 26px/.95 var(--display); letter-spacing: -.03em; font-variant-numeric: tabular-nums }
+.day.is-today .num { color: var(--accent) }
 .slot { border: 1px solid transparent; text-align: left; border-radius: 10px; padding: 8px 10px; display: grid; gap: 2px; min-width: 0; color: var(--ink); min-height: 52px;
   background: var(--m1); transition: border-color .15s }
 .slot:hover { border-color: var(--mi) }
-.slot-head { display: flex; align-items: center; justify-content: space-between; gap: 6px; font: 500 10px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--mi) }
+.slot-head { display: flex; align-items: center; justify-content: space-between; gap: 6px; font: 800 10px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--mi) }
 .slot .nm { font-size: 13.5px; font-weight: 500; line-height: 1.3; overflow-wrap: anywhere; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden }
 .slot.empty { background: transparent; border: 1px dashed color-mix(in srgb, var(--mi) 45%, transparent) }
 .slot.empty .nm { color: var(--muted); font-weight: 400 }
-.banner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px; padding: 12px 16px; border-radius: 14px; background: color-mix(in srgb, var(--pop) 30%, var(--surface)); border: 1px solid color-mix(in srgb, var(--pop) 70%, var(--line)); font-size: 13.5px }
+.banner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px; padding: 12px 16px; border-radius: 14px; background: var(--accent-soft); font-size: 13.5px }
 .legend { font-size: 12.5px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center }
 .legend span { display: inline-flex; gap: 6px; align-items: center }
 
@@ -143,7 +142,7 @@ svg.i { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: rou
 .rec-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 8px }
 .rec-row { display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 12px; align-items: center; padding: 10px 12px; border-radius: 14px; background: var(--surface); border: 1px solid var(--line); text-align: left; color: var(--ink); transition: border-color .2s }
 .rec-row:hover { border-color: var(--ink) }
-.rec-row .nm { font: 400 16.5px/1.3 var(--display); overflow-wrap: anywhere }
+.rec-row .nm { font: 700 14.5px/1.3 var(--display); letter-spacing: -.01em; overflow-wrap: anywhere }
 .rec-row .sub { display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: center; font-size: 12.5px; color: var(--muted); margin-top: 4px }
 .empty-state { text-align: center; padding: 40px 20px; display: grid; gap: 14px; justify-items: center }
 .empty-state p { max-width: 46ch }
@@ -159,7 +158,7 @@ svg.i { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: rou
 .item { display: grid; grid-template-columns: 22px minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 8px 2px; border-top: 1px dashed var(--line); cursor: pointer }
 .item .nm { display: block; overflow-wrap: anywhere; font-weight: 500 }
 .item .sub { display: block; font-size: 12px; color: var(--muted); overflow-wrap: anywhere }
-.item .amt { font: 500 13px var(--mono); text-align: right; white-space: nowrap }
+.item .amt { font: 800 13.5px var(--mono); color: var(--accent); text-align: right; white-space: nowrap }
 .item.done .nm, .item.done .amt { color: var(--muted); text-decoration: line-through; text-decoration-color: color-mix(in srgb, var(--muted) 70%, transparent) }
 .check { appearance: none; -webkit-appearance: none; width: 22px; height: 22px; margin: 0; border-radius: 6px; border: 1.5px solid color-mix(in srgb, var(--muted) 70%, transparent); background: var(--surface); display: grid; place-items: center; cursor: pointer; transition: background .15s, border-color .15s }
 .check::after { content: "✓"; font-size: 14px; font-weight: 700; line-height: 1; color: var(--accent-ink); opacity: 0 }
@@ -189,7 +188,7 @@ textarea.input { resize: vertical; min-height: 96px; line-height: 1.5 }
 .stepper span { min-width: 28px; text-align: center; font: 500 14px var(--mono) }
 
 /* Sheet */
-.scrim { position: fixed; inset: 0; background: rgba(23, 17, 13, .5); z-index: 20 }
+.scrim { position: fixed; inset: 0; background: rgba(27, 20, 16, .5); z-index: 20 }
 .sheet { position: fixed; top: 0; right: 0; bottom: 0; width: min(480px, 100%); background: var(--surface); z-index: 21; box-shadow: var(--shadow-lg);
   display: grid; grid-template-rows: auto minmax(0, 1fr); border-radius: 20px 0 0 20px;
   padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); padding-right: env(safe-area-inset-right, 0px) }
@@ -202,11 +201,11 @@ textarea.input { resize: vertical; min-height: 96px; line-height: 1.5 }
 .sec h3 { color: var(--mi) }
 .ingr { margin: 0; padding: 0; list-style: none; display: grid; gap: 0 }
 .ingr li { display: grid; grid-template-columns: minmax(70px, auto) minmax(0, 1fr); gap: 12px; align-items: baseline; padding: 5px 0; border-top: 1px dashed color-mix(in srgb, var(--mi) 30%, transparent); overflow-wrap: anywhere }
-.ingr .q { font: 500 13px var(--mono); text-align: right; white-space: nowrap }
+.ingr .q { font: 800 13.5px var(--mono); text-align: right; white-space: nowrap }
 .method { margin: 0; padding: 0; list-style: none; display: grid; gap: 12px; counter-reset: st }
 .method li { counter-increment: st; display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 10px; overflow-wrap: anywhere }
-.method li::before { content: counter(st); font: 400 19px/1.25 var(--display); color: var(--accent) }
-.note { font-style: italic; font-size: 15px; line-height: 1.5; white-space: pre-wrap; overflow-wrap: anywhere; padding-left: 12px; border-left: 3px solid var(--pop) }
+.method li::before { content: counter(st); font: 700 16px/1.4 var(--display); color: var(--accent) }
+.note { font-style: italic; font-size: 15px; line-height: 1.5; white-space: pre-wrap; overflow-wrap: anywhere; color: var(--muted) }
 .picks { display: grid; gap: 5px }
 .pick { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 10px; align-items: center; padding: 8px 10px; border-radius: 12px; border: 1px solid var(--line); text-align: left; color: var(--ink); background: var(--surface); transition: border-color .15s }
 .pick:hover { border-color: var(--ink) }
@@ -230,7 +229,7 @@ textarea.input { resize: vertical; min-height: 96px; line-height: 1.5 }
 @media (max-width: 700px) {
   header.top nav.tabs { display: none }
   header.top { align-items: center }
-  h1 { font-size: 32px }
+  h1 { font-size: 26px }
   .brand .eyebrow { display: none }
   .wrap { padding-block: 16px calc(96px + env(safe-area-inset-bottom, 0px)); gap: 18px }
   .toast { bottom: calc(86px + env(safe-area-inset-bottom, 0px)) }
@@ -239,8 +238,8 @@ textarea.input { resize: vertical; min-height: 96px; line-height: 1.5 }
     background: var(--surface); border-top: 1px solid var(--line) }
   .bottom-nav button { border: 0; background: none; display: grid; justify-items: center; gap: 2px; padding: 6px 0; font-size: 11.5px; font-weight: 600; color: var(--muted); border-radius: 12px; -webkit-tap-highlight-color: transparent }
   .bottom-nav svg { width: 24px; height: 24px; padding: 3px 14px; box-sizing: content-box; border-radius: 10px; transition: background .2s }
-  .bottom-nav button[aria-current="page"] { color: var(--ink) }
-  .bottom-nav button[aria-current="page"] svg { background: var(--pop); color: #2A1A12 }
+  .bottom-nav button[aria-current="page"] { color: var(--accent) }
+  .bottom-nav button[aria-current="page"] svg { background: var(--accent-soft); color: var(--accent) }
   .panel, .today { padding: 14px }
   .day { grid-template-columns: repeat(2, minmax(0, 1fr)) }
   .day-head { grid-column: 1 / -1; flex-direction: row; align-items: baseline; gap: 10px }
