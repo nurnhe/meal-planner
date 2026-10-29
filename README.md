@@ -26,4 +26,4 @@ Everything is saved on the device in the browser's `localStorage`. **Recipes →
 
 ## Credits
 
-Icons are inlined SVG from [Tabler Icons](https://github.com/tabler/tabler-icons) (MIT License). Fonts: Instrument Serif and Outfit, from Google Fonts (SIL Open Font License). The look follows the Skin Diary app.
+Icons are inlined SVG from [Tabler Icons](https://github.com/tabler/tabler-icons) (MIT License). Fonts: Unbounded and Nunito (both with Cyrillic), from Google Fonts (SIL Open Font License).

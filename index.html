@@ -1,0 +1,1264 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Meal Planner</title>
+<meta name="theme-color" content="#FAFAF7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141619" media="(prefers-color-scheme: dark)">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Meal Planner">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Meal Planner</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap">
+<style>
+/* Layout: "Citrus & herbs". Off-white page sprinkled with food doodles, charcoal text (no browns), white cards, today's meals up top, the week as seven day cards with a juicy tile per meal
+   (breakfast mango, lunch lime, dinner papaya, snack strawberry). Tomato red for actions and emphasis, lime green for ticks.
+   Colours and fonts are this app's own: none of KK's other apps use tomato red as the main colour, or Unbounded with Nunito (both have Cyrillic). */
+:root {
+  --bg: #FAFAF7; --doodle: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiB2aWV3Qm94PSIwIDAgNDAwIDQwMCI+PGcgb3BhY2l0eT0iLjc1Ij48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg2MCA3MCkgcm90YXRlKC0xMikiIHN0cm9rZS13aWR0aD0iMi4yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxjaXJjbGUgcj0iMjAiIGZpbGw9IiNGRkM5QzIiIHN0cm9rZT0iI0UyNkE2MiIvPjxwYXRoIGQ9Ik0tOSAtMTcgTDAgLTEyIEw5IC0xNyBNMCAtMTIgTDAgLTI0IiBmaWxsPSJub25lIiBzdHJva2U9IiM3REFBM0MiLz48cGF0aCBkPSJNLTYgLTE1IHE2IDYgMTIgMCIgZmlsbD0iI0Q3RURCMiIgc3Ryb2tlPSIjN0RBQTNDIi8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDI1MCA1MCkgcm90YXRlKDE4KSIgc3Ryb2tlLXdpZHRoPSIyLjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PGNpcmNsZSByPSIxOSIgZmlsbD0iI0ZGRUZCMyIgc3Ryb2tlPSIjRTNCNTNCIi8+PGNpcmNsZSByPSIxMyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjRTNCNTNCIiBzdHJva2Utd2lkdGg9IjEuNCIvPjxwYXRoIGQ9Ik0wIC0xMyBWMTMgTS0xMyAwIEgxMyBNLTkgLTkgTDkgOSBNOSAtOSBMLTkgOSIgc3Ryb2tlPSIjRTNCNTNCIiBzdHJva2Utd2lkdGg9IjEuMiIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxNzAgMTcwKSByb3RhdGUoOCkiIHN0cm9rZS13aWR0aD0iMi4yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwYXRoIGQ9Ik0tMjQgLTQgQy0yNiAtMjAgLTYgLTI2IDYgLTIwIEMyMiAtMjQgMzAgLTggMjQgNCBDMzAgMTggMTAgMjYgLTIgMjAgQy0xNiAyNiAtMjggMTIgLTI0IC00IFoiIGZpbGw9IiNGRkZGRkYiIHN0cm9rZT0iI0Q5RDRDQyIvPjxjaXJjbGUgY3g9IjIiIGN5PSItMSIgcj0iOSIgZmlsbD0iI0ZGRDQ1QyIgc3Ryb2tlPSIjRTNCNTNCIi8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMyMCAxOTApIHJvdGF0ZSgzNSkiIHN0cm9rZS13aWR0aD0iMi4yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwYXRoIGQ9Ik0wIC0yMiBDOCAtMjIgMTAgLTE2IDggLTggTDAgMjYgTC04IC04IEMtMTAgLTE2IC04IC0yMiAwIC0yMiBaIiBmaWxsPSIjRkZEMEE4IiBzdHJva2U9IiNFNThBNEIiLz48cGF0aCBkPSJNLTQgLTYgaDUgTS0zIDQgaDQiIHN0cm9rZT0iI0U1OEE0QiIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48cGF0aCBkPSJNMCAtMjIgTC03IC0zNCBNMCAtMjIgTDAgLTM2IE0wIC0yMiBMNyAtMzQiIHN0cm9rZT0iIzdEQUEzQyIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg4MCAyOTApIHJvdGF0ZSgtNikiIHN0cm9rZS13aWR0aD0iMi4yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwYXRoIGQ9Ik0tMTAgNiBDLTggLTEyIDAgLTIyIDYgLTI2IE0xMiA4IEMxMCAtOCA4IC0xOCA2IC0yNiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjN0RBQTNDIi8+PHBhdGggZD0iTTYgLTI2IHExMCAtNCAxNCA0IHEtMTAgMiAtMTQgLTQiIGZpbGw9IiNEN0VEQjIiIHN0cm9rZT0iIzdEQUEzQyIvPjxjaXJjbGUgY3g9Ii0xMSIgY3k9IjEzIiByPSIxMCIgZmlsbD0iI0ZGOUM5QyIgc3Ryb2tlPSIjRTI2QTYyIi8+PGNpcmNsZSBjeD0iMTMiIGN5PSIxNSIgcj0iMTAiIGZpbGw9IiNGRjlDOUMiIHN0cm9rZT0iI0UyNkE2MiIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzMDAgMzEwKSByb3RhdGUoLTMwKSIgc3Ryb2tlLXdpZHRoPSIyLjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTAgMjIgQy0xNiA4IC0xNCAtMTQgMCAtMjQgQzE0IC0xNCAxNiA4IDAgMjIgWiIgZmlsbD0iI0Q3RURCMiIgc3Ryb2tlPSIjN0RBQTNDIi8+PHBhdGggZD0iTTAgMjIgVi0xNiBNMCAwIEwtNyAtNyBNMCA4IEw3IDEiIHN0cm9rZT0iIzdEQUEzQyIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTkwIDMyMCkgcm90YXRlKDEyKSIgc3Ryb2tlLXdpZHRoPSIyLjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PGNpcmNsZSByPSIyMSIgZmlsbD0iI0Y4RERCMCIgc3Ryb2tlPSIjRTU4QTRCIi8+PHBhdGggZD0iTS0xNyAtNiBDLTEyIC0xOCAxMiAtMjAgMTcgLTYgQzIwIDQgMTIgMTAgOCA2IEMyIDEyIC00IDQgLTEwIDggQy0xNiAxMCAtMTkgMiAtMTcgLTYgWiIgZmlsbD0iI0ZGQzZEQSIgc3Ryb2tlPSIjRTU3MDlCIi8+PGNpcmNsZSByPSI2IiBmaWxsPSIjRkFGQUY3IiBzdHJva2U9IiNFNThBNEIiLz48cGF0aCBkPSJNLTExIC03IGwzIC0yIE05IC0xMCBsMiAzIE0xMiAwIGwzIDEiIHN0cm9rZT0iI0U1NzA5QiIgc3Ryb2tlLXdpZHRoPSIxLjYiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTUwIDYwKSByb3RhdGUoLTIwKSIgc3Ryb2tlLXdpZHRoPSIyLjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTAgMjIgQy0xOCAxMCAtMTggLTEyIC0yIC0xNCBDMCAtMTQgMiAtMTQgMiAtMTQgQzE4IC0xMiAxOCAxMCAwIDIyIFoiIGZpbGw9IiNGRkM5QzIiIHN0cm9rZT0iI0UyNkE2MiIvPjxwYXRoIGQ9Ik0tMTAgLTE0IEwtMyAtMTggTDAgLTI0IEwzIC0xOCBMMTAgLTE0IEwyIC0xMiBMLTIgLTEyIFoiIGZpbGw9IiNEN0VEQjIiIHN0cm9rZT0iIzdEQUEzQyIgc3Ryb2tlLXdpZHRoPSIxLjYiLz48cGF0aCBkPSJNLTYgLTIgdjEgTTUgMCB2MSBNLTEgOCB2MSBNLTggOCB2MSBNNyA5IHYxIiBzdHJva2U9IiNFMjZBNjIiIHN0cm9rZS13aWR0aD0iMiIvPjwvZz48cGF0aCBkPSJNMTIwIDEzMCBsNiAwIiB0cmFuc2Zvcm09InJvdGF0ZSgzMCAxMjAgMTMwKSIgc3Ryb2tlPSIjRTI2QTYyIiBzdHJva2Utd2lkdGg9IjIuNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTI0MCAxMjAgbDYgMCIgdHJhbnNmb3JtPSJyb3RhdGUoLTIwIDI0MCAxMjApIiBzdHJva2U9IiM3REFBM0MiIHN0cm9rZS13aWR0aD0iMi40IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48cGF0aCBkPSJNMzAgMTkwIGw2IDAiIHRyYW5zZm9ybT0icm90YXRlKDYwIDMwIDE5MCkiIHN0cm9rZT0iI0UzQjUzQiIgc3Ryb2tlLXdpZHRoPSIyLjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik0zNjAgMTEwIGw2IDAiIHRyYW5zZm9ybT0icm90YXRlKDEwIDM2MCAxMTApIiBzdHJva2U9IiNFMjZBNjIiIHN0cm9rZS13aWR0aD0iMi40IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48cGF0aCBkPSJNMjQwIDI1MCBsNiAwIiB0cmFuc2Zvcm09InJvdGF0ZSg0NSAyNDAgMjUwKSIgc3Ryb2tlPSIjRTNCNTNCIiBzdHJva2Utd2lkdGg9IjIuNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTMwIDM2MCBsNiAwIiB0cmFuc2Zvcm09InJvdGF0ZSgtMzAgMzAgMzYwKSIgc3Ryb2tlPSIjN0RBQTNDIiBzdHJva2Utd2lkdGg9IjIuNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTM2MCAzNzAgbDYgMCIgdHJhbnNmb3JtPSJyb3RhdGUoODAgMzYwIDM3MCkiIHN0cm9rZT0iI0U1NzA5QiIgc3Ryb2tlLXdpZHRoPSIyLjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik0xMjAgMjMwIGw2IDAiIHRyYW5zZm9ybT0icm90YXRlKDAgMTIwIDIzMCkiIHN0cm9rZT0iI0U1OEE0QiIgc3Ryb2tlLXdpZHRoPSIyLjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjwvZz48L3N2Zz4="); --surface: #FFFFFF; --surface-2: #F3F4F1; --ink: #1E2125; --muted: #686E76; --line: #E6E7E3; --line-strong: #1E2125;
+  --accent: #D93A3A; --accent-ink: #FFFFFF; --accent-soft: #FDE1E0; --pop: #FFE2B0;
+  --bf-1: #FFE2B0; --bf-ink: #A45A00;
+  --ln-1: #E4F4C2; --ln-ink: #4E7A10;
+  --dn-1: #FFD2BF; --dn-ink: #B83A12;
+  --sn-1: #FFD7E1; --sn-ink: #B12A55;
+  --warn: #C73A12; --warn-soft: #FFD2BF; --ok: #6FA626;
+  --shadow: 0 1px 2px rgba(30, 33, 37, .05), 0 6px 18px rgba(30, 33, 37, .06); --shadow-lg: 0 18px 50px rgba(30, 33, 37, .22);
+  --display: "Unbounded", "Avenir Next", "Segoe UI", sans-serif;
+  --sans: "Nunito", "Avenir Next", "Segoe UI", sans-serif;
+  --mono: "Nunito", "Avenir Next", "Segoe UI", sans-serif;
+  --s1: #6BBF59; --s2: #E0603F; --s3: #5B9BD5; --s4: #C47AC0; --s5: #E8A93A; --s6: #8C8C8C; --s7: #B98552; --s8: #6CC3D5; --s9: #A0785A; --s10: #E8C547;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #141619; --doodle: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiB2aWV3Qm94PSIwIDAgNDAwIDQwMCI+PGcgb3BhY2l0eT0iLjU1Ij48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg2MCA3MCkgcm90YXRlKC0xMikiIHN0cm9rZS13aWR0aD0iMi4yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxjaXJjbGUgcj0iMjAiIGZpbGw9IiM1QTJBMkEiIHN0cm9rZT0iI0MwNjA1QSIvPjxwYXRoIGQ9Ik0tOSAtMTcgTDAgLTEyIEw5IC0xNyBNMCAtMTIgTDAgLTI0IiBmaWxsPSJub25lIiBzdHJva2U9IiM3RkFBNEUiLz48cGF0aCBkPSJNLTYgLTE1IHE2IDYgMTIgMCIgZmlsbD0iIzJFM0UyMCIgc3Ryb2tlPSIjN0ZBQTRFIi8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDI1MCA1MCkgcm90YXRlKDE4KSIgc3Ryb2tlLXdpZHRoPSIyLjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PGNpcmNsZSByPSIxOSIgZmlsbD0iIzRBNDAyMCIgc3Ryb2tlPSIjQzlBNDNBIi8+PGNpcmNsZSByPSIxMyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjQzlBNDNBIiBzdHJva2Utd2lkdGg9IjEuNCIvPjxwYXRoIGQ9Ik0wIC0xMyBWMTMgTS0xMyAwIEgxMyBNLTkgLTkgTDkgOSBNOSAtOSBMLTkgOSIgc3Ryb2tlPSIjQzlBNDNBIiBzdHJva2Utd2lkdGg9IjEuMiIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxNzAgMTcwKSByb3RhdGUoOCkiIHN0cm9rZS13aWR0aD0iMi4yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwYXRoIGQ9Ik0tMjQgLTQgQy0yNiAtMjAgLTYgLTI2IDYgLTIwIEMyMiAtMjQgMzAgLTggMjQgNCBDMzAgMTggMTAgMjYgLTIgMjAgQy0xNiAyNiAtMjggMTIgLTI0IC00IFoiIGZpbGw9IiMyRTMxMzYiIHN0cm9rZT0iIzU1NTk1RiIvPjxjaXJjbGUgY3g9IjIiIGN5PSItMSIgcj0iOSIgZmlsbD0iI0M5QTQzQSIgc3Ryb2tlPSIjQzlBNDNBIi8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMyMCAxOTApIHJvdGF0ZSgzNSkiIHN0cm9rZS13aWR0aD0iMi4yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwYXRoIGQ9Ik0wIC0yMiBDOCAtMjIgMTAgLTE2IDggLTggTDAgMjYgTC04IC04IEMtMTAgLTE2IC04IC0yMiAwIC0yMiBaIiBmaWxsPSIjNEUzNDI0IiBzdHJva2U9IiNDODgwNTAiLz48cGF0aCBkPSJNLTQgLTYgaDUgTS0zIDQgaDQiIHN0cm9rZT0iI0M4ODA1MCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48cGF0aCBkPSJNMCAtMjIgTC03IC0zNCBNMCAtMjIgTDAgLTM2IE0wIC0yMiBMNyAtMzQiIHN0cm9rZT0iIzdGQUE0RSIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg4MCAyOTApIHJvdGF0ZSgtNikiIHN0cm9rZS13aWR0aD0iMi4yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwYXRoIGQ9Ik0tMTAgNiBDLTggLTEyIDAgLTIyIDYgLTI2IE0xMiA4IEMxMCAtOCA4IC0xOCA2IC0yNiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjN0ZBQTRFIi8+PHBhdGggZD0iTTYgLTI2IHExMCAtNCAxNCA0IHEtMTAgMiAtMTQgLTQiIGZpbGw9IiMyRTNFMjAiIHN0cm9rZT0iIzdGQUE0RSIvPjxjaXJjbGUgY3g9Ii0xMSIgY3k9IjEzIiByPSIxMCIgZmlsbD0iIzZBMkUzNCIgc3Ryb2tlPSIjQzA2MDVBIi8+PGNpcmNsZSBjeD0iMTMiIGN5PSIxNSIgcj0iMTAiIGZpbGw9IiM2QTJFMzQiIHN0cm9rZT0iI0MwNjA1QSIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzMDAgMzEwKSByb3RhdGUoLTMwKSIgc3Ryb2tlLXdpZHRoPSIyLjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTAgMjIgQy0xNiA4IC0xNCAtMTQgMCAtMjQgQzE0IC0xNCAxNiA4IDAgMjIgWiIgZmlsbD0iIzJFM0UyMCIgc3Ryb2tlPSIjN0ZBQTRFIi8+PHBhdGggZD0iTTAgMjIgVi0xNiBNMCAwIEwtNyAtNyBNMCA4IEw3IDEiIHN0cm9rZT0iIzdGQUE0RSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTkwIDMyMCkgcm90YXRlKDEyKSIgc3Ryb2tlLXdpZHRoPSIyLjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PGNpcmNsZSByPSIyMSIgZmlsbD0iIzQ2M0EyQyIgc3Ryb2tlPSIjQzg4MDUwIi8+PHBhdGggZD0iTS0xNyAtNiBDLTEyIC0xOCAxMiAtMjAgMTcgLTYgQzIwIDQgMTIgMTAgOCA2IEMyIDEyIC00IDQgLTEwIDggQy0xNiAxMCAtMTkgMiAtMTcgLTYgWiIgZmlsbD0iIzVBMkU0MiIgc3Ryb2tlPSIjRDA2Qzk1Ii8+PGNpcmNsZSByPSI2IiBmaWxsPSIjMTQxNjE5IiBzdHJva2U9IiNDODgwNTAiLz48cGF0aCBkPSJNLTExIC03IGwzIC0yIE05IC0xMCBsMiAzIE0xMiAwIGwzIDEiIHN0cm9rZT0iI0QwNkM5NSIgc3Ryb2tlLXdpZHRoPSIxLjYiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTUwIDYwKSByb3RhdGUoLTIwKSIgc3Ryb2tlLXdpZHRoPSIyLjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTAgMjIgQy0xOCAxMCAtMTggLTEyIC0yIC0xNCBDMCAtMTQgMiAtMTQgMiAtMTQgQzE4IC0xMiAxOCAxMCAwIDIyIFoiIGZpbGw9IiM1QTJBMkEiIHN0cm9rZT0iI0MwNjA1QSIvPjxwYXRoIGQ9Ik0tMTAgLTE0IEwtMyAtMTggTDAgLTI0IEwzIC0xOCBMMTAgLTE0IEwyIC0xMiBMLTIgLTEyIFoiIGZpbGw9IiMyRTNFMjAiIHN0cm9rZT0iIzdGQUE0RSIgc3Ryb2tlLXdpZHRoPSIxLjYiLz48cGF0aCBkPSJNLTYgLTIgdjEgTTUgMCB2MSBNLTEgOCB2MSBNLTggOCB2MSBNNyA5IHYxIiBzdHJva2U9IiNDMDYwNUEiIHN0cm9rZS13aWR0aD0iMiIvPjwvZz48cGF0aCBkPSJNMTIwIDEzMCBsNiAwIiB0cmFuc2Zvcm09InJvdGF0ZSgzMCAxMjAgMTMwKSIgc3Ryb2tlPSIjQzA2MDVBIiBzdHJva2Utd2lkdGg9IjIuNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTI0MCAxMjAgbDYgMCIgdHJhbnNmb3JtPSJyb3RhdGUoLTIwIDI0MCAxMjApIiBzdHJva2U9IiM3RkFBNEUiIHN0cm9rZS13aWR0aD0iMi40IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48cGF0aCBkPSJNMzAgMTkwIGw2IDAiIHRyYW5zZm9ybT0icm90YXRlKDYwIDMwIDE5MCkiIHN0cm9rZT0iI0M5QTQzQSIgc3Ryb2tlLXdpZHRoPSIyLjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik0zNjAgMTEwIGw2IDAiIHRyYW5zZm9ybT0icm90YXRlKDEwIDM2MCAxMTApIiBzdHJva2U9IiNDMDYwNUEiIHN0cm9rZS13aWR0aD0iMi40IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48cGF0aCBkPSJNMjQwIDI1MCBsNiAwIiB0cmFuc2Zvcm09InJvdGF0ZSg0NSAyNDAgMjUwKSIgc3Ryb2tlPSIjQzlBNDNBIiBzdHJva2Utd2lkdGg9IjIuNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTMwIDM2MCBsNiAwIiB0cmFuc2Zvcm09InJvdGF0ZSgtMzAgMzAgMzYwKSIgc3Ryb2tlPSIjN0ZBQTRFIiBzdHJva2Utd2lkdGg9IjIuNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTM2MCAzNzAgbDYgMCIgdHJhbnNmb3JtPSJyb3RhdGUoODAgMzYwIDM3MCkiIHN0cm9rZT0iI0QwNkM5NSIgc3Ryb2tlLXdpZHRoPSIyLjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik0xMjAgMjMwIGw2IDAiIHRyYW5zZm9ybT0icm90YXRlKDAgMTIwIDIzMCkiIHN0cm9rZT0iI0M4ODA1MCIgc3Ryb2tlLXdpZHRoPSIyLjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjwvZz48L3N2Zz4="); --surface: #1D2024; --surface-2: #25292E; --ink: #F3F4F2; --muted: #A3A9B0; --line: #2E3238; --line-strong: #F3F4F2;
+  --accent: #FF6B66; --accent-ink: #141619; --accent-soft: #3A2426; --pop: #3A2426;
+  --bf-1: #2B2A26; --bf-ink: #FFC56B; --ln-1: #252B22; --ln-ink: #BDE57A; --dn-1: #2D2523; --dn-ink: #FF9D78; --sn-1: #2D2329; --sn-ink: #FF9DB8;
+  --warn: #FF9D78; --warn-soft: #3A2426; --ok: #A6D65A;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 6px 18px rgba(0, 0, 0, .3); --shadow-lg: 0 18px 50px rgba(0, 0, 0, .6); color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #141619; --doodle: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiB2aWV3Qm94PSIwIDAgNDAwIDQwMCI+PGcgb3BhY2l0eT0iLjU1Ij48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg2MCA3MCkgcm90YXRlKC0xMikiIHN0cm9rZS13aWR0aD0iMi4yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxjaXJjbGUgcj0iMjAiIGZpbGw9IiM1QTJBMkEiIHN0cm9rZT0iI0MwNjA1QSIvPjxwYXRoIGQ9Ik0tOSAtMTcgTDAgLTEyIEw5IC0xNyBNMCAtMTIgTDAgLTI0IiBmaWxsPSJub25lIiBzdHJva2U9IiM3RkFBNEUiLz48cGF0aCBkPSJNLTYgLTE1IHE2IDYgMTIgMCIgZmlsbD0iIzJFM0UyMCIgc3Ryb2tlPSIjN0ZBQTRFIi8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDI1MCA1MCkgcm90YXRlKDE4KSIgc3Ryb2tlLXdpZHRoPSIyLjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PGNpcmNsZSByPSIxOSIgZmlsbD0iIzRBNDAyMCIgc3Ryb2tlPSIjQzlBNDNBIi8+PGNpcmNsZSByPSIxMyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjQzlBNDNBIiBzdHJva2Utd2lkdGg9IjEuNCIvPjxwYXRoIGQ9Ik0wIC0xMyBWMTMgTS0xMyAwIEgxMyBNLTkgLTkgTDkgOSBNOSAtOSBMLTkgOSIgc3Ryb2tlPSIjQzlBNDNBIiBzdHJva2Utd2lkdGg9IjEuMiIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxNzAgMTcwKSByb3RhdGUoOCkiIHN0cm9rZS13aWR0aD0iMi4yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwYXRoIGQ9Ik0tMjQgLTQgQy0yNiAtMjAgLTYgLTI2IDYgLTIwIEMyMiAtMjQgMzAgLTggMjQgNCBDMzAgMTggMTAgMjYgLTIgMjAgQy0xNiAyNiAtMjggMTIgLTI0IC00IFoiIGZpbGw9IiMyRTMxMzYiIHN0cm9rZT0iIzU1NTk1RiIvPjxjaXJjbGUgY3g9IjIiIGN5PSItMSIgcj0iOSIgZmlsbD0iI0M5QTQzQSIgc3Ryb2tlPSIjQzlBNDNBIi8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMyMCAxOTApIHJvdGF0ZSgzNSkiIHN0cm9rZS13aWR0aD0iMi4yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwYXRoIGQ9Ik0wIC0yMiBDOCAtMjIgMTAgLTE2IDggLTggTDAgMjYgTC04IC04IEMtMTAgLTE2IC04IC0yMiAwIC0yMiBaIiBmaWxsPSIjNEUzNDI0IiBzdHJva2U9IiNDODgwNTAiLz48cGF0aCBkPSJNLTQgLTYgaDUgTS0zIDQgaDQiIHN0cm9rZT0iI0M4ODA1MCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48cGF0aCBkPSJNMCAtMjIgTC03IC0zNCBNMCAtMjIgTDAgLTM2IE0wIC0yMiBMNyAtMzQiIHN0cm9rZT0iIzdGQUE0RSIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg4MCAyOTApIHJvdGF0ZSgtNikiIHN0cm9rZS13aWR0aD0iMi4yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwYXRoIGQ9Ik0tMTAgNiBDLTggLTEyIDAgLTIyIDYgLTI2IE0xMiA4IEMxMCAtOCA4IC0xOCA2IC0yNiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjN0ZBQTRFIi8+PHBhdGggZD0iTTYgLTI2IHExMCAtNCAxNCA0IHEtMTAgMiAtMTQgLTQiIGZpbGw9IiMyRTNFMjAiIHN0cm9rZT0iIzdGQUE0RSIvPjxjaXJjbGUgY3g9Ii0xMSIgY3k9IjEzIiByPSIxMCIgZmlsbD0iIzZBMkUzNCIgc3Ryb2tlPSIjQzA2MDVBIi8+PGNpcmNsZSBjeD0iMTMiIGN5PSIxNSIgcj0iMTAiIGZpbGw9IiM2QTJFMzQiIHN0cm9rZT0iI0MwNjA1QSIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzMDAgMzEwKSByb3RhdGUoLTMwKSIgc3Ryb2tlLXdpZHRoPSIyLjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTAgMjIgQy0xNiA4IC0xNCAtMTQgMCAtMjQgQzE0IC0xNCAxNiA4IDAgMjIgWiIgZmlsbD0iIzJFM0UyMCIgc3Ryb2tlPSIjN0ZBQTRFIi8+PHBhdGggZD0iTTAgMjIgVi0xNiBNMCAwIEwtNyAtNyBNMCA4IEw3IDEiIHN0cm9rZT0iIzdGQUE0RSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTkwIDMyMCkgcm90YXRlKDEyKSIgc3Ryb2tlLXdpZHRoPSIyLjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PGNpcmNsZSByPSIyMSIgZmlsbD0iIzQ2M0EyQyIgc3Ryb2tlPSIjQzg4MDUwIi8+PHBhdGggZD0iTS0xNyAtNiBDLTEyIC0xOCAxMiAtMjAgMTcgLTYgQzIwIDQgMTIgMTAgOCA2IEMyIDEyIC00IDQgLTEwIDggQy0xNiAxMCAtMTkgMiAtMTcgLTYgWiIgZmlsbD0iIzVBMkU0MiIgc3Ryb2tlPSIjRDA2Qzk1Ii8+PGNpcmNsZSByPSI2IiBmaWxsPSIjMTQxNjE5IiBzdHJva2U9IiNDODgwNTAiLz48cGF0aCBkPSJNLTExIC03IGwzIC0yIE05IC0xMCBsMiAzIE0xMiAwIGwzIDEiIHN0cm9rZT0iI0QwNkM5NSIgc3Ryb2tlLXdpZHRoPSIxLjYiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTUwIDYwKSByb3RhdGUoLTIwKSIgc3Ryb2tlLXdpZHRoPSIyLjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTAgMjIgQy0xOCAxMCAtMTggLTEyIC0yIC0xNCBDMCAtMTQgMiAtMTQgMiAtMTQgQzE4IC0xMiAxOCAxMCAwIDIyIFoiIGZpbGw9IiM1QTJBMkEiIHN0cm9rZT0iI0MwNjA1QSIvPjxwYXRoIGQ9Ik0tMTAgLTE0IEwtMyAtMTggTDAgLTI0IEwzIC0xOCBMMTAgLTE0IEwyIC0xMiBMLTIgLTEyIFoiIGZpbGw9IiMyRTNFMjAiIHN0cm9rZT0iIzdGQUE0RSIgc3Ryb2tlLXdpZHRoPSIxLjYiLz48cGF0aCBkPSJNLTYgLTIgdjEgTTUgMCB2MSBNLTEgOCB2MSBNLTggOCB2MSBNNyA5IHYxIiBzdHJva2U9IiNDMDYwNUEiIHN0cm9rZS13aWR0aD0iMiIvPjwvZz48cGF0aCBkPSJNMTIwIDEzMCBsNiAwIiB0cmFuc2Zvcm09InJvdGF0ZSgzMCAxMjAgMTMwKSIgc3Ryb2tlPSIjQzA2MDVBIiBzdHJva2Utd2lkdGg9IjIuNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTI0MCAxMjAgbDYgMCIgdHJhbnNmb3JtPSJyb3RhdGUoLTIwIDI0MCAxMjApIiBzdHJva2U9IiM3RkFBNEUiIHN0cm9rZS13aWR0aD0iMi40IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48cGF0aCBkPSJNMzAgMTkwIGw2IDAiIHRyYW5zZm9ybT0icm90YXRlKDYwIDMwIDE5MCkiIHN0cm9rZT0iI0M5QTQzQSIgc3Ryb2tlLXdpZHRoPSIyLjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik0zNjAgMTEwIGw2IDAiIHRyYW5zZm9ybT0icm90YXRlKDEwIDM2MCAxMTApIiBzdHJva2U9IiNDMDYwNUEiIHN0cm9rZS13aWR0aD0iMi40IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48cGF0aCBkPSJNMjQwIDI1MCBsNiAwIiB0cmFuc2Zvcm09InJvdGF0ZSg0NSAyNDAgMjUwKSIgc3Ryb2tlPSIjQzlBNDNBIiBzdHJva2Utd2lkdGg9IjIuNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTMwIDM2MCBsNiAwIiB0cmFuc2Zvcm09InJvdGF0ZSgtMzAgMzAgMzYwKSIgc3Ryb2tlPSIjN0ZBQTRFIiBzdHJva2Utd2lkdGg9IjIuNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTM2MCAzNzAgbDYgMCIgdHJhbnNmb3JtPSJyb3RhdGUoODAgMzYwIDM3MCkiIHN0cm9rZT0iI0QwNkM5NSIgc3Ryb2tlLXdpZHRoPSIyLjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik0xMjAgMjMwIGw2IDAiIHRyYW5zZm9ybT0icm90YXRlKDAgMTIwIDIzMCkiIHN0cm9rZT0iI0M4ODA1MCIgc3Ryb2tlLXdpZHRoPSIyLjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjwvZz48L3N2Zz4="); --surface: #1D2024; --surface-2: #25292E; --ink: #F3F4F2; --muted: #A3A9B0; --line: #2E3238; --line-strong: #F3F4F2;
+  --accent: #FF6B66; --accent-ink: #141619; --accent-soft: #3A2426; --pop: #3A2426;
+  --bf-1: #2B2A26; --bf-ink: #FFC56B; --ln-1: #252B22; --ln-ink: #BDE57A; --dn-1: #2D2523; --dn-ink: #FF9D78; --sn-1: #2D2329; --sn-ink: #FF9DB8;
+  --warn: #FF9D78; --warn-soft: #3A2426; --ok: #A6D65A;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 6px 18px rgba(0, 0, 0, .3); --shadow-lg: 0 18px 50px rgba(0, 0, 0, .6); color-scheme: dark }
+
+* { box-sizing: border-box }
+html { min-height: 100% }
+/* Background: a hand-drawn food doodle pattern (tomato, strawberry, lemon, egg, carrot, cherries, leaf, doughnut, sprinkles), drawn for this app. */
+body { min-height: 100%; color: var(--ink); font: 400 15px/1.55 var(--sans); background-color: var(--bg);
+  background-image: var(--doodle); background-size: 400px 400px; background-attachment: fixed }
+.m-breakfast { --m1: var(--bf-1); --m2: var(--bf-1); --mi: var(--bf-ink) }
+.m-lunch { --m1: var(--ln-1); --m2: var(--ln-1); --mi: var(--ln-ink) }
+.m-dinner { --m1: var(--dn-1); --m2: var(--dn-1); --mi: var(--dn-ink) }
+.m-snack { --m1: var(--sn-1); --m2: var(--sn-1); --mi: var(--sn-ink) }
+
+.wrap { max-width: 1260px; margin: 0 auto; padding-block: 28px 56px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: grid; gap: 24px }
+h1, h2, h3 { margin: 0; font-family: var(--display); font-weight: 700; text-wrap: balance; letter-spacing: -.02em }
+h1 { font-size: clamp(34px, 5vw, 52px); font-weight: 700; line-height: 1; letter-spacing: -.03em }
+h1 em, .today-intro .date em { font-style: normal; color: var(--accent) }
+h2 { font-size: 24px; font-weight: 700; line-height: 1.15 }
+h3 { font-size: 16px; font-weight: 700; line-height: 1.25; letter-spacing: -.01em }
+p { margin: 0 }
+button, input, select, textarea { font: inherit; color: inherit }
+button { cursor: pointer }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
+.muted { color: var(--muted) }
+.eyebrow { font: 800 11px/1.4 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted) }
+
+header.top { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px 24px }
+.brand { display: grid; gap: 8px }
+.top-right { display: flex; flex-wrap: wrap; align-items: center; gap: 10px }
+nav.tabs, .lang { display: flex; gap: 2px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 3px; box-shadow: var(--shadow) }
+nav.tabs button, .lang button { border: 0; background: none; padding: 8px 15px; border-radius: 9px; font-weight: 500; color: var(--muted); transition: background .2s, color .2s }
+.lang button { padding: 8px 11px; font: 500 12.5px var(--mono); letter-spacing: .04em }
+nav.tabs button[aria-selected="true"], .lang button[aria-pressed="true"] { background: var(--ink); color: var(--bg) }
+
+.glass { background: color-mix(in srgb, var(--surface) 86%, transparent); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); border: 1px solid var(--line); border-radius: 22px; box-shadow: var(--shadow) }
+.panel { padding: 22px; display: grid; gap: 16px; min-width: 0 }
+
+/* Buttons */
+a.btn { text-decoration: none; color: inherit }
+.btn { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 7px 16px; font-weight: 700; transition: border-color .2s, background .2s; min-height: 38px }
+.btn:hover { border-color: var(--ink) }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 600 }
+.btn.primary:hover { background: color-mix(in srgb, var(--accent) 88%, var(--ink)) }
+.btn.ghost { background: none; border-color: transparent; color: var(--muted) }
+.btn.ghost:hover { color: var(--ink) }
+.btn.small { padding: 4px 11px; font-size: 13px; min-height: 32px }
+.btn.danger { color: var(--warn) }
+.btn.danger[data-armed] { background: var(--warn-soft); border-color: transparent }
+.btn:disabled { opacity: .45; cursor: default }
+.btns { display: flex; flex-wrap: wrap; gap: 6px; align-items: center }
+.pills { display: flex; flex-wrap: wrap; gap: 6px }
+.pills button { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 5px 13px; font-size: 13.5px; font-weight: 500; min-height: 34px; color: var(--muted) }
+.pills button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--bg) }
+.tag { display: inline-block; font-size: 12px; font-weight: 600; padding: 2px 9px; border-radius: 6px; background: var(--accent-soft); color: var(--accent) }
+.chip { display: inline-block; font: 500 10.5px/1.6 var(--mono); letter-spacing: .05em; text-transform: uppercase; padding: 0 7px; border-radius: 5px; background: var(--m1); color: var(--mi); white-space: nowrap }
+.chip.example { background: var(--accent-soft); color: var(--accent) }
+
+/* Icons */
+.thumb { display: inline-grid; place-items: center; border-radius: 12px; flex: none; background: var(--m1); color: var(--mi) }
+.thumb svg { width: 56%; height: 56% }
+svg.i { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round }
+.lock-ic { width: 14px; height: 14px; flex: none }
+
+/* Today */
+.today { padding: 22px; display: grid; grid-template-columns: minmax(200px, .8fr) repeat(2, minmax(0, 1fr)); gap: 14px; align-items: stretch }
+.today-intro { display: grid; align-content: start; gap: 12px; padding: 4px; min-width: 0; grid-column: 1; grid-row: 1 }
+.today-intro .date { font: 700 30px/1.1 var(--display); letter-spacing: -.03em }
+.meal { border-radius: 14px; padding: 16px 18px; display: grid; gap: 8px; align-content: start; min-width: 0; text-align: left; border: 1px solid transparent; color: var(--ink);
+  background: var(--m1); transition: border-color .2s, transform .2s }
+.meal:hover { border-color: var(--mi) }
+.meal { position: relative; overflow: hidden }
+.meal > * { position: relative }
+.meal .big-ic { position: absolute; right: -10px; bottom: -14px; width: 92px; height: 92px; color: var(--mi); opacity: .18; transform: rotate(-14deg); pointer-events: none }
+.meal .big-ic svg { width: 100%; height: 100% }
+.meal-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; font: 800 11px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--mi) }
+.meal h3 { font-size: 18px; overflow-wrap: anywhere }
+.meal .meta { font: 400 12.5px var(--mono); color: var(--muted) }
+.meal .add { color: var(--mi); font-weight: 600 }
+.tomorrow { display: grid; gap: 6px; font-size: 13.5px; padding: 12px 4px 4px; border-top: 1px dashed var(--line); align-content: start; grid-column: 1; grid-row: 2 }
+.tomorrow li { display: grid; grid-template-columns: 80px minmax(0, 1fr); gap: 8px }
+.tomorrow ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 4px }
+.tomorrow .ml { color: var(--mi); font: 500 11px/1.9 var(--mono); letter-spacing: .06em; text-transform: uppercase }
+
+/* Week */
+.weekbar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px }
+.weekbar h2 { margin-right: auto }
+.pager { display: flex; gap: 6px; align-items: center; font-family: var(--mono) }
+.pager .btn { min-width: 38px; font-size: 18px; line-height: 1; padding: 6px 12px }
+.week { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 10px }
+.day { padding: 12px 10px 10px; border-radius: 16px; display: grid; gap: 6px; align-content: start; min-width: 0 }
+.day.is-today { border: 2px solid var(--accent) }
+.day.is-past { opacity: .7 }
+.quiet-note { font-size: 13px; padding-inline: 4px }
+.day.is-quiet { align-self: start }
+.day-head { display: flex; align-items: baseline; justify-content: space-between; gap: 6px; padding: 0 4px 4px }
+.day-head .dow { font: 500 11px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted) }
+.day-head .num { font: 700 26px/.95 var(--display); letter-spacing: -.03em; font-variant-numeric: tabular-nums }
+.day.is-today .num { color: var(--accent) }
+.slot { border: 1px solid transparent; text-align: left; border-radius: 10px; padding: 8px 10px; display: grid; gap: 2px; min-width: 0; color: var(--ink); min-height: 52px;
+  background: var(--m1); transition: border-color .15s }
+.slot:hover { border-color: var(--mi) }
+.slot-head { display: flex; align-items: center; justify-content: space-between; gap: 6px; font: 800 10px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--mi) }
+.slot .nm { font-size: 13.5px; font-weight: 500; line-height: 1.3; overflow-wrap: anywhere; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden }
+.slot.empty { background: transparent; border: 1px dashed color-mix(in srgb, var(--mi) 45%, transparent) }
+.slot.empty .nm { color: var(--muted); font-weight: 400 }
+.banner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px; padding: 12px 16px; border-radius: 14px; background: var(--accent-soft); font-size: 13.5px }
+.legend { font-size: 12.5px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center }
+.legend span { display: inline-flex; gap: 6px; align-items: center }
+
+/* Recipes */
+.toolbar { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center }
+.toolbar h2 { margin-right: auto }
+.search { border: 1px solid var(--line); background: var(--surface-2); border-radius: 10px; padding: 9px 14px; width: 100%; color: var(--ink) }
+.rec-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 8px }
+.rec-row { display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 12px; align-items: center; padding: 10px 12px; border-radius: 14px; background: var(--surface); border: 1px solid var(--line); text-align: left; color: var(--ink); transition: border-color .2s }
+.rec-row:hover { border-color: var(--ink) }
+.rec-row .nm { font: 700 14.5px/1.3 var(--display); letter-spacing: -.01em; overflow-wrap: anywhere }
+.rec-row .sub { display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: center; font-size: 12.5px; color: var(--muted); margin-top: 4px }
+.empty-state { text-align: center; padding: 40px 20px; display: grid; gap: 14px; justify-items: center }
+.empty-state p { max-width: 46ch }
+.backup { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; justify-content: space-between; font-size: 13px; color: var(--muted) }
+.backup p { max-width: 60ch }
+
+/* Shopping */
+.shop-sum { font: 400 12.5px var(--mono); color: var(--muted) }
+.shop-secs { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; align-items: start }
+.shop-sec { display: grid; gap: 0; padding: 14px 14px 8px; border-radius: 14px; background: var(--surface); border: 1px solid var(--line); min-width: 0 }
+.shop-sec .eyebrow { display: flex; gap: 8px; align-items: center; padding-bottom: 6px; color: var(--ink) }
+.sec-dot { width: 9px; height: 9px; border-radius: 3px; background: var(--c) }
+.item { display: grid; grid-template-columns: 22px minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 8px 2px; border-top: 1px dashed var(--line); cursor: pointer }
+.item .nm { display: block; overflow-wrap: anywhere; font-weight: 500 }
+.item .sub { display: block; font-size: 12px; color: var(--muted); overflow-wrap: anywhere }
+.item .amt { font: 800 13.5px var(--mono); color: var(--accent); text-align: right; white-space: nowrap }
+.item.done .nm, .item.done .amt { color: var(--muted); text-decoration: line-through; text-decoration-color: color-mix(in srgb, var(--muted) 70%, transparent) }
+.check { appearance: none; -webkit-appearance: none; width: 22px; height: 22px; margin: 0; border-radius: 6px; border: 1.5px solid color-mix(in srgb, var(--muted) 70%, transparent); background: var(--surface); display: grid; place-items: center; cursor: pointer; transition: background .15s, border-color .15s }
+.check::after { content: "✓"; font-size: 14px; font-weight: 700; line-height: 1; color: var(--accent-ink); opacity: 0 }
+.check:checked { background: var(--ok); border-color: var(--ok) }
+.check:checked::after { opacity: 1 }
+.x-btn { border: 0; background: none; color: var(--muted); font-size: 18px; line-height: 1; padding: 4px 8px; border-radius: 8px }
+.x-btn:hover { background: var(--warn-soft); color: var(--warn) }
+.add-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; padding-block: 8px 6px; border-top: 1px dashed var(--line) }
+
+/* Forms */
+.field { display: grid; gap: 5px; font-size: 13px; font-weight: 500; color: var(--muted); min-width: 0 }
+.field .hint { font-size: 12px; font-weight: 400 }
+.input { border: 1px solid var(--line); background: var(--surface-2); border-radius: 10px; padding: 9px 12px; color: var(--ink); width: 100%; font-size: 15px; font-weight: 400 }
+.input:focus { background: var(--surface); border-color: var(--ink) }
+textarea.input { resize: vertical; min-height: 96px; line-height: 1.5 }
+.row2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px }
+.meal-picks { display: flex; flex-wrap: wrap; gap: 6px }
+.meal-picks label { display: inline-flex; gap: 6px; align-items: center; padding: 6px 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font-size: 13.5px; cursor: pointer; min-height: 36px }
+.meal-picks label:has(input:checked) { background: var(--m1); border-color: var(--mi); color: var(--mi); font-weight: 600 }
+.meal-picks input { accent-color: var(--mi); margin: 0 }
+.parsed { display: flex; flex-wrap: wrap; gap: 4px; font: 400 11.5px var(--mono) }
+.parsed span { padding: 2px 7px; border-radius: 5px; background: var(--accent-soft); color: var(--accent) }
+.parsed span.raw { background: var(--warn-soft); color: var(--warn) }
+.stepper { display: inline-flex; align-items: center; gap: 4px; border: 1px solid var(--line); border-radius: 10px; padding: 2px; background: var(--surface) }
+.stepper button { border: 0; background: none; width: 32px; height: 32px; border-radius: 8px; font-size: 18px; line-height: 1 }
+.stepper button:hover { background: var(--accent-soft); color: var(--accent) }
+.stepper span { min-width: 28px; text-align: center; font: 500 14px var(--mono) }
+
+/* Sheet */
+.scrim { position: fixed; inset: 0; background: rgba(20, 22, 25, .5); z-index: 20 }
+.sheet { position: fixed; top: 0; right: 0; bottom: 0; width: min(480px, 100%); background: var(--surface); z-index: 21; box-shadow: var(--shadow-lg);
+  display: grid; grid-template-rows: auto minmax(0, 1fr); border-radius: 20px 0 0 20px;
+  padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); padding-right: env(safe-area-inset-right, 0px) }
+@media (max-width: 520px) { .sheet { border-radius: 0 } }
+.sheet-head { display: flex; align-items: start; justify-content: space-between; gap: 12px; padding: 22px 22px 14px; border-bottom: 1px solid var(--line) }
+.sheet-head h2 { font-size: 28px; overflow-wrap: anywhere }
+.sheet-head .eyebrow { display: block; margin-bottom: 4px }
+.sheet-body { overflow-y: auto; padding: 18px 22px 32px; display: grid; gap: 18px; align-content: start }
+.sec { display: grid; gap: 10px; border-radius: 14px; padding: 14px; background: var(--m1) }
+.sec h3 { color: var(--mi) }
+.ingr { margin: 0; padding: 0; list-style: none; display: grid; gap: 0 }
+.ingr li { display: grid; grid-template-columns: minmax(70px, auto) minmax(0, 1fr); gap: 12px; align-items: baseline; padding: 5px 0; border-top: 1px dashed color-mix(in srgb, var(--mi) 30%, transparent); overflow-wrap: anywhere }
+.ingr .q { font: 800 13.5px var(--mono); text-align: right; white-space: nowrap }
+.method { margin: 0; padding: 0; list-style: none; display: grid; gap: 12px; counter-reset: st }
+.method li { counter-increment: st; display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 10px; overflow-wrap: anywhere }
+.method li::before { content: counter(st); font: 700 16px/1.4 var(--display); color: var(--accent) }
+.note { font-style: italic; font-size: 15px; line-height: 1.5; white-space: pre-wrap; overflow-wrap: anywhere; color: var(--muted) }
+.picks { display: grid; gap: 5px }
+.pick { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 10px; align-items: center; padding: 8px 10px; border-radius: 12px; border: 1px solid var(--line); text-align: left; color: var(--ink); background: var(--surface); transition: border-color .15s }
+.pick:hover { border-color: var(--ink) }
+.pick[aria-current="true"] { border: 2px solid var(--accent) }
+.pick .nm { font-weight: 600; overflow-wrap: anywhere }
+.pick .sub { display: block; font-size: 12px; color: var(--muted) }
+.lock-btn[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink) }
+.status { font-size: 12px; color: var(--muted); margin: 0 }
+.toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(18px + env(safe-area-inset-bottom, 0px)); background: var(--ink); color: var(--bg); padding: 10px 18px; border-radius: 12px; font-size: 14px; line-height: 1.4; text-align: center; z-index: 30; box-shadow: var(--shadow-lg); width: max-content; max-width: min(420px, calc(100% - 32px)); overflow-wrap: anywhere }
+
+.bottom-nav { display: none }
+@media (max-width: 1000px) {
+  .today { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+  .today-intro { grid-column: 1 / -1; grid-row: auto }
+  .tomorrow { grid-column: 1 / -1; grid-row: auto; order: 5 }
+  .week { grid-template-columns: minmax(0, 1fr) }
+  .day { grid-template-columns: 64px repeat(4, minmax(0, 1fr)); align-items: stretch }
+  .day-head { flex-direction: column; align-items: start; justify-content: start; gap: 4px }
+  .day.is-quiet { grid-template-columns: 64px minmax(0, 1fr); align-items: center }
+}
+@media (max-width: 700px) {
+  header.top nav.tabs { display: none }
+  header.top { align-items: center }
+  h1 { font-size: 26px }
+  .brand .eyebrow { display: none }
+  .wrap { padding-block: 16px calc(96px + env(safe-area-inset-bottom, 0px)); gap: 18px }
+  .toast { bottom: calc(86px + env(safe-area-inset-bottom, 0px)) }
+  .bottom-nav { display: grid; grid-template-columns: repeat(4, 1fr); position: fixed; left: 0; right: 0; bottom: 0; z-index: 15;
+    padding: 6px max(8px, env(safe-area-inset-left, 0px)) calc(6px + env(safe-area-inset-bottom, 0px)) max(8px, env(safe-area-inset-right, 0px));
+    background: var(--surface); border-top: 1px solid var(--line) }
+  .bottom-nav button { border: 0; background: none; display: grid; justify-items: center; gap: 2px; padding: 6px 0; font-size: 11.5px; font-weight: 600; color: var(--muted); border-radius: 12px; -webkit-tap-highlight-color: transparent }
+  .bottom-nav svg { width: 24px; height: 24px; padding: 3px 14px; box-sizing: content-box; border-radius: 10px; transition: background .2s }
+  .bottom-nav button[aria-current="page"] { color: var(--accent) }
+  .bottom-nav button[aria-current="page"] svg { background: var(--accent-soft); color: var(--accent) }
+  .panel, .today { padding: 14px }
+  .day { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+  .day-head { grid-column: 1 / -1; flex-direction: row; align-items: baseline; gap: 10px }
+  .day.is-quiet { display: flex; align-items: baseline; gap: 12px; padding-block: 10px }
+  .day.is-quiet .day-head { gap: 10px; padding-bottom: 0 }
+  .rec-list, .shop-secs { grid-template-columns: minmax(0, 1fr) }
+}
+@media (max-width: 600px) {
+  .today { grid-template-columns: minmax(0, 1fr) }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .sheet { animation: slide .25s cubic-bezier(.2, .8, .2, 1) } @keyframes slide { from { transform: translateX(40px); opacity: .5 } }
+}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="brand">
+      <span class="eyebrow" id="tagline"></span>
+      <h1 id="appTitle"></h1>
+    </div>
+    <div class="top-right">
+      <nav class="tabs" role="tablist" aria-label="Views" id="tabs"></nav>
+      <div class="lang" role="group" aria-label="Language">
+        <button data-act="lang" data-lang="en">EN</button>
+        <button data-act="lang" data-lang="ru">RU</button>
+      </div>
+    </div>
+  </header>
+  <main id="main" style="display:grid;gap:26px"></main>
+  <p class="status" id="status"></p>
+</div>
+<nav class="bottom-nav" aria-label="Views" id="bottomNav"></nav>
+<div id="sheetRoot"></div>
+<div class="toast" id="toast" role="status" hidden></div>
+<input type="file" id="restoreFile" accept="application/json,.json" hidden>
+
+<script>
+/* ---------- words (English | Russian) ---------- */
+const S = {
+  appTitle: ["Meal <em>Planner</em>", "План <em>питания</em>"],
+  tagline: ["Recipes, meals and shopping", "Рецепты, меню и покупки"],
+  tab_today: ["Today", "Сегодня"], tab_week: ["Week", "Неделя"], tab_recipes: ["Recipes", "Рецепты"], tab_shop: ["Shopping", "Покупки"],
+  breakfast: ["Breakfast", "Завтрак"], lunch: ["Lunch", "Обед"], dinner: ["Dinner", "Ужин"], snack: ["Snack", "Перекус"],
+  today: ["Today", "Сегодня"], tomorrow: ["Tomorrow", "Завтра"],
+  todayHint: ["Tap a meal to swap it, keep it, or open the recipe.", "Нажмите на блюдо, чтобы заменить, закрепить или открыть рецепт."],
+  nothingPlanned: ["Nothing planned", "Ничего не запланировано"],
+  addMeal: ["+ Add", "+ Добавить"],
+  planWeek: ["Plan my week", "Спланировать неделю"], reshuffle: ["Reshuffle", "Перемешать"], clearWeek: ["Clear", "Очистить"],
+  thisWeek: ["This week", "Эта неделя"], prevWeek: ["Previous week", "Предыдущая неделя"], nextWeekBtn: ["Next week", "Следующая неделя"],
+  weekHint: ["Plan my week fills the empty meals from today on and avoids recipes you've had recently. Kept meals stay when you reshuffle.",
+    "«Спланировать неделю» заполнит пустые приёмы пищи с сегодняшнего дня и не будет повторять недавние блюда. Закреплённые блюда не меняются при перемешивании."],
+  kept: ["Kept", "Закреплено"],
+  planned: [["Planned {n} meal. Tap it to swap it or keep it.", "Planned {n} meals. Tap any meal to swap it or keep it."],
+    ["Запланировано {n} блюдо. Нажмите на него, чтобы заменить или закрепить.", "Запланировано {n} блюда. Нажмите на блюдо, чтобы заменить или закрепить его.", "Запланировано {n} блюд. Нажмите на блюдо, чтобы заменить или закрепить его."]],
+  planNone: ["Add some recipes first and tick which meals they're good for.", "Сначала добавьте рецепты и отметьте, для каких приёмов пищи они подходят."],
+  planFull: ["Every meal from today on is already planned. Reshuffle swaps the ones you haven't kept.", "Все приёмы пищи с сегодняшнего дня уже запланированы. «Перемешать» заменит незакреплённые."],
+  planPast: ["This week is over. Go to this week or next week to plan.", "Эта неделя уже прошла. Перейдите на текущую или следующую неделю."],
+  cleared: ["Removed the meals you hadn't kept, from today on.", "Незакреплённые блюда с сегодняшнего дня убраны."],
+  openRecipe: ["Open recipe", "Открыть рецепт"], suggestAnother: ["Suggest another", "Предложить другое"], remove: ["Remove", "Убрать"],
+  keep: ["Keep this meal", "Закрепить"], keepHint: ["Kept meals stay when you reshuffle the week.", "Закреплённые блюда не меняются при перемешивании недели."],
+  servings: ["Servings", "Порции"],
+  servingsN: [["{n} serving", "{n} servings"], ["{n} порция", "{n} порции", "{n} порций"]],
+  minutes: ["{n} min", "{n} мин"],
+  chooseRecipe: ["Choose a recipe", "Выберите рецепт"], changeRecipe: ["Choose a different recipe", "Выбрать другой рецепт"],
+  showAll: ["Show all recipes", "Показать все рецепты"], showMeal: ["Only {meal} recipes", "Только «{meal}»"],
+  search: ["Search recipes", "Поиск рецептов"], noMatch: ["No recipes match that search.", "Ничего не найдено."],
+  noForMeal: ["No recipes are ticked for {meal} yet. Show all recipes, or edit a recipe and tick {meal}.", "Пока нет рецептов для «{meal}». Покажите все рецепты или отметьте «{meal}» в рецепте."],
+  noOther: ["There's no other {meal} recipe to suggest yet.", "Других рецептов для «{meal}» пока нет."],
+  newRecipe: ["New recipe", "Новый рецепт"], pasteRecipe: ["Paste from ChatGPT", "Вставить из ChatGPT"], editRecipe: ["Edit recipe", "Изменить рецепт"],
+  name: ["Name", "Название"], goodFor: ["Good for", "Подходит для"], timeMin: ["Time, minutes", "Время, минут"],
+  ingredients: ["Ingredients", "Ингредиенты"], ingrHint: ["One per line, for example: 200 g spaghetti", "По одному в строке, например: Спагетти — 200 г"],
+  readAs: ["Amounts found", "Распознанные количества"], noAmount: ["no amount", "без количества"],
+  steps: ["Method", "Приготовление"], stepsHint: ["One step per line", "Один шаг в строке"], notes: ["Notes", "Заметки"],
+  save: ["Save", "Сохранить"], cancel: ["Cancel", "Отмена"], close: ["Close", "Закрыть"], edit: ["Edit", "Изменить"], del: ["Delete", "Удалить"],
+  confirmDelete: ["Tap again to delete", "Нажмите ещё раз"],
+  pasteTitle: ["Paste a recipe", "Вставьте рецепт"],
+  pasteHelp: ["Copy a recipe from your ChatGPT chat and paste it here. Several recipes at once are fine too. You can check everything before it's saved.",
+    "Скопируйте рецепт из чата с ChatGPT и вставьте сюда. Можно сразу несколько рецептов. Перед сохранением всё можно проверить."],
+  pastePh: ["Creamy tomato pasta\n\nIngredients\n- 200 g spaghetti\n- 1 tbsp olive oil\n…\n\nInstructions\n1. Cook the pasta…", "Паста в томатном соусе\n\nИнгредиенты:\n- Спагетти — 200 г\n- Оливковое масло — 1 ст. л.\n…\n\nПриготовление:\n1. Отварите пасту…"],
+  readRecipe: ["Read recipe", "Распознать"],
+  pasteEmpty: ["Paste a recipe into the box first.", "Сначала вставьте рецепт в поле."],
+  pasteFail: ["Couldn't find a recipe in that text. Check it has a list of ingredients.", "Не удалось найти рецепт в тексте. Проверьте, что в нём есть список ингредиентов."],
+  foundN: [["Found {n} recipe", "Found {n} recipes"], ["Найден {n} рецепт", "Найдено {n} рецепта", "Найдено {n} рецептов"]],
+  addN: [["Add {n} recipe", "Add {n} recipes"], ["Добавить {n} рецепт", "Добавить {n} рецепта", "Добавить {n} рецептов"]],
+  addedN: [["Added {n} recipe. Open it to check the details.", "Added {n} recipes. Open each one to check the details."],
+    ["Добавлен {n} рецепт. Откройте его, чтобы проверить.", "Добавлено {n} рецепта. Откройте каждый, чтобы проверить.", "Добавлено {n} рецептов. Откройте каждый, чтобы проверить."]],
+  checkSave: ["Check the details, then tap Save.", "Проверьте данные и нажмите «Сохранить»."],
+  saved: ["Saved {name}.", "Рецепт «{name}» сохранён."], deleted: ["Deleted {name} and removed it from your plan.", "Рецепт «{name}» удалён и убран из плана."],
+  nameRequired: ["Give the recipe a name.", "Укажите название рецепта."],
+  mealRequired: ["Saved. Tick at least one meal so it can be planned.", "Сохранено. Отметьте хотя бы один приём пищи, чтобы рецепт попадал в план."],
+  recipesEmpty: ["Your recipe box is empty. Paste a recipe from ChatGPT or add one by hand.", "Здесь пока пусто. Вставьте рецепт из ChatGPT или добавьте вручную."],
+  samplesBanner: ["These are example recipes so you can try the app. Add your own, then remove the examples.", "Это примеры рецептов, чтобы попробовать приложение. Добавьте свои, а затем удалите примеры."],
+  removeSamples: ["Remove examples", "Удалить примеры"], samplesRemoved: ["Removed the example recipes and their meals.", "Примеры рецептов и их блюда удалены."],
+  loadSamples: ["Try example recipes", "Добавить примеры"], example: ["Example", "Пример"], all: ["All", "Все"],
+  untitled: ["Untitled recipe", "Рецепт без названия"],
+  lastHad: ["Last {date}", "Было: {date}"], nextOn: ["Next {date}", "Будет: {date}"], neverPlanned: ["Not planned yet", "Ещё не в плане"],
+  addToPlan: ["Add to plan", "Добавить в план"], day: ["Day", "День"], meal: ["Meal", "Приём пищи"],
+  addedToPlan: ["Added {name} to {meal}, {date}.", "«{name}» добавлено: {meal}, {date}."],
+  ingrFor: ["Ingredients for {n}", "Ингредиенты на {n}"],
+  shopFor: ["Shopping for", "Покупки на"], restOfWeek: ["Rest of this week", "Остаток недели"], nextWeek: ["Next week", "Следующую неделю"],
+  shopEmpty: ["No meals are planned for these days, so there's nothing to buy yet. Plan your week first.", "На эти дни ничего не запланировано, поэтому покупать пока нечего. Сначала спланируйте неделю."],
+  goPlan: ["Go to Week", "Открыть неделю"],
+  leftOf: ["{left} of {n} left to buy", "Осталось купить: {left} из {n}"], allBought: ["Everything is ticked off.", "Всё куплено."],
+  copyList: ["Copy list", "Скопировать"], untick: ["Untick all", "Снять отметки"],
+  copied: ["Copied the list. Paste it into a note or a message.", "Список скопирован. Вставьте его в заметку или сообщение."],
+  copyFail: ["Couldn't copy automatically. Select the text and copy it.", "Не удалось скопировать автоматически. Выделите текст и скопируйте его."],
+  listText: ["Shopping list", "Список покупок"],
+  alsoBuy: ["Also buy", "Ещё купить"], addItemPh: ["Add an item, for example coffee", "Добавить товар, например кофе"], add: ["Add", "Добавить"],
+  forList: ["for {list}", "для: {list}"], toTaste: ["to taste", "по вкусу"],
+  sec_produce: ["Fruit & veg", "Овощи и фрукты"], sec_meat: ["Meat & fish", "Мясо и рыба"], sec_dairy: ["Dairy & eggs", "Молочное и яйца"],
+  sec_bakery: ["Bread", "Хлеб"], sec_grains: ["Grains & pasta", "Крупы и макароны"], sec_tins: ["Tins, jars & sauces", "Консервы и соусы"],
+  sec_nuts: ["Nuts, seeds & dried fruit", "Орехи, семена и сухофрукты"], sec_frozen: ["Frozen", "Заморозка"],
+  sec_pantry: ["Spices & oil · check at home", "Специи и масло · проверьте дома"], sec_other: ["Other", "Другое"],
+  backup: ["Back up", "Сохранить копию"], restore: ["Restore", "Восстановить"],
+  backupHelp: ["Your recipes and plans are saved on this device. Save a backup file to move them to a new phone.", "Рецепты и планы хранятся на этом устройстве. Сохраните резервную копию, чтобы перенести их на новый телефон."],
+  backupSaved: ["Saved a backup file. Keep it somewhere safe, like your cloud drive.", "Резервная копия сохранена. Храните её в надёжном месте, например в облаке."],
+  restored: ["Restored {n} recipes from the backup.", "Восстановлено рецептов из копии: {n}."],
+  restoreFail: ["That file isn't a Meal Planner backup. Choose the .json file you saved with Back up.", "Это не резервная копия. Выберите файл .json, сохранённый через «Сохранить копию»."],
+  saveFail: ["Couldn't save on this device. Check that the browser allows site data.", "Не удалось сохранить на устройстве. Проверьте, что браузер разрешает хранить данные сайтов."]
+};
+const MEALS = ["breakfast", "lunch", "dinner", "snack"];
+const SECTIONS = ["produce", "meat", "dairy", "bakery", "grains", "tins", "nuts", "frozen", "other", "pantry"];
+const SEC_COLOR = { produce: 1, meat: 2, dairy: 3, bakery: 7, grains: 5, tins: 4, nuts: 9, frozen: 8, other: 6, pantry: 10 };
+
+let lang = "en";
+const L = () => (lang === "ru" ? 1 : 0);
+const LOCALE = () => (lang === "ru" ? "ru-RU" : "en-GB");
+function pluralIdx(n) {
+  if (lang !== "ru") return n === 1 ? 0 : 1;
+  const a = Math.abs(n) % 100, b = a % 10;
+  if (a > 10 && a < 20) return 2;
+  if (b === 1) return 0;
+  if (b >= 2 && b <= 4) return 1;
+  return 2;
+}
+function t(key, vars = {}) {
+  let s = S[key]?.[L()] ?? key;
+  if (Array.isArray(s)) s = s[Math.min(pluralIdx(vars.n ?? 0), s.length - 1)];
+  return s.replace(/\{(\w+)\}/g, (_, k) => vars[k] ?? "");
+}
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const cap = s => s ? s[0].toLocaleUpperCase() + s.slice(1) : s;
+const uid = () => Math.random().toString(36).slice(2, 10);
+
+/* ---------- icons (Tabler Icons, MIT; 24×24 outline) ---------- */
+const ICONS = {
+  today: '<path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z"/><path d="M16 3v4"/><path d="M8 3v4"/><path d="M4 11h16"/><path d="M8 15h2v2h-2z"/>',
+  week: '<path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z"/><path d="M16 3v4"/><path d="M8 3v4"/><path d="M4 11h16"/><path d="M7 14h.01"/><path d="M10 14h.01"/><path d="M13 14h.01"/><path d="M16 14h.01"/><path d="M7 17h.01"/><path d="M10 17h.01"/><path d="M13 17h.01"/>',
+  recipes: '<path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0"/><path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0"/><path d="M3 6l0 13"/><path d="M12 6l0 13"/><path d="M21 6l0 13"/>',
+  shop: '<path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M17 17h-11v-14h-2"/><path d="M6 5l14 1l-1 7h-13"/>',
+  breakfast: '<path d="M3 14c.83 .642 2.077 1.017 3.5 1c1.423 .017 2.67 -.358 3.5 -1c.83 -.642 2.077 -1.017 3.5 -1c1.423 -.017 2.67 .358 3.5 1"/><path d="M8 3a2.4 2.4 0 0 0 -1 2a2.4 2.4 0 0 0 1 2"/><path d="M12 3a2.4 2.4 0 0 0 -1 2a2.4 2.4 0 0 0 1 2"/><path d="M3 10h14v5a6 6 0 0 1 -6 6h-2a6 6 0 0 1 -6 -6v-5z"/><path d="M16.746 16.726a3 3 0 1 0 .252 -5.555"/>',
+  lunch: '<path d="M4 11h16a1 1 0 0 1 1 1v.5c0 1.5 -2.517 5.573 -4 6.5v1a1 1 0 0 1 -1 1h-8a1 1 0 0 1 -1 -1v-1c-1.687 -1.054 -4 -5 -4 -6.5v-.5a1 1 0 0 1 1 -1z"/><path d="M8 8c0 -1.5 1 -2 1 -3.5"/><path d="M12 8c0 -1.5 1 -2 1 -3.5"/><path d="M16 8c0 -1.5 1 -2 1 -3.5"/>',
+  dinner: '<path d="M19 3v12h-5c-.023 -3.681 .184 -7.406 5 -12zm0 12v6h-1v-3m-10 -14v17m-3 -17v3a3 3 0 1 0 6 0v-3"/>',
+  snack: '<path d="M12 14m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"/><path d="M12 11v-6a2 2 0 0 1 2 -2h2v1a2 2 0 0 1 -2 2h-2"/><path d="M10 10.5c1.333 .667 2.667 .667 4 0"/>',
+  lock: '<path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6z"/><path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"/><path d="M8 11v-4a4 4 0 1 1 8 0v4"/>'
+};
+const svg = (name, cls = "") => `<svg class="i ${cls}" viewBox="0 0 24 24" aria-hidden="true">${ICONS[name]}</svg>`;
+const thumb = (meal, size = 52) => `<span class="thumb m-${meal}" style="width:${size}px;height:${size}px">${svg(meal)}</span>`;
+
+/* ---------- reading ingredient lines ---------- */
+/* Units: canonical key → English label (singular, plural), Russian label, and the spellings people use in both languages. */
+const UNITS = {
+  g: ["g", "г", "g|gr|gram|grams|gramme|grammes|г|гр|грамм|грамма|граммов"],
+  kg: ["kg", "кг", "kg|kgs|kilo|kilos|kilogram|kilograms|кг|килограмм|килограмма|килограммов"],
+  ml: ["ml", "мл", "ml|millilitre|millilitres|milliliter|milliliters|мл|миллилитр|миллилитра|миллилитров"],
+  l: ["l", "л", "l|litre|litres|liter|liters|л|литр|литра|литров"],
+  tbsp: ["tbsp", "ст. л.", "tbsp|tbsps|tbs|tablespoon|tablespoons|ст.л.|ст. л.|ст л|ст. ложки|ст. ложка|ст. ложку|ст.ложки|столовая ложка|столовые ложки|столовых ложки|столовых ложек|столовой ложки|столовую ложку"],
+  tsp: ["tsp", "ч. л.", "tsp|tsps|teaspoon|teaspoons|ч.л.|ч. л.|ч л|ч. ложки|ч. ложка|ч. ложку|ч.ложки|чайная ложка|чайные ложки|чайных ложки|чайных ложек|чайной ложки|чайную ложку"],
+  cup: ["cup|cups", "стак.", "cup|cups|стакан|стакана|стаканов|стак."],
+  clove: ["clove|cloves", "зубч.", "clove|cloves|зубчик|зубчика|зубчиков|зубчиков|зуб."],
+  pinch: ["pinch|pinches", "щеп.", "pinch|pinches|щепотка|щепотки|щепоток|щепотку|щеп."],
+  can: ["can|cans", "банк.", "can|cans|tin|tins|банка|банки|банок|банку"],
+  bunch: ["bunch|bunches", "пуч.", "bunch|bunches|пучок|пучка|пучков"],
+  slice: ["slice|slices", "ломт.", "slice|slices|ломтик|ломтика|ломтиков|ломтя"],
+  pack: ["pack|packs", "уп.", "pack|packs|packet|packets|упаковка|упаковки|упаковок|уп.|пачка|пачки|пачек"],
+  head: ["head|heads", "кочан", "head|heads|кочан|кочана|кочанов|головка|головки"],
+  handful: ["handful|handfuls", "горсть", "handful|handfuls|горсть|горсти"],
+  oz: ["oz", "унц.", "oz|ounce|ounces"],
+  lb: ["lb", "фунт.", "lb|lbs|pound|pounds"],
+  pcs: ["", "шт.", "pc|pcs|piece|pieces|шт|шт.|штука|штуки|штук"]
+};
+const UNIT_ALIAS = {};
+for (const [k, [, , words]] of Object.entries(UNITS)) for (const w of words.split("|")) if (w) UNIT_ALIAS[w.toLowerCase()] = k;
+const reEsc = s => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const UNIT_ALT = Object.keys(UNIT_ALIAS).filter(Boolean).sort((a, b) => b.length - a.length).map(reEsc).join("|");
+const UNIT_RE = new RegExp(`^(${UNIT_ALT})(?![a-zа-яё])\\.?`, "i");
+const FRAC = { "½": .5, "⅓": 1 / 3, "⅔": 2 / 3, "¼": .25, "¾": .75, "⅛": .125 };
+const NUM = "(?:\\d+\\s+\\d+\\/\\d+|\\d+\\/\\d+|\\d+[.,]\\d+|\\d+\\s?[½⅓⅔¼¾⅛]|\\d+|[½⅓⅔¼¾⅛])";
+const QTY_RE = new RegExp(`^(${NUM})(?:\\s*(?:-|–|—|to|до)\\s*(${NUM}))?\\s*`, "i");
+const TRAIL_RE = new RegExp(`^(.*?[a-zа-яё)][^\\d]*?)\\s+(${NUM})\\s*(${UNIT_ALT})?\\.?\\s*$`, "i");
+const TO_TASTE_RE = /to taste|по вкусу|optional|по желанию|for serving|to serve|для подачи/i;
+const NO_QTY_UNITS = new Set(["pinch", "bunch", "handful"]);
+
+function toNum(s) {
+  s = s.trim();
+  let m;
+  if ((m = s.match(/^(\d+)\s+(\d+)\/(\d+)$/))) return +m[1] + m[2] / m[3];
+  if ((m = s.match(/^(\d+)\/(\d+)$/))) return m[1] / m[2];
+  if ((m = s.match(/^(\d+)\s?([½⅓⅔¼¾⅛])$/))) return +m[1] + FRAC[m[2]];
+  if (FRAC[s]) return FRAC[s];
+  return parseFloat(s.replace(",", "."));
+}
+function cleanLine(s) {
+  return s.replace(/\*\*|__|`/g, "").replace(/^\s*(?:[-*•·▪◦–—]|\[\s?\]|\d+[.)](?=\s))\s*/, "").replace(/^\s*\*\s+/, "").trim();
+}
+function parseAmount(s) {
+  s = s.trim();
+  let qty = null, unit = null, rest = s;
+  const q = rest.match(QTY_RE);
+  if (q && q[0].trim()) { qty = toNum(q[2] || q[1]); rest = rest.slice(q[0].length) }
+  const u = rest.match(UNIT_RE);
+  if (u && (qty != null || NO_QTY_UNITS.has(UNIT_ALIAS[u[1].toLowerCase()]))) {
+    unit = UNIT_ALIAS[u[1].toLowerCase()];
+    if (qty == null) qty = 1;
+    rest = rest.slice(u[0].length);
+  }
+  if (qty == null) return null;
+  rest = rest.replace(/^\s*(?:of|x|×)\s+/i, "").trim();
+  return { qty, unit, rest };
+}
+function tidyName(s) {
+  return s.replace(/\([^)]*\)/g, " ").split(/,|;|\s[—–-]\s/)[0].replace(TO_TASTE_RE, "").replace(/\s+(?:and|и)\s*$/i, "").replace(/[.:]+$/, "").replace(/\s+/g, " ").trim();
+}
+/* Reads "200 g spaghetti", "2 chicken breasts, diced", "Творог — 400 г", "Мука 3 ст. л.", "Salt and pepper, to taste". */
+function parseIngredient(raw) {
+  const s = cleanLine(raw);
+  let name = s, rest = s, amt = null;
+  const d = s.match(/^(.+?)\s+[—–-]\s+(.+)$/) || s.match(/^([^:\d]+?):\s*(.+)$/);
+  if (d && /[a-zа-яё]/i.test(d[1])) {
+    name = rest = d[1];
+    amt = parseAmount(d[2]);
+    if (!amt) rest = s;
+  }
+  if (!amt && !d) {
+    const a = parseAmount(s);
+    if (a && a.rest) { amt = a; name = rest = a.rest }
+  }
+  if (!amt && !d) {
+    const m = s.match(TRAIL_RE);
+    if (m) { const unit = m[3] ? UNIT_ALIAS[m[3].toLowerCase()] : null; amt = { qty: toNum(m[2]), unit }; name = rest = m[1] }
+  }
+  const qty = amt?.qty ?? null;
+  return { qty: Number.isFinite(qty) ? qty : null, unit: amt?.unit || null, name: tidyName(name) || s, rest: rest.trim(), toTaste: TO_TASTE_RE.test(s), raw: s };
+}
+
+/* ---------- reading whole recipes pasted from ChatGPT ---------- */
+const H_INGR = /^(ingredients?|you(?:'|’)?ll need|you will need|what you need|ингредиенты|продукты|состав|что понадобится|понадобится|нам понадобится)(?![\p{L}])/iu;
+const H_STEPS = /^(instructions?|method|directions?|steps|preparation|how to make( it)?|cooking|приготовление|способ приготовления|инструкция|шаги|как готовить|пошаговый рецепт|рецепт приготовления|готовим)(?![\p{L}])/iu;
+const H_NOTES = /^(notes?|tips?|serving suggestions?|nutrition|storage|variations?|заметки|советы|примечани[ея]|подача|хранение|варианты|пищевая ценность|кбжу)(?![\p{L}])/iu;
+const CHATTER = /^(sure|of course|absolutely|great|here(?:'|’)s|here is|here are|certainly|конечно|отлично|вот\s|держи|с удовольствием)/i;
+const OUTRO = /^(enjoy|bon app|let me know|hope you|приятного аппетита|наслаждайтесь|если хотите|могу также|хотите,? я)/i;
+const plainHead = l => cleanLine(l).replace(/^#+\s*/, "").replace(/^[^\p{L}\d]+/u, "").replace(/[:：]\s*$/, "").trim();
+const isHeading = (line, re) => { const p = plainHead(line); return p.length < 70 && re.test(p) };
+
+function metaFrom(line, r) {
+  const p = cleanLine(line).replace(/^#+\s*/, "");
+  let m;
+  if (!r.servings && (m = p.match(/(?:serves|servings?|portions?|makes|yield|порци[йия]|на)\s*:?\s*(\d+)/i) || p.match(/(\d+)\s*(?:servings?|portions?|порци[йия])/i))) r.servings = +m[1];
+  if (!r.time && /(time|время|cook|prep|готов|мин|min|hour|час)/i.test(p)) {
+    const h = p.match(/(\d+(?:[.,]\d+)?)\s*(?:h(?![\p{L}])|hours?|hrs?|ч(?![\p{L}])|час)/iu), mi = p.match(/(\d+)\s*(?:min|minutes?|mins|мин)/i);
+    const total = (h ? toNum(h[1]) * 60 : 0) + (mi ? +mi[1] : 0);
+    if (total) { r.time = Math.round(total); return true }
+  }
+  return !!m;
+}
+function guessMeals(text) {
+  const s = text.toLowerCase(), out = [];
+  if (/breakfast|brunch|завтрак|oat|porridge|pancake|omelet|granola|smoothie|toast|каша|овсян|сырник|блин|оладь|омлет|яичниц|гранол|смузи|тост/.test(s)) out.push("breakfast");
+  if (/snack|перекус|energy ball|hummus|хумус|батончик/.test(s)) out.push("snack");
+  if (/lunch|обед|salad|soup|салат|суп|борщ|щи/.test(s)) out.push("lunch");
+  if (/dinner|supper|ужин/.test(s) || (!out.length || /soup|суп/.test(s))) out.push("dinner");
+  if (out.length === 1 && out[0] === "dinner" && !/dinner|supper|ужин/.test(s)) out.unshift("lunch");
+  return [...new Set(out)];
+}
+function parseRecipe(text) {
+  const lines = text.split(/\r?\n/);
+  const r = { name: "", servings: null, time: null, ingredients: [], steps: [], notes: [] };
+  let mode = "intro";
+  for (const line of lines) {
+    if (!line.trim() || /^\s*(-{3,}|\*{3,}|_{3,})\s*$/.test(line)) continue;
+    if (isHeading(line, H_INGR)) { mode = "ingr"; metaFrom(line, r); continue }
+    if (isHeading(line, H_STEPS)) { mode = "steps"; metaFrom(line, r); continue }
+    if (isHeading(line, H_NOTES)) { mode = "notes"; continue }
+    const c = cleanLine(line).replace(/^#+\s*/, "");
+    if (!c || OUTRO.test(c)) continue;
+    if (mode === "intro") {
+      if (CHATTER.test(c)) continue;
+      if (metaFrom(line, r) && r.name) continue;
+      if (!r.name) { r.name = c.replace(/^\d+[.)]\s*/, "").replace(/^(recipe|рецепт)\s*[:—–-]\s*/i, "").replace(/[:.!]+$/, "").replace(/^[^\p{L}\d]+/u, "").trim(); continue }
+      if (r.name && /^\s*[-*•]\s/.test(line) && /\d/.test(c)) { r.ingredients.push(c); continue }
+      r.notes.push(c);
+    } else if (mode === "ingr") {
+      if (/[:：]\s*$/.test(c) && !/\d/.test(c)) continue; // "For the sauce:"
+      if (metaFrom(line, r) && !/^\s*[-*•]/.test(line)) continue;
+      r.ingredients.push(c);
+    } else if (mode === "steps") {
+      const st = c.replace(/^(?:step|шаг)\s*\d+\s*[:.)-]?\s*/i, "").replace(/^\d+[.)]\s*/, "").trim();
+      if (st) r.steps.push(st);
+    } else r.notes.push(c);
+  }
+  if (!r.ingredients.length) return null;
+  r.meals = guessMeals(r.name + " " + r.notes.join(" "));
+  return { name: r.name || t("untitled"), meals: r.meals, servings: r.servings || 2, time: r.time || null, ingredients: r.ingredients, steps: r.steps, notes: r.notes.join("\n") };
+}
+/* Splits a paste with several recipes: each one starts at the title line before its Ingredients heading. */
+function parseRecipes(text) {
+  const lines = text.split(/\r?\n/);
+  const heads = lines.map((l, i) => (isHeading(l, H_INGR) ? i : -1)).filter(i => i >= 0);
+  if (heads.length < 2) { const one = parseRecipe(text); return one ? [one] : [] }
+  const starts = [0];
+  for (let k = 1; k < heads.length; k++) {
+    let s = heads[k] - 1;
+    while (s > heads[k - 1] && !lines[s].trim()) s--;
+    // walk back over the title and any short meta lines (servings, time) that sit just above the heading
+    let j = s;
+    for (let back = 0; back < 3 && j > heads[k - 1]; back++) {
+      const p = cleanLine(lines[j]);
+      if (/^#+\s/.test(lines[j]) || /^\*\*.+\*\*$/.test(lines[j].trim()) || /^\d+[.)]\s*\*\*/.test(lines[j].trim())) { s = j; break }
+      if (!p || /\d/.test(p) && p.length < 60) { j--; continue }
+      s = j; break;
+    }
+    starts.push(s);
+  }
+  return starts.map((s, k) => parseRecipe(lines.slice(s, starts[k + 1] ?? lines.length).join("\n").replace(/^\s*\d+[.)]\s*/, ""))).filter(Boolean);
+}
+
+/* ---------- shopping sections and merging ---------- */
+const SPECIFIC = [
+  ["peanut butter", "tins"], ["арахисовая паста", "tins"], ["olive oil", "pantry"], ["оливковое масло", "pantry"], ["coconut milk", "tins"], ["кокосовое молоко", "tins"],
+  ["sour cream", "dairy"], ["cream cheese", "dairy"], ["tomato paste", "tins"], ["tomato puree", "tins"], ["томатная паста", "tins"], ["chopped tomatoes", "tins"], ["tinned tomatoes", "tins"], ["canned tomatoes", "tins"],
+  ["в собственном соку", "tins"], ["black pepper", "pantry"], ["ground pepper", "pantry"], ["черный перец", "pantry"], ["перец черный", "pantry"], ["молотый перец", "pantry"], ["перец молотый", "pantry"],
+  ["salt and pepper", "pantry"], ["соль и перец", "pantry"], ["bell pepper", "produce"], ["sweet pepper", "produce"], ["болгарский перец", "produce"], ["сладкий перец", "produce"],
+  ["chilli flakes", "pantry"], ["chili flakes", "pantry"], ["red pepper flakes", "pantry"], ["chicken stock", "tins"], ["chicken broth", "tins"], ["куриный бульон", "tins"],
+  ["soy sauce", "tins"], ["соевый соус", "tins"], ["baking powder", "pantry"], ["baking soda", "pantry"], ["сливочное масло", "dairy"], ["green onion", "produce"], ["spring onion", "produce"], ["зеленый лук", "produce"],
+  ["lemon juice", "produce"], ["лимонный сок", "produce"], ["frozen", "frozen"], ["заморож", "frozen"]
+];
+const STEMS = {
+  dairy: "milk cream cheese butter yogurt yoghurt egg parmesan mozzarella feta ricotta halloumi kefir cottage молок сливк сыр сливочн йогурт яйц яйко яичн сметан кефир творог моцарел пармезан фет рикотт брынз ряженк",
+  meat: "chicken beef pork lamb turkey bacon ham sausage mince steak salmon tuna cod fish shrimp prawn курин куриц кур говя свин баран индейк бекон ветчин колбас сосиск фарш стейк лосос семг тунец треск рыб кревет филе",
+  bakery: "bread baguette tortilla wrap pita bun хлеб багет лаваш тортиль пит булоч батон",
+  grains: "pasta spaghetti penne fusilli noodle rice oat flour quinoa buckwheat couscous bulgur lasagne breadcrumb granola cereal макарон паст спагет пенне лапш рис овсян хлопь мук киноа греч кускус булгур панировоч гранол",
+  tins: "canned tinned stock broth sauce bean chickpea lentil honey jam mustard mayo ketchup olive pesto passata консерв бульон соус фасол нут чечевиц мед варень горчиц майонез кетчуп маслин оливк песто",
+  nuts: "nut almond walnut cashew pistachio hazelnut pecan seed chia sesame raisin date prune apricot орех миндал кешью фисташ фундук семен семечк чиа кунжут изюм финик чернослив курага",
+  pantry: "salt pepper sugar oil vinegar spice paprika cumin cinnamon oregano thyme rosemary turmeric curry nutmeg vanilla cocoa bay сол перец сахар масл уксус специ паприк зир кориц орегано тимьян розмарин куркум карри мускат ванил сод какао лавров приправ",
+  produce: "onion shallot garlic tomato potato carrot celery lettuce spinach kale rocket cucumber courgette zucchini aubergine eggplant broccoli cauliflower cabbage mushroom avocado apple banana lemon lime orange berr strawberr blueberr raspberr grape pear peach mango herb parsley dill coriander cilantro basil mint ginger chilli chili leek beet pumpkin squash corn pea лук чеснок помидор томат черри картоф картошк морков сельдер салат шпинат руккол огур кабач баклажан брокк цветн капуст гриб шампиньон авокадо яблок банан лимон лайм апельсин ягод клубник черник малин виноград груш персик манго зелен петруш укроп кинз базилик мят имбир чили порей свекл тыкв кукуруз горош батат"
+};
+const STEM_RE = Object.fromEntries(Object.entries(STEMS).map(([k, v]) => [k, new RegExp(`(^|[^a-zа-я])(${v.split(" ").join("|")})`)]));
+const SEC_ORDER = ["dairy", "meat", "bakery", "grains", "tins", "nuts", "pantry", "produce"];
+const low = s => s.toLowerCase().replace(/ё/g, "е");
+function sectionOf(name) {
+  const s = low(name);
+  for (const [p, sec] of SPECIFIC) if (s.includes(p)) return sec;
+  for (const sec of SEC_ORDER) if (STEM_RE[sec].test(s)) return sec;
+  return "other";
+}
+const isWater = name => /(^|\s)(water|вода|воды|воду|кипяток|кипятка)(\s|$)/.test(low(name)) && low(name).split(" ").length <= 3;
+/* A loose key so "Eggs" and "egg", or "Яйца" and "Яйцо", land on one line of the list. */
+function itemKey(name) {
+  return low(name).replace(/[^a-zа-я ]/g, " ").split(/\s+/).filter(Boolean).map(w => {
+    if (/[а-я]/.test(w)) return w.length > 3 ? w.replace(/[аяоеиыуюйь]+$/, "") : w;
+    if (w.length <= 3) return w;
+    if (/ies$/.test(w)) return w.slice(0, -3) + "y";
+    if (/(oes|ches|shes|xes)$/.test(w)) return w.slice(0, -2);
+    if (/[^s]s$/.test(w)) return w.slice(0, -1);
+    return w;
+  }).join(" ");
+}
+const BASE = { kg: ["g", 1000], l: ["ml", 1000] };
+const WHOLE = new Set(["pcs", "can", "pack", "clove", "bunch", "slice", "head"]);
+function unitLabel(unit, qty) {
+  if (!unit) return lang === "ru" ? "шт." : "";
+  const def = UNITS[unit][L()];
+  if (!def.includes("|")) return def;
+  const [one, many] = def.split("|");
+  return qty > 1 ? many : one;
+}
+function fmtNum(v) {
+  const whole = Math.floor(v), f = Math.round((v - whole) * 100) / 100;
+  const fr = { .25: "¼", .5: "½", .75: "¾", .33: "⅓", .67: "⅔" }[f];
+  if (fr) return (whole || "") + fr;
+  return new Intl.NumberFormat(LOCALE(), { maximumFractionDigits: 2 }).format(v);
+}
+function fmtAmount(qty, unit, shopping) {
+  if (qty == null) return "";
+  let v = qty, u = unit;
+  if (u === "g" && v >= 1000) { v /= 1000; u = "kg" } else if (u === "ml" && v >= 1000) { v /= 1000; u = "l" }
+  if (u === "g" || u === "ml") v = v >= 100 ? Math.round(v / 10) * 10 : Math.max(1, Math.round(v));
+  else if (u === "kg" || u === "l") v = Math.round(v * 100) / 100;
+  else if (shopping && (!u || WHOLE.has(u))) v = Math.ceil(v - 0.01);
+  else v = v >= 10 ? Math.round(v) : Math.round(v * 12) / 12;
+  const label = unitLabel(u, v);
+  return label ? `${fmtNum(v)} ${label}` : fmtNum(v);
+}
+
+/* ---------- example recipes (both languages, marked as examples) ---------- */
+const SAMPLES = [
+  { key: "oats", meals: ["breakfast"], servings: 1, time: 5,
+    en: ["Overnight oats with berries", "50 g rolled oats\n150 ml milk\n100 g Greek yogurt\n1 tbsp chia seeds\n1 tsp honey\n80 g mixed berries", "Mix the oats, milk, yogurt, chia seeds and honey in a jar.\nCover and leave in the fridge overnight.\nTop with the berries in the morning."],
+    ru: ["Овсянка на ночь с ягодами", "Овсяные хлопья — 50 г\nМолоко — 150 мл\nГреческий йогурт — 100 г\nСемена чиа — 1 ст. л.\nМёд — 1 ч. л.\nЯгоды — 80 г", "Смешайте хлопья, молоко, йогурт, чиа и мёд в банке.\nНакройте и уберите в холодильник на ночь.\nУтром добавьте ягоды."] },
+  { key: "syrniki", meals: ["breakfast"], servings: 2, time: 25,
+    en: ["Syrniki (cottage cheese pancakes)", "400 g cottage cheese\n1 egg\n3 tbsp flour\n2 tbsp sugar\n1 pinch salt\n2 tbsp sunflower oil\nSour cream, to serve", "Mash the cottage cheese with the egg, sugar and salt.\nStir in the flour and shape into 8 small patties.\nFry in the oil for 3–4 minutes on each side until golden.\nServe with sour cream."],
+    ru: ["Сырники", "Творог — 400 г\nЯйцо — 1 шт.\nМука — 3 ст. л.\nСахар — 2 ст. л.\nСоль — щепотка\nПодсолнечное масло — 2 ст. л.\nСметана — для подачи", "Разомните творог с яйцом, сахаром и солью.\nДобавьте муку и сформируйте 8 небольших сырников.\nОбжарьте на масле по 3–4 минуты с каждой стороны до золотистого цвета.\nПодавайте со сметаной."] },
+  { key: "shakshuka", meals: ["breakfast", "dinner"], servings: 2, time: 25,
+    en: ["Shakshuka", "1 tbsp olive oil\n1 onion, chopped\n1 red bell pepper, sliced\n2 cloves garlic, crushed\n400 g chopped tomatoes\n1 tsp ground cumin\n1 tsp paprika\n4 eggs\nSalt and pepper, to taste\nFresh parsley, to serve", "Soften the onion and pepper in the oil for 8 minutes.\nAdd the garlic and spices and cook for 1 minute.\nPour in the tomatoes and simmer for 10 minutes.\nMake 4 hollows, crack in the eggs, cover and cook for 5–6 minutes.\nSeason and top with parsley."],
+    ru: ["Шакшука", "Оливковое масло — 1 ст. л.\nЛук — 1 шт.\nБолгарский перец — 1 шт.\nЧеснок — 2 зубчика\nТоматы в собственном соку — 400 г\nЗира молотая — 1 ч. л.\nПаприка — 1 ч. л.\nЯйца — 4 шт.\nСоль и перец — по вкусу\nПетрушка — для подачи", "Обжарьте лук и перец на масле 8 минут.\nДобавьте чеснок и специи, готовьте 1 минуту.\nВлейте томаты и тушите 10 минут.\nСделайте 4 углубления, вбейте яйца, накройте и готовьте 5–6 минут.\nПосолите, поперчите и посыпьте петрушкой."] },
+  { key: "greek", meals: ["lunch"], servings: 2, time: 15,
+    en: ["Greek salad with chickpeas", "2 tomatoes\n1 cucumber\n1/2 red onion\n100 g feta\n1 can chickpeas, drained\n50 g Kalamata olives\n2 tbsp olive oil\n1 tbsp lemon juice\n1 tsp dried oregano", "Chop the tomatoes, cucumber and onion.\nAdd the chickpeas and olives.\nWhisk the oil, lemon juice and oregano and pour over.\nCrumble the feta on top."],
+    ru: ["Греческий салат с нутом", "Помидоры — 2 шт.\nОгурец — 1 шт.\nКрасный лук — ½ шт.\nФета — 100 г\nНут консервированный — 1 банка\nОливки — 50 г\nОливковое масло — 2 ст. л.\nЛимонный сок — 1 ст. л.\nОрегано сушёный — 1 ч. л.", "Нарежьте помидоры, огурец и лук.\nДобавьте нут и оливки.\nСмешайте масло, лимонный сок и орегано и полейте салат.\nСверху раскрошите фету."] },
+  { key: "lentil", meals: ["lunch", "dinner"], servings: 4, time: 40,
+    en: ["Red lentil soup", "1 tbsp olive oil\n1 onion\n2 carrots\n2 cloves garlic\n200 g red lentils\n1.2 l vegetable stock\n400 g chopped tomatoes\n1 tsp ground cumin\n1/2 lemon\nSalt and pepper, to taste", "Chop the onion and carrots and soften them in the oil for 5 minutes.\nAdd the garlic and cumin and cook for 1 minute.\nAdd the lentils, stock and tomatoes and simmer for 25 minutes.\nBlend until smooth and finish with lemon juice."],
+    ru: ["Суп из красной чечевицы", "Оливковое масло — 1 ст. л.\nЛук — 1 шт.\nМорковь — 2 шт.\nЧеснок — 2 зубчика\nКрасная чечевица — 200 г\nОвощной бульон — 1,2 л\nТоматы в собственном соку — 400 г\nЗира молотая — 1 ч. л.\nЛимон — ½ шт.\nСоль и перец — по вкусу", "Нарежьте лук и морковь и обжарьте на масле 5 минут.\nДобавьте чеснок и зиру, готовьте 1 минуту.\nДобавьте чечевицу, бульон и томаты и варите 25 минут.\nПюрируйте блендером и добавьте лимонный сок."] },
+  { key: "salmon", meals: ["dinner"], servings: 2, time: 30,
+    en: ["Honey-soy salmon with rice and broccoli", "2 salmon fillets\n150 g rice\n1 head of broccoli\n1 tbsp soy sauce\n1 tsp honey\n1 lemon\n1 tbsp olive oil", "Cook the rice.\nMix the soy sauce and honey and brush over the salmon.\nRoast the salmon and broccoli with the oil at 200 °C for 15 minutes.\nServe with the rice and lemon wedges."],
+    ru: ["Лосось в медово-соевом соусе с рисом и брокколи", "Филе лосося — 2 шт.\nРис — 150 г\nБрокколи — 1 кочан\nСоевый соус — 1 ст. л.\nМёд — 1 ч. л.\nЛимон — 1 шт.\nОливковое масло — 1 ст. л.", "Отварите рис.\nСмешайте соевый соус с мёдом и смажьте лосося.\nЗапеките лосося и брокколи с маслом при 200 °C 15 минут.\nПодавайте с рисом и дольками лимона."] },
+  { key: "buckwheat", meals: ["lunch", "dinner"], servings: 2, time: 30,
+    en: ["Buckwheat with mushrooms", "150 g buckwheat\n250 g mushrooms\n1 onion\n1 tbsp butter\n2 tbsp sour cream\nFresh dill, to serve\nSalt, to taste", "Cook the buckwheat.\nFry the onion and sliced mushrooms in the butter for 10 minutes.\nStir in the buckwheat and sour cream and season.\nSprinkle with dill."],
+    ru: ["Гречка с грибами", "Гречка — 150 г\nШампиньоны — 250 г\nЛук — 1 шт.\nСливочное масло — 1 ст. л.\nСметана — 2 ст. л.\nУкроп — для подачи\nСоль — по вкусу", "Отварите гречку.\nОбжарьте лук и нарезанные грибы на сливочном масле 10 минут.\nВмешайте гречку и сметану, посолите.\nПосыпьте укропом."] },
+  { key: "traybake", meals: ["dinner"], servings: 2, time: 45,
+    en: ["Chicken and vegetable traybake", "4 chicken thighs\n400 g potatoes\n2 carrots\n1 red onion\n2 tbsp olive oil\n1 tsp paprika\n1 tsp dried thyme", "Heat the oven to 200 °C.\nCut the vegetables into chunks and toss everything with the oil and spices.\nRoast for 40 minutes, turning once."],
+    ru: ["Курица с овощами в духовке", "Куриные бёдра — 4 шт.\nКартофель — 400 г\nМорковь — 2 шт.\nКрасный лук — 1 шт.\nОливковое масло — 2 ст. л.\nПаприка — 1 ч. л.\nТимьян сушёный — 1 ч. л.", "Разогрейте духовку до 200 °C.\nНарежьте овощи крупно и перемешайте всё с маслом и специями.\nЗапекайте 40 минут, один раз перевернув."] },
+  { key: "yogurt", meals: ["snack"], servings: 1, time: 5,
+    en: ["Yogurt with apple and walnuts", "150 g Greek yogurt\n1 apple\n20 g walnuts\n1 tsp honey", "Chop the apple and walnuts.\nSpoon over the yogurt and drizzle with honey."],
+    ru: ["Йогурт с яблоком и орехами", "Греческий йогурт — 150 г\nЯблоко — 1 шт.\nГрецкие орехи — 20 г\nМёд — 1 ч. л.", "Нарежьте яблоко и орехи.\nВыложите на йогурт и полейте мёдом."] }
+];
+function sampleText(s, r = {}) {
+  const [name, ingr, steps] = s[lang];
+  return Object.assign(r, { name, ingredients: ingr.split("\n"), steps: steps.split("\n") });
+}
+const makeSample = s => sampleText(s, { id: uid(), sample: s.key, meals: s.meals.slice(), servings: s.servings, time: s.time, notes: "" });
+
+/* ---------- state and storage ---------- */
+const LKEY = "meal-planner";
+let state = { recipes: [], plan: {}, shop: {} };
+const ui = { tab: matchMedia("(max-width: 700px)").matches ? "today" : "week", weekOffset: 0, recipeFilter: "all", recipeSearch: "", shopRange: "rest", sheet: null };
+function load() {
+  let data = null;
+  try { data = JSON.parse(localStorage.getItem(LKEY) || "null") } catch (e) {}
+  if (data && Array.isArray(data.recipes)) {
+    state = { recipes: data.recipes, plan: data.plan || {}, shop: data.shop || {} };
+    lang = data.lang || lang;
+    return;
+  }
+  lang = /^ru|^uk|^be|^kk/i.test(navigator.language || "") ? "ru" : "en";
+  state.recipes = SAMPLES.map(makeSample);
+  fillWeek(mondayOf(today0()), false);
+  save();
+}
+function save() {
+  try { localStorage.setItem(LKEY, JSON.stringify({ v: 1, lang, ...state })) }
+  catch (e) { toast(t("saveFail")) }
+}
+const byId = id => state.recipes.find(r => r.id === id);
+
+/* ---------- dates ---------- */
+const ymd = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+const parseYmd = k => { const [y, m, d] = k.split("-").map(Number); return new Date(y, m - 1, d) };
+const addDays = (d, n) => { const x = new Date(d); x.setDate(x.getDate() + n); return x };
+const today0 = () => { const d = new Date(); d.setHours(0, 0, 0, 0); return d };
+const mondayOf = d => addDays(d, -((d.getDay() + 6) % 7));
+const dayDiff = (a, b) => Math.round((parseYmd(a) - parseYmd(b)) / 864e5);
+const fmtDate = (d, o) => new Intl.DateTimeFormat(LOCALE(), o).format(d);
+const weekday = d => cap(fmtDate(d, { weekday: "long" }));
+const shortDay = d => cap(fmtDate(d, { weekday: "short" }));
+const dayMonth = d => fmtDate(d, { day: "numeric", month: "long" });
+function relDay(key) {
+  const n = dayDiff(key, ymd(today0()));
+  if (n === 0) return t("today").toLocaleLowerCase(LOCALE());
+  if (n === 1) return t("tomorrow").toLocaleLowerCase(LOCALE());
+  const d = parseYmd(key);
+  return Math.abs(n) < 7 ? `${shortDay(d)} ${d.getDate()}` : fmtDate(d, { day: "numeric", month: "short" });
+}
+
+/* ---------- planning ---------- */
+const entry = (key, meal) => state.plan[key]?.[meal];
+function setEntry(key, meal, e) {
+  if (e) (state.plan[key] ||= {})[meal] = e;
+  else if (state.plan[key]) { delete state.plan[key][meal]; if (!Object.keys(state.plan[key]).length) delete state.plan[key] }
+}
+function* allEntries() { for (const [k, day] of Object.entries(state.plan)) for (const [m, e] of Object.entries(day)) yield [k, m, e] }
+/* Picks a recipe for one meal, favouring ones you haven't had for a while and avoiding repeats within the week and on the same day. */
+function pickRecipe(key, meal, exclude = []) {
+  const cands = state.recipes.filter(r => r.meals.includes(meal) && !exclude.includes(r.id));
+  if (!cands.length) return null;
+  const ws = ymd(mondayOf(parseYmd(key))), we = ymd(addDays(parseYmd(ws), 6));
+  const weights = cands.map(r => {
+    let near = null, inWeek = 0, sameDay = false;
+    for (const [k, m, e] of allEntries()) {
+      if (e.r !== r.id || (k === key && m === meal)) continue;
+      const d = Math.abs(dayDiff(k, key));
+      if (near == null || d < near) near = d;
+      if (k >= ws && k <= we) inWeek++;
+      if (k === key) sameDay = true;
+    }
+    let w = near == null ? 5 : near >= 14 ? 5 : near >= 7 ? 3 : near >= 4 ? 1 : near >= 2 ? .3 : .08;
+    w /= 1 + 2.5 * inWeek;
+    if (sameDay) w *= .05;
+    return w;
+  });
+  let roll = Math.random() * weights.reduce((a, b) => a + b, 0);
+  for (let i = 0; i < cands.length; i++) { roll -= weights[i]; if (roll <= 0) return cands[i] }
+  return cands[cands.length - 1];
+}
+function fillWeek(monday, reshuffle) {
+  const from = ymd(today0());
+  let n = 0;
+  for (let i = 0; i < 7; i++) {
+    const key = ymd(addDays(monday, i));
+    if (key < from) continue;
+    for (const meal of MEALS) {
+      const e = entry(key, meal);
+      if (e && (e.lock || !reshuffle)) continue;
+      const old = e?.r;
+      if (e) setEntry(key, meal, null);
+      const r = pickRecipe(key, meal, reshuffle && old && state.recipes.filter(x => x.meals.includes(meal)).length > 1 ? [old] : []);
+      if (r) { setEntry(key, meal, { r: r.id, s: r.servings || 1 }); n++ }
+    }
+  }
+  return n;
+}
+function recipeDates(id) {
+  const now = ymd(today0());
+  let last = null, next = null;
+  for (const [k, , e] of allEntries()) {
+    if (e.r !== id) continue;
+    if (k < now && (!last || k > last)) last = k;
+    if (k >= now && (!next || k < next)) next = k;
+  }
+  return { last, next };
+}
+
+/* ---------- shopping list ---------- */
+function shopDays() {
+  const now = today0(), mon = mondayOf(now);
+  if (ui.shopRange === "next") return [...Array(7)].map((_, i) => ymd(addDays(mon, 7 + i)));
+  return [...Array(7)].map((_, i) => addDays(mon, i)).filter(d => d >= now).map(ymd);
+}
+function buildList(days) {
+  const items = new Map();
+  for (const key of days) for (const meal of MEALS) {
+    const e = entry(key, meal), r = e && byId(e.r);
+    if (!r) continue;
+    const f = (e.s || r.servings || 1) / (r.servings || e.s || 1);
+    for (const line of r.ingredients) {
+      if (!line.trim()) continue;
+      const p = parseIngredient(line);
+      if (isWater(p.name)) continue;
+      const k = itemKey(p.name);
+      if (!k) continue;
+      let it = items.get(k);
+      if (!it) items.set(k, it = { key: k, name: cap(p.name), section: sectionOf(p.name), amounts: {}, loose: false, recipes: new Set() });
+      it.recipes.add(r.name);
+      if (p.qty == null) { if (/to taste|по вкусу/i.test(p.raw)) it.taste = true; it.loose = true; continue }
+      const [bu, mul] = BASE[p.unit] || [p.unit || "pcs", 1];
+      it.amounts[bu] = (it.amounts[bu] || 0) + p.qty * mul * f;
+    }
+  }
+  for (const it of items.values()) {
+    it.amount = Object.entries(it.amounts).map(([u, q]) => fmtAmount(q, u === "pcs" ? null : u, true)).join(" + ");
+    if (!it.amount && it.loose && it.section !== "pantry" && /^(salt|pepper|соль|перец)/i.test(it.name)) it.section = "pantry";
+  }
+  return [...items.values()];
+}
+function shopStore() {
+  const k = ui.shopRange === "next" ? ymd(addDays(mondayOf(today0()), 7)) : ymd(mondayOf(today0()));
+  return (state.shop[k] ||= { checked: {}, extra: [] });
+}
+
+/* ---------- rendering ---------- */
+const $ = s => document.querySelector(s);
+function renderChrome() {
+  document.documentElement.lang = lang;
+  $("#appTitle").innerHTML = t("appTitle");
+  $("#tagline").textContent = t("tagline");
+  const tabs = ["today", "week", "recipes", "shop"];
+  $("#tabs").innerHTML = tabs.map(k => `<button role="tab" data-act="tab" data-tab="${k}" aria-selected="${ui.tab === k}">${t("tab_" + k)}</button>`).join("");
+  $("#bottomNav").innerHTML = tabs.map(k => `<button data-act="tab" data-tab="${k}"${ui.tab === k ? ' aria-current="page"' : ""}>${svg(k)}<span>${t("tab_" + k)}</span></button>`).join("");
+  document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === lang));
+}
+function render() {
+  renderChrome();
+  const main = $("#main");
+  main.innerHTML = ui.tab === "today" ? viewToday() : ui.tab === "week" ? viewWeek() : ui.tab === "recipes" ? viewRecipes() : viewShop();
+}
+const samplesBanner = () => state.recipes.some(r => r.sample)
+  ? `<div class="banner"><span>${t("samplesBanner")}</span><button class="btn small" data-act="remove-samples">${t("removeSamples")}</button></div>` : "";
+function metaLine(r, e) {
+  const bits = [];
+  if (r.time) bits.push(t("minutes", { n: r.time }));
+  bits.push(t("servingsN", { n: e?.s || r.servings || 1 }));
+  return bits.join(" · ");
+}
+
+function viewToday() {
+  const d = today0(), key = ymd(d), tm = ymd(addDays(d, 1));
+  const cards = MEALS.map(meal => {
+    const e = entry(key, meal), r = e && byId(e.r);
+    return `<button class="meal m-${meal}" data-act="slot" data-date="${key}" data-meal="${meal}"><span class="big-ic">${svg(meal)}</span>
+      <span class="meal-head"><span>${t(meal)}</span>${e?.lock ? svg("lock", "lock-ic") : ""}</span>
+      ${r ? `<h3>${esc(r.name)}</h3><span class="meta">${metaLine(r, e)}</span>` : `<h3 class="muted">${t("nothingPlanned")}</h3><span class="add">${t("addMeal")}</span>`}
+    </button>`;
+  }).join("");
+  const tmr = MEALS.map(meal => { const e = entry(tm, meal), r = e && byId(e.r); return r ? `<li class="m-${meal}"><span class="ml">${t(meal)}</span><span>${esc(r.name)}</span></li>` : "" }).join("");
+  const anyThisWeek = Object.keys(state.plan).some(k => k >= key && k <= ymd(addDays(mondayOf(d), 6)));
+  return `<section class="today glass">
+    <div class="today-intro">
+      <span class="eyebrow">${weekday(d)}</span>
+      <div class="date">${t("today")}, <em>${dayMonth(d)}</em></div>
+      <p class="muted" style="font-size:13.5px">${t("todayHint")}</p>
+      ${anyThisWeek ? "" : `<div class="btns"><button class="btn primary" data-act="plan-week">${t("planWeek")}</button></div>`}
+    </div>
+    ${tmr ? `<div class="tomorrow"><span class="eyebrow">${t("tomorrow")}</span><ul>${tmr}</ul></div>` : ""}
+    ${cards}
+  </section>`;
+}
+
+function viewWeek() {
+  const mon = addDays(mondayOf(today0()), ui.weekOffset * 7), now = ymd(today0());
+  const sun = addDays(mon, 6);
+  const range = `${fmtDate(mon, { day: "numeric", month: "short" })} – ${fmtDate(sun, { day: "numeric", month: "short" })}`;
+  const days = [...Array(7)].map((_, i) => {
+    const d = addDays(mon, i), key = ymd(d);
+    const slots = MEALS.map(meal => {
+      const e = entry(key, meal), r = e && byId(e.r);
+      return `<button class="slot m-${meal}${r ? "" : " empty"}" data-act="slot" data-date="${key}" data-meal="${meal}" aria-label="${esc(weekday(d) + ", " + t(meal) + ": " + (r ? r.name : t("nothingPlanned")))}">
+        <span class="slot-head"><span>${t(meal)}</span>${e?.lock ? svg("lock", "lock-ic") : ""}</span>
+        <span class="nm">${r ? esc(r.name) : t("addMeal")}</span></button>`;
+    }).join("");
+    const head = `<div class="day-head"><span class="dow">${shortDay(d)}</span><span class="num">${d.getDate()}</span></div>`;
+    if (key < now && !state.plan[key]) return `<article class="day glass is-past is-quiet">${head}<span class="muted quiet-note">${t("nothingPlanned")}</span></article>`;
+    return `<article class="day glass${key === now ? " is-today" : ""}${key < now ? " is-past" : ""}">${head}${slots}</article>`;
+  }).join("");
+  return `${samplesBanner()}
+  <section class="weekbar">
+    <h2>${ui.weekOffset === 0 ? t("thisWeek") : range}</h2>
+    <div class="pager">
+      <button class="btn" data-act="week-nav" data-dir="-1" aria-label="${t("prevWeek")}">‹</button>
+      ${ui.weekOffset !== 0 ? `<button class="btn small" data-act="week-nav" data-dir="0">${t("thisWeek")}</button>` : `<span class="muted" style="font-size:13.5px">${range}</span>`}
+      <button class="btn" data-act="week-nav" data-dir="1" aria-label="${t("nextWeekBtn")}">›</button>
+    </div>
+    <div class="btns">
+      <button class="btn primary" data-act="plan-week">${t("planWeek")}</button>
+      <button class="btn" data-act="reshuffle">${t("reshuffle")}</button>
+      <button class="btn ghost" data-act="clear-week">${t("clearWeek")}</button>
+    </div>
+  </section>
+  <section class="week">${days}</section>
+  <p class="legend"><span>${svg("lock", "lock-ic")} ${t("kept")}</span><span>${t("weekHint")}</span></p>`;
+}
+
+function viewRecipes() {
+  const q = low(ui.recipeSearch.trim());
+  const list = state.recipes
+    .filter(r => ui.recipeFilter === "all" || r.meals.includes(ui.recipeFilter))
+    .filter(r => !q || low(r.name).includes(q) || r.ingredients.some(i => low(i).includes(q)))
+    .sort((a, b) => a.name.localeCompare(b.name, LOCALE()));
+  const rows = list.map(r => {
+    const { last, next } = recipeDates(r.id);
+    const when = next ? t("nextOn", { date: relDay(next) }) : last ? t("lastHad", { date: relDay(last) }) : t("neverPlanned");
+    return `<button class="rec-row" data-act="open-recipe" data-id="${r.id}">${thumb(r.meals[0] || "dinner")}
+      <span><span class="nm">${esc(r.name)}</span>
+      <span class="sub">${r.meals.map(m => `<span class="chip m-${m}">${t(m)}</span>`).join("")}${r.sample ? `<span class="chip example">${t("example")}</span>` : ""}
+      ${r.time ? `<span>${t("minutes", { n: r.time })}</span>` : ""}<span>${when}</span></span></span></button>`;
+  }).join("");
+  const filters = ["all", ...MEALS].map(m => `<button data-act="recipe-filter" data-f="${m}" aria-pressed="${ui.recipeFilter === m}">${t(m)}</button>`).join("");
+  const body = !state.recipes.length
+    ? `<div class="empty-state"><h3>${t("tab_recipes")}</h3><p class="muted">${t("recipesEmpty")}</p>
+        <div class="btns" style="justify-content:center"><button class="btn primary" data-act="paste">${t("pasteRecipe")}</button><button class="btn" data-act="new-recipe">${t("newRecipe")}</button><button class="btn ghost" data-act="load-samples">${t("loadSamples")}</button></div></div>`
+    : `<input class="search" id="recipeSearch" type="search" placeholder="${t("search")}" value="${esc(ui.recipeSearch)}" aria-label="${t("search")}">
+       <div class="pills" role="group">${filters}</div>
+       ${rows ? `<div class="rec-list">${rows}</div>` : `<p class="muted">${t("noMatch")}</p>`}`;
+  return `${samplesBanner()}<section class="panel glass">
+    <div class="toolbar"><h2>${t("tab_recipes")}</h2>
+      <div class="btns"><button class="btn primary" data-act="paste">${t("pasteRecipe")}</button><button class="btn" data-act="new-recipe">${t("newRecipe")}</button></div></div>
+    ${body}
+  </section>
+  <section class="backup"><p>${t("backupHelp")}</p><div class="btns"><button class="btn small" data-act="backup">${t("backup")}</button><button class="btn small" data-act="restore">${t("restore")}</button></div></section>`;
+}
+
+function viewShop() {
+  const days = shopDays(), items = buildList(days), store = shopStore();
+  const ranges = [["rest", t("restOfWeek")], ["next", t("nextWeek")]].map(([k, l]) => `<button data-act="shop-range" data-r="${k}" aria-pressed="${ui.shopRange === k}">${l}</button>`).join("");
+  const total = items.length + store.extra.length;
+  const left = items.filter(i => !store.checked[i.key]).length + store.extra.filter(x => !x.done).length;
+  const secs = SECTIONS.map(sec => {
+    const its = items.filter(i => i.section === sec).sort((a, b) => a.name.localeCompare(b.name, LOCALE()));
+    if (!its.length) return "";
+    return `<div class="shop-sec" style="--c: var(--s${SEC_COLOR[sec]})"><span class="eyebrow"><span class="sec-dot"></span>${t("sec_" + sec)}</span>
+      ${its.map(i => `<label class="item${store.checked[i.key] ? " done" : ""}"><input type="checkbox" class="check" data-act="tick" data-key="${esc(i.key)}"${store.checked[i.key] ? " checked" : ""}>
+        <span><span class="nm">${esc(i.name)}</span><span class="sub">${esc(t("forList", { list: [...i.recipes].join(", ") }))}</span></span>
+        <span class="amt">${esc(i.amount || (i.taste ? t("toTaste") : ""))}</span></label>`).join("")}</div>`;
+  }).join("");
+  const extra = `<div class="shop-sec" style="--c: var(--accent)"><span class="eyebrow"><span class="sec-dot"></span>${t("alsoBuy")}</span>
+    ${store.extra.map(x => `<div class="item${x.done ? " done" : ""}"><input type="checkbox" class="check" data-act="tick-extra" data-id="${x.id}"${x.done ? " checked" : ""} aria-label="${esc(x.text)}"><span class="nm">${esc(x.text)}</span><button class="x-btn" data-act="del-extra" data-id="${x.id}" aria-label="${t("remove")}">×</button></div>`).join("")}
+    <form class="add-row" data-form="extra"><input class="input" id="extraItem" placeholder="${t("addItemPh")}" aria-label="${t("addItemPh")}"><button class="btn">${t("add")}</button></form></div>`;
+  return `<section class="panel glass">
+    <div class="toolbar"><h2>${t("tab_shop")}</h2>
+      ${items.length ? `<div class="btns"><button class="btn primary" data-act="copy-list">${t("copyList")}</button><button class="btn ghost" data-act="untick">${t("untick")}</button></div>` : ""}</div>
+    <div class="toolbar"><span class="eyebrow">${t("shopFor")}</span><div class="pills" role="group" style="margin-right:auto">${ranges}</div>
+      ${total ? `<span class="shop-sum">${left ? t("leftOf", { left, n: total }) : t("allBought")}</span>` : ""}</div>
+    ${items.length ? "" : `<div class="empty-state"><p class="muted">${t("shopEmpty")}</p><button class="btn" data-act="tab" data-tab="week">${t("goPlan")}</button></div>`}
+    <div class="shop-secs">${secs}${extra}</div>
+  </section>`;
+}
+
+/* ---------- sheets ---------- */
+function openSheet(s) { ui.sheet = s; renderSheet() }
+function closeSheet() { ui.sheet = null; $("#sheetRoot").innerHTML = "" }
+function sheetFrame(eyebrow, title, body, cls = "") {
+  return `<div class="scrim" data-act="close"></div><aside class="sheet ${cls}" role="dialog" aria-modal="true" aria-label="${esc(title)}">
+    <div class="sheet-head"><div>${eyebrow ? `<span class="eyebrow">${eyebrow}</span>` : ""}<h2>${title}</h2></div><button class="btn ghost" data-act="close">${t("close")}</button></div>
+    <div class="sheet-body">${body}</div></aside>`;
+}
+function renderSheet() {
+  const s = ui.sheet, root = $("#sheetRoot");
+  if (!s) { root.innerHTML = ""; return }
+  if (s.type === "recipe") root.innerHTML = sheetRecipe(s);
+  else if (s.type === "form") root.innerHTML = sheetForm(s);
+  else if (s.type === "paste") root.innerHTML = sheetPaste(s);
+  else if (s.type === "slot") root.innerHTML = sheetSlot(s);
+  else if (s.type === "copy") root.innerHTML = sheetFrame("", t("listText"), `<p class="muted">${t("copyFail")}</p><textarea class="input" id="copyText" rows="16" readonly>${esc(s.text)}</textarea>`);
+  if (s.type === "form") updateParsed();
+}
+function ingrList(r, servings) {
+  const f = servings / (r.servings || servings || 1);
+  return `<ul class="ingr">${r.ingredients.filter(l => l.trim()).map(line => {
+    const p = parseIngredient(line);
+    if (p.qty == null) return `<li><span class="q"></span><span>${esc(cap(p.raw))}</span></li>`;
+    return `<li><span class="q">${esc(fmtAmount(p.qty * f, BASE[p.unit] ? p.unit : p.unit, false))}</span><span>${esc(cap(p.rest))}</span></li>`;
+  }).join("")}</ul>`;
+}
+function sheetRecipe(s) {
+  const r = byId(s.id);
+  if (!r) return "";
+  const n = s.servings ?? r.servings ?? 1;
+  const next = [...Array(14)].map((_, i) => ymd(addDays(today0(), i)));
+  const meal0 = r.meals[0] || "dinner";
+  const body = `
+    <div class="btns">${r.meals.map(m => `<span class="chip m-${m}">${t(m)}</span>`).join("")}${r.sample ? `<span class="chip example">${t("example")}</span>` : ""}${r.time ? `<span class="muted" style="font-size:13px">${t("minutes", { n: r.time })}</span>` : ""}</div>
+    <div class="sec m-${meal0}">
+      <div class="btns" style="justify-content:space-between"><h3>${t("ingrFor", { n: t("servingsN", { n }) })}</h3>
+        <span class="stepper"><button data-act="r-serv" data-d="-1" aria-label="−">−</button><span>${n}</span><button data-act="r-serv" data-d="1" aria-label="+">+</button></span></div>
+      ${ingrList(r, n)}
+    </div>
+    ${r.steps.length ? `<div class="sec" style="background:none;padding:0"><h3 style="color:inherit">${t("steps")}</h3><ol class="method">${r.steps.map(x => `<li>${esc(x)}</li>`).join("")}</ol></div>` : ""}
+    ${r.notes ? `<p class="note">${esc(r.notes)}</p>` : ""}
+    <form class="sec m-${meal0}" data-form="add-plan"><h3>${t("addToPlan")}</h3>
+      <div class="row2"><label class="field">${t("day")}<select class="input" id="planDay">${next.map(k => `<option value="${k}">${esc(cap(relDay(k)))}${dayDiff(k, ymd(today0())) < 2 ? " · " + dayMonth(parseYmd(k)) : ""}</option>`).join("")}</select></label>
+      <label class="field">${t("meal")}<select class="input" id="planMeal">${MEALS.map(m => `<option value="${m}"${m === meal0 ? " selected" : ""}>${t(m)}</option>`).join("")}</select></label></div>
+      <div class="btns"><button class="btn primary">${t("addToPlan")}</button></div></form>
+    <div class="btns"><button class="btn" data-act="edit-recipe" data-id="${r.id}">${t("edit")}</button><button class="btn danger" data-act="del-recipe" data-id="${r.id}">${t("del")}</button></div>`;
+  return sheetFrame(t("tab_recipes"), esc(r.name), body);
+}
+function sheetForm(s) {
+  const d = s.draft;
+  const body = `<form data-form="recipe" style="display:grid;gap:14px">
+    <label class="field">${t("name")}<input class="input" id="fName" value="${esc(d.name)}" required></label>
+    <div class="field">${t("goodFor")}<div class="meal-picks">${MEALS.map(m => `<label class="m-${m}"><input type="checkbox" name="meals" value="${m}"${d.meals.includes(m) ? " checked" : ""}>${t(m)}</label>`).join("")}</div></div>
+    <div class="row2"><label class="field">${t("servings")}<input class="input" id="fServ" type="number" min="1" max="50" inputmode="numeric" value="${d.servings || 2}"></label>
+      <label class="field">${t("timeMin")}<input class="input" id="fTime" type="number" min="0" max="1440" inputmode="numeric" value="${d.time || ""}"></label></div>
+    <label class="field">${t("ingredients")}<textarea class="input" id="fIngr" rows="8" placeholder="${t("ingrHint")}">${esc(d.ingredients.join("\n"))}</textarea><span class="hint">${t("ingrHint")}</span></label>
+    <div class="field"><span>${t("readAs")}</span><div class="parsed" id="parsedPreview"></div></div>
+    <label class="field">${t("steps")}<textarea class="input" id="fSteps" rows="7" placeholder="${t("stepsHint")}">${esc(d.steps.join("\n"))}</textarea><span class="hint">${t("stepsHint")}</span></label>
+    <label class="field">${t("notes")}<textarea class="input" id="fNotes" rows="3">${esc(d.notes || "")}</textarea></label>
+    <div class="btns"><button class="btn primary">${t("save")}</button><button type="button" class="btn ghost" data-act="close">${t("cancel")}</button></div>
+  </form>`;
+  return sheetFrame(s.id ? t("editRecipe") : t("newRecipe"), esc(d.name || t("newRecipe")), body);
+}
+function updateParsed() {
+  const box = $("#parsedPreview"), ta = $("#fIngr");
+  if (!box || !ta) return;
+  box.innerHTML = ta.value.split("\n").filter(l => l.trim()).map(l => {
+    const p = parseIngredient(l);
+    return p.qty == null ? `<span class="raw">${esc(cap(p.name))}: ${p.toTaste ? t("toTaste") : t("noAmount")}</span>` : `<span>${esc(fmtAmount(p.qty, p.unit, false))} · ${esc(cap(p.name))}</span>`;
+  }).join("");
+}
+function sheetPaste(s) {
+  const found = s.found;
+  const body = found
+    ? `<p>${t("foundN", { n: found.length })}</p><div class="picks">${found.map((r, i) => `<label class="pick" style="grid-template-columns:20px 40px minmax(0,1fr)"><input type="checkbox" data-i="${i}" checked style="accent-color:var(--accent)">${thumb(r.meals[0] || "dinner", 40)}<span><span class="nm">${esc(r.name)}</span><span class="sub">${r.meals.map(m => t(m)).join(", ")} · ${t("servingsN", { n: r.servings })}</span></span></label>`).join("")}</div>
+       <div class="btns"><button class="btn primary" data-act="add-found">${t("addN", { n: found.length })}</button><button class="btn ghost" data-act="paste">${t("cancel")}</button></div>`
+    : `<p class="muted">${t("pasteHelp")}</p>
+       <textarea class="input" id="pasteText" rows="14" placeholder="${esc(t("pastePh"))}"></textarea>
+       <div class="btns"><button class="btn primary" data-act="read-paste">${t("readRecipe")}</button></div>`;
+  return sheetFrame(t("tab_recipes"), t("pasteTitle"), body);
+}
+function sheetSlot(s) {
+  const e = entry(s.date, s.meal), r = e && byId(e.r), d = parseYmd(s.date);
+  const q = low(s.q || "");
+  const pool = state.recipes.filter(x => (s.all || x.meals.includes(s.meal)) && (!q || low(x.name).includes(q))).sort((a, b) => a.name.localeCompare(b.name, LOCALE()));
+  const current = r ? `<div class="sec m-${s.meal}">
+      <h3>${esc(r.name)}</h3><span class="muted" style="font-size:13px">${r.time ? t("minutes", { n: r.time }) : ""}</span>
+      <div class="btns"><span>${t("servings")}</span><span class="stepper"><button data-act="s-serv" data-d="-1" aria-label="−">−</button><span>${e.s || r.servings || 1}</span><button data-act="s-serv" data-d="1" aria-label="+">+</button></span></div>
+      <div class="btns"><button class="btn small" data-act="open-recipe" data-id="${r.id}">${t("openRecipe")}</button>
+        <button class="btn small" data-act="suggest">${t("suggestAnother")}</button>
+        <button class="btn small lock-btn" data-act="lock" aria-pressed="${!!e.lock}">${svg("lock", "lock-ic")} ${t("keep")}</button>
+        <button class="btn small ghost" data-act="unplan">${t("remove")}</button></div>
+      <span class="muted" style="font-size:12.5px">${t("keepHint")}</span></div>` : "";
+  const picks = pool.length ? `<div class="picks">${pool.map(x => `<button class="pick" data-act="choose" data-id="${x.id}"${r && x.id === r.id ? ' aria-current="true"' : ""}>${thumb(x.meals.includes(s.meal) ? s.meal : x.meals[0] || s.meal, 40)}<span><span class="nm">${esc(x.name)}</span><span class="sub">${[x.time ? t("minutes", { n: x.time }) : "", (() => { const { last, next } = recipeDates(x.id); return next ? t("nextOn", { date: relDay(next) }) : last ? t("lastHad", { date: relDay(last) }) : t("neverPlanned") })()].filter(Boolean).join(" · ")}</span></span></button>`).join("")}</div>`
+    : `<p class="muted">${q ? t("noMatch") : t("noForMeal", { meal: t(s.meal) })}</p>`;
+  const body = `${current}
+    <div style="display:grid;gap:10px"><h3>${r ? t("changeRecipe") : t("chooseRecipe")}</h3>
+    <input class="search" id="slotSearch" type="search" placeholder="${t("search")}" value="${esc(s.q || "")}" aria-label="${t("search")}">
+    <div class="pills"><button data-act="slot-all" aria-pressed="${!!s.all}">${t("showAll")}</button></div>
+    <div id="slotPicks">${picks}</div></div>`;
+  return sheetFrame(`${weekday(d)}, ${dayMonth(d)}`, t(s.meal), body);
+}
+
+/* ---------- actions ---------- */
+let toastTimer;
+function toast(msg) { const el = $("#toast"); el.textContent = msg; el.hidden = false; clearTimeout(toastTimer); toastTimer = setTimeout(() => (el.hidden = true), 3600) }
+function commit() { save(); render(); if (ui.sheet) renderSheet() }
+function setLang(l) {
+  lang = l;
+  for (const r of state.recipes) if (r.sample && !r.edited) { const s = SAMPLES.find(x => x.key === r.sample); if (s) sampleText(s, r) }
+  commit();
+}
+function listAsText() {
+  const items = buildList(shopDays()), store = shopStore();
+  const out = [t("listText")];
+  for (const sec of SECTIONS) {
+    const its = items.filter(i => i.section === sec && !store.checked[i.key]);
+    if (!its.length) continue;
+    out.push("", t("sec_" + sec).toUpperCase());
+    for (const i of its) out.push(`• ${i.name}${i.amount ? " — " + i.amount : ""}`);
+  }
+  const ex = store.extra.filter(x => !x.done);
+  if (ex.length) { out.push("", t("alsoBuy").toUpperCase()); for (const x of ex) out.push(`• ${x.text}`) }
+  return out.join("\n");
+}
+function saveRecipeForm(form) {
+  const s = ui.sheet;
+  const name = $("#fName").value.trim();
+  if (!name) { toast(t("nameRequired")); $("#fName").focus(); return }
+  const data = {
+    name, meals: [...form.querySelectorAll('input[name="meals"]:checked')].map(i => i.value),
+    servings: Math.max(1, parseInt($("#fServ").value, 10) || 1), time: parseInt($("#fTime").value, 10) || null,
+    ingredients: $("#fIngr").value.split("\n").map(l => l.trim()).filter(Boolean),
+    steps: $("#fSteps").value.split("\n").map(l => l.replace(/^\s*(?:\d+[.)]|[-*•])\s*/, "").trim()).filter(Boolean),
+    notes: $("#fNotes").value.trim()
+  };
+  let r = s.id && byId(s.id);
+  if (r) Object.assign(r, data, { edited: true });
+  else { r = { id: uid(), ...data }; state.recipes.push(r) }
+  ui.sheet = { type: "recipe", id: r.id };
+  commit();
+  toast(r.meals.length ? t("saved", { name: r.name }) : t("mealRequired"));
+}
+
+document.addEventListener("click", ev => {
+  const el = ev.target.closest("[data-act]");
+  if (!el) return;
+  const a = el.dataset.act, s = ui.sheet;
+  if (el.type === "checkbox") return; // handled on change
+  switch (a) {
+    case "tab": ui.tab = el.dataset.tab; closeSheet(); render(); scrollTo({ top: 0 }); break;
+    case "lang": setLang(el.dataset.lang); break;
+    case "close": if (ev.target === el || el.tagName === "BUTTON") closeSheet(); break;
+    case "week-nav": ui.weekOffset = +el.dataset.dir === 0 ? 0 : ui.weekOffset + +el.dataset.dir; render(); break;
+    case "plan-week": case "reshuffle": {
+      if (!state.recipes.some(r => r.meals.length)) { toast(t("planNone")); break }
+      const mon = addDays(mondayOf(today0()), (ui.tab === "week" ? ui.weekOffset : 0) * 7);
+      if (ymd(addDays(mon, 6)) < ymd(today0())) { toast(t("planPast")); break }
+      const n = fillWeek(mon, a === "reshuffle");
+      commit();
+      toast(n ? t("planned", { n }) : t("planFull"));
+      break;
+    }
+    case "clear-week": {
+      const mon = addDays(mondayOf(today0()), ui.weekOffset * 7), from = ymd(today0());
+      for (let i = 0; i < 7; i++) { const k = ymd(addDays(mon, i)); if (k < from) continue; for (const m of MEALS) if (!entry(k, m)?.lock) setEntry(k, m, null) }
+      commit(); toast(t("cleared")); break;
+    }
+    case "slot": openSheet({ type: "slot", date: el.dataset.date, meal: el.dataset.meal, all: false, q: "" }); break;
+    case "slot-all": s.all = !s.all; renderSheet(); break;
+    case "choose": { const r = byId(el.dataset.id), old = entry(s.date, s.meal); setEntry(s.date, s.meal, { r: r.id, s: r.servings || 1, lock: old?.lock }); save(); closeSheet(); render(); break }
+    case "suggest": {
+      const cur = entry(s.date, s.meal), r = pickRecipe(s.date, s.meal, [cur.r]);
+      if (!r) { toast(t("noOther", { meal: t(s.meal) })); break }
+      setEntry(s.date, s.meal, { r: r.id, s: r.servings || 1, lock: cur.lock }); commit(); break;
+    }
+    case "lock": { const e = entry(s.date, s.meal); e.lock = !e.lock; commit(); break }
+    case "unplan": setEntry(s.date, s.meal, null); save(); closeSheet(); render(); break;
+    case "s-serv": { const e = entry(s.date, s.meal); e.s = Math.max(1, Math.min(50, (e.s || 1) + +el.dataset.d)); commit(); break }
+    case "open-recipe": openSheet({ type: "recipe", id: el.dataset.id }); break;
+    case "r-serv": { const r = byId(s.id); s.servings = Math.max(1, Math.min(50, (s.servings ?? r.servings ?? 1) + +el.dataset.d)); renderSheet(); break }
+    case "edit-recipe": { const r = byId(el.dataset.id); openSheet({ type: "form", id: r.id, draft: JSON.parse(JSON.stringify(r)) }); break }
+    case "new-recipe": openSheet({ type: "form", draft: { name: "", meals: ["lunch", "dinner"], servings: 2, time: null, ingredients: [], steps: [], notes: "" } }); break;
+    case "del-recipe": {
+      if (!el.dataset.armed) { el.dataset.armed = "1"; el.textContent = t("confirmDelete"); break }
+      const r = byId(el.dataset.id);
+      state.recipes = state.recipes.filter(x => x.id !== r.id);
+      for (const [k, m, e] of [...allEntries()]) if (e.r === r.id) setEntry(k, m, null);
+      save(); closeSheet(); render(); toast(t("deleted", { name: r.name })); break;
+    }
+    case "paste": openSheet({ type: "paste" }); setTimeout(() => $("#pasteText")?.focus(), 50); break;
+    case "read-paste": {
+      const text = $("#pasteText").value;
+      if (!text.trim()) { toast(t("pasteEmpty")); break }
+      const found = parseRecipes(text);
+      if (!found.length) { toast(t("pasteFail")); break }
+      if (found.length === 1) { openSheet({ type: "form", draft: found[0] }); toast(t("checkSave")) }
+      else openSheet({ type: "paste", found });
+      break;
+    }
+    case "add-found": {
+      const keep = [...document.querySelectorAll(".sheet .pick input")].filter(i => i.checked).map(i => s.found[+i.dataset.i]);
+      for (const r of keep) state.recipes.push({ id: uid(), ...r });
+      save(); closeSheet(); ui.tab = "recipes"; render(); toast(t("addedN", { n: keep.length })); break;
+    }
+    case "recipe-filter": ui.recipeFilter = el.dataset.f; render(); break;
+    case "remove-samples": {
+      const ids = new Set(state.recipes.filter(r => r.sample).map(r => r.id));
+      state.recipes = state.recipes.filter(r => !ids.has(r.id));
+      for (const [k, m, e] of [...allEntries()]) if (ids.has(e.r)) setEntry(k, m, null);
+      commit(); toast(t("samplesRemoved")); break;
+    }
+    case "load-samples": state.recipes.push(...SAMPLES.map(makeSample)); commit(); break;
+    case "shop-range": ui.shopRange = el.dataset.r; render(); break;
+    case "untick": { const st = shopStore(); st.checked = {}; st.extra.forEach(x => (x.done = false)); commit(); break }
+    case "del-extra": { const st = shopStore(); st.extra = st.extra.filter(x => x.id !== el.dataset.id); commit(); break }
+    case "copy-list": {
+      const text = listAsText();
+      const fallback = () => openSheet({ type: "copy", text });
+      try { navigator.clipboard.writeText(text).then(() => toast(t("copied")), fallback) } catch (e) { fallback() }
+      break;
+    }
+    case "backup": {
+      try {
+        const blob = new Blob([JSON.stringify({ app: "meal-planner", v: 1, lang, ...state }, null, 1)], { type: "application/json" });
+        const a2 = document.createElement("a");
+        a2.href = URL.createObjectURL(blob); a2.download = `meal-planner-${ymd(today0())}.json`;
+        document.body.append(a2); a2.click(); a2.remove();
+        setTimeout(() => URL.revokeObjectURL(a2.href), 2000);
+        toast(t("backupSaved"));
+      } catch (e) { toast(t("saveFail")) }
+      break;
+    }
+    case "restore": $("#restoreFile").click(); break;
+  }
+});
+document.addEventListener("change", ev => {
+  const el = ev.target;
+  if (el.dataset.act === "tick") { const st = shopStore(); if (el.checked) st.checked[el.dataset.key] = true; else delete st.checked[el.dataset.key]; commit() }
+  if (el.dataset.act === "tick-extra") { const x = shopStore().extra.find(x => x.id === el.dataset.id); if (x) x.done = el.checked; commit() }
+  if (el.id === "restoreFile" && el.files[0]) {
+    el.files[0].text().then(txt => {
+      const d = JSON.parse(txt);
+      if (!Array.isArray(d.recipes)) throw new Error("not a backup");
+      state = { recipes: d.recipes, plan: d.plan || {}, shop: d.shop || {} };
+      if (d.lang) lang = d.lang;
+      commit(); toast(t("restored", { n: d.recipes.length }));
+    }).catch(() => toast(t("restoreFail"))).finally(() => (el.value = ""));
+  }
+});
+document.addEventListener("input", ev => {
+  const el = ev.target;
+  if (el.id === "recipeSearch") {
+    ui.recipeSearch = el.value;
+    const pos = el.selectionStart; render();
+    const n = $("#recipeSearch"); n.focus(); try { n.setSelectionRange(pos, pos) } catch (e) {}
+  }
+  if (el.id === "slotSearch") {
+    ui.sheet.q = el.value;
+    const pos = el.selectionStart; renderSheet();
+    const n = $("#slotSearch"); n.focus(); try { n.setSelectionRange(pos, pos) } catch (e) {}
+  }
+  if (el.id === "fIngr") updateParsed();
+});
+document.addEventListener("submit", ev => {
+  ev.preventDefault();
+  const f = ev.target, kind = f.dataset.form;
+  if (kind === "recipe") saveRecipeForm(f);
+  if (kind === "extra") {
+    const v = $("#extraItem").value.trim();
+    if (!v) return;
+    shopStore().extra.push({ id: uid(), text: v, done: false });
+    commit(); $("#extraItem")?.focus();
+  }
+  if (kind === "add-plan") {
+    const r = byId(ui.sheet.id), k = $("#planDay").value, m = $("#planMeal").value;
+    setEntry(k, m, { r: r.id, s: ui.sheet.servings ?? r.servings ?? 1 });
+    save(); render();
+    toast(t("addedToPlan", { name: r.name, meal: t(m).toLocaleLowerCase(LOCALE()), date: relDay(k) }));
+  }
+});
+document.addEventListener("keydown", ev => { if (ev.key === "Escape" && ui.sheet) closeSheet() });
+
+load();
+render();
+</script>
+
+<script>if ("serviceWorker" in navigator) {
+  // When an update takes over from an older version, reload once so it shows straight away.
+  let hadController = !!navigator.serviceWorker.controller, reloaded = false;
+  navigator.serviceWorker.addEventListener("controllerchange", () => { if (hadController && !reloaded) { reloaded = true; location.reload() } hadController = true });
+  navigator.serviceWorker.register("sw.js", { updateViaCache: "none" }).catch(() => {});
+}</script>
+</body>
+</html>
