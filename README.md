@@ -19,6 +19,7 @@ A phone app for your recipes: keep them in one place, plan breakfast, lunch, din
 - **Shopping:** a list built from the planned meals for the rest of this week or for next week. Matching ingredients are added up (so 1 onion plus 2 onions is 3 onions, and grams become kilograms), scaled to the servings you planned, and grouped by aisle. Spices and oil are grouped separately to check at home. Tick items off, add extra items, or copy the list into a note or message.
 - **English and Russian:** switch with EN / RU at the top. The example recipes switch language too; your own recipes stay as you wrote them.
 - **Examples:** a new install starts with example recipes and a planned week so you can try everything. **Remove examples** deletes them and their meals.
+- **Colour theme:** Auto (follows your phone), Light or Dark, next to EN / RU at the top. The choice is shared with the other apps on nurnhe.github.io, so switching it in one switches them all.
 
 ## Data
 
