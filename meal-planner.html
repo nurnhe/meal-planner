@@ -14,6 +14,7 @@
   --ln-1: #E4F4C2; --ln-ink: #4E7A10;
   --dn-1: #FFD2BF; --dn-ink: #B83A12;
   --sn-1: #FFD7E1; --sn-ink: #B12A55;
+  --cf-1: #D8EAFF; --cf-ink: #2160B0;
   --warn: #C73A12; --warn-soft: #FFD2BF; --ok: #6FA626;
   --shadow: 0 1px 2px rgba(30, 33, 37, .05), 0 6px 18px rgba(30, 33, 37, .06); --shadow-lg: 0 18px 50px rgba(30, 33, 37, .22);
   --display: "Unbounded", "Avenir Next", "Segoe UI", sans-serif;
@@ -24,13 +25,13 @@
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
   --bg: #141619; --doodle: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiB2aWV3Qm94PSIwIDAgNDAwIDQwMCI+PGcgb3BhY2l0eT0iLjU1Ij48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg2MCA3MCkgcm90YXRlKC0xMikiIHN0cm9rZS13aWR0aD0iMi4yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxjaXJjbGUgcj0iMjAiIGZpbGw9IiM1QTJBMkEiIHN0cm9rZT0iI0MwNjA1QSIvPjxwYXRoIGQ9Ik0tOSAtMTcgTDAgLTEyIEw5IC0xNyBNMCAtMTIgTDAgLTI0IiBmaWxsPSJub25lIiBzdHJva2U9IiM3RkFBNEUiLz48cGF0aCBkPSJNLTYgLTE1IHE2IDYgMTIgMCIgZmlsbD0iIzJFM0UyMCIgc3Ryb2tlPSIjN0ZBQTRFIi8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDI1MCA1MCkgcm90YXRlKDE4KSIgc3Ryb2tlLXdpZHRoPSIyLjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PGNpcmNsZSByPSIxOSIgZmlsbD0iIzRBNDAyMCIgc3Ryb2tlPSIjQzlBNDNBIi8+PGNpcmNsZSByPSIxMyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjQzlBNDNBIiBzdHJva2Utd2lkdGg9IjEuNCIvPjxwYXRoIGQ9Ik0wIC0xMyBWMTMgTS0xMyAwIEgxMyBNLTkgLTkgTDkgOSBNOSAtOSBMLTkgOSIgc3Ryb2tlPSIjQzlBNDNBIiBzdHJva2Utd2lkdGg9IjEuMiIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxNzAgMTcwKSByb3RhdGUoOCkiIHN0cm9rZS13aWR0aD0iMi4yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwYXRoIGQ9Ik0tMjQgLTQgQy0yNiAtMjAgLTYgLTI2IDYgLTIwIEMyMiAtMjQgMzAgLTggMjQgNCBDMzAgMTggMTAgMjYgLTIgMjAgQy0xNiAyNiAtMjggMTIgLTI0IC00IFoiIGZpbGw9IiMyRTMxMzYiIHN0cm9rZT0iIzU1NTk1RiIvPjxjaXJjbGUgY3g9IjIiIGN5PSItMSIgcj0iOSIgZmlsbD0iI0M5QTQzQSIgc3Ryb2tlPSIjQzlBNDNBIi8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMyMCAxOTApIHJvdGF0ZSgzNSkiIHN0cm9rZS13aWR0aD0iMi4yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwYXRoIGQ9Ik0wIC0yMiBDOCAtMjIgMTAgLTE2IDggLTggTDAgMjYgTC04IC04IEMtMTAgLTE2IC04IC0yMiAwIC0yMiBaIiBmaWxsPSIjNEUzNDI0IiBzdHJva2U9IiNDODgwNTAiLz48cGF0aCBkPSJNLTQgLTYgaDUgTS0zIDQgaDQiIHN0cm9rZT0iI0M4ODA1MCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48cGF0aCBkPSJNMCAtMjIgTC03IC0zNCBNMCAtMjIgTDAgLTM2IE0wIC0yMiBMNyAtMzQiIHN0cm9rZT0iIzdGQUE0RSIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg4MCAyOTApIHJvdGF0ZSgtNikiIHN0cm9rZS13aWR0aD0iMi4yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwYXRoIGQ9Ik0tMTAgNiBDLTggLTEyIDAgLTIyIDYgLTI2IE0xMiA4IEMxMCAtOCA4IC0xOCA2IC0yNiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjN0ZBQTRFIi8+PHBhdGggZD0iTTYgLTI2IHExMCAtNCAxNCA0IHEtMTAgMiAtMTQgLTQiIGZpbGw9IiMyRTNFMjAiIHN0cm9rZT0iIzdGQUE0RSIvPjxjaXJjbGUgY3g9Ii0xMSIgY3k9IjEzIiByPSIxMCIgZmlsbD0iIzZBMkUzNCIgc3Ryb2tlPSIjQzA2MDVBIi8+PGNpcmNsZSBjeD0iMTMiIGN5PSIxNSIgcj0iMTAiIGZpbGw9IiM2QTJFMzQiIHN0cm9rZT0iI0MwNjA1QSIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzMDAgMzEwKSByb3RhdGUoLTMwKSIgc3Ryb2tlLXdpZHRoPSIyLjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTAgMjIgQy0xNiA4IC0xNCAtMTQgMCAtMjQgQzE0IC0xNCAxNiA4IDAgMjIgWiIgZmlsbD0iIzJFM0UyMCIgc3Ryb2tlPSIjN0ZBQTRFIi8+PHBhdGggZD0iTTAgMjIgVi0xNiBNMCAwIEwtNyAtNyBNMCA4IEw3IDEiIHN0cm9rZT0iIzdGQUE0RSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTkwIDMyMCkgcm90YXRlKDEyKSIgc3Ryb2tlLXdpZHRoPSIyLjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PGNpcmNsZSByPSIyMSIgZmlsbD0iIzQ2M0EyQyIgc3Ryb2tlPSIjQzg4MDUwIi8+PHBhdGggZD0iTS0xNyAtNiBDLTEyIC0xOCAxMiAtMjAgMTcgLTYgQzIwIDQgMTIgMTAgOCA2IEMyIDEyIC00IDQgLTEwIDggQy0xNiAxMCAtMTkgMiAtMTcgLTYgWiIgZmlsbD0iIzVBMkU0MiIgc3Ryb2tlPSIjRDA2Qzk1Ii8+PGNpcmNsZSByPSI2IiBmaWxsPSIjMTQxNjE5IiBzdHJva2U9IiNDODgwNTAiLz48cGF0aCBkPSJNLTExIC03IGwzIC0yIE05IC0xMCBsMiAzIE0xMiAwIGwzIDEiIHN0cm9rZT0iI0QwNkM5NSIgc3Ryb2tlLXdpZHRoPSIxLjYiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTUwIDYwKSByb3RhdGUoLTIwKSIgc3Ryb2tlLXdpZHRoPSIyLjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTAgMjIgQy0xOCAxMCAtMTggLTEyIC0yIC0xNCBDMCAtMTQgMiAtMTQgMiAtMTQgQzE4IC0xMiAxOCAxMCAwIDIyIFoiIGZpbGw9IiM1QTJBMkEiIHN0cm9rZT0iI0MwNjA1QSIvPjxwYXRoIGQ9Ik0tMTAgLTE0IEwtMyAtMTggTDAgLTI0IEwzIC0xOCBMMTAgLTE0IEwyIC0xMiBMLTIgLTEyIFoiIGZpbGw9IiMyRTNFMjAiIHN0cm9rZT0iIzdGQUE0RSIgc3Ryb2tlLXdpZHRoPSIxLjYiLz48cGF0aCBkPSJNLTYgLTIgdjEgTTUgMCB2MSBNLTEgOCB2MSBNLTggOCB2MSBNNyA5IHYxIiBzdHJva2U9IiNDMDYwNUEiIHN0cm9rZS13aWR0aD0iMiIvPjwvZz48cGF0aCBkPSJNMTIwIDEzMCBsNiAwIiB0cmFuc2Zvcm09InJvdGF0ZSgzMCAxMjAgMTMwKSIgc3Ryb2tlPSIjQzA2MDVBIiBzdHJva2Utd2lkdGg9IjIuNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTI0MCAxMjAgbDYgMCIgdHJhbnNmb3JtPSJyb3RhdGUoLTIwIDI0MCAxMjApIiBzdHJva2U9IiM3RkFBNEUiIHN0cm9rZS13aWR0aD0iMi40IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48cGF0aCBkPSJNMzAgMTkwIGw2IDAiIHRyYW5zZm9ybT0icm90YXRlKDYwIDMwIDE5MCkiIHN0cm9rZT0iI0M5QTQzQSIgc3Ryb2tlLXdpZHRoPSIyLjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik0zNjAgMTEwIGw2IDAiIHRyYW5zZm9ybT0icm90YXRlKDEwIDM2MCAxMTApIiBzdHJva2U9IiNDMDYwNUEiIHN0cm9rZS13aWR0aD0iMi40IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48cGF0aCBkPSJNMjQwIDI1MCBsNiAwIiB0cmFuc2Zvcm09InJvdGF0ZSg0NSAyNDAgMjUwKSIgc3Ryb2tlPSIjQzlBNDNBIiBzdHJva2Utd2lkdGg9IjIuNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTMwIDM2MCBsNiAwIiB0cmFuc2Zvcm09InJvdGF0ZSgtMzAgMzAgMzYwKSIgc3Ryb2tlPSIjN0ZBQTRFIiBzdHJva2Utd2lkdGg9IjIuNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTM2MCAzNzAgbDYgMCIgdHJhbnNmb3JtPSJyb3RhdGUoODAgMzYwIDM3MCkiIHN0cm9rZT0iI0QwNkM5NSIgc3Ryb2tlLXdpZHRoPSIyLjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik0xMjAgMjMwIGw2IDAiIHRyYW5zZm9ybT0icm90YXRlKDAgMTIwIDIzMCkiIHN0cm9rZT0iI0M4ODA1MCIgc3Ryb2tlLXdpZHRoPSIyLjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjwvZz48L3N2Zz4="); --surface: #1D2024; --surface-2: #25292E; --ink: #F3F4F2; --muted: #A3A9B0; --line: #2E3238; --line-strong: #F3F4F2;
   --accent: #FF6B66; --accent-ink: #141619; --accent-soft: #3A2426; --pop: #3A2426;
-  --bf-1: #2B2A26; --bf-ink: #FFC56B; --ln-1: #252B22; --ln-ink: #BDE57A; --dn-1: #2D2523; --dn-ink: #FF9D78; --sn-1: #2D2329; --sn-ink: #FF9DB8;
+  --bf-1: #2B2A26; --bf-ink: #FFC56B; --ln-1: #252B22; --ln-ink: #BDE57A; --dn-1: #2D2523; --dn-ink: #FF9D78; --sn-1: #2D2329; --sn-ink: #FF9DB8; --cf-1: #222A33; --cf-ink: #8CC4FF;
   --warn: #FF9D78; --warn-soft: #3A2426; --ok: #A6D65A;
   --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 6px 18px rgba(0, 0, 0, .3); --shadow-lg: 0 18px 50px rgba(0, 0, 0, .6); color-scheme: dark } }
 :root[data-theme="dark"] {
   --bg: #141619; --doodle: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIiB2aWV3Qm94PSIwIDAgNDAwIDQwMCI+PGcgb3BhY2l0eT0iLjU1Ij48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg2MCA3MCkgcm90YXRlKC0xMikiIHN0cm9rZS13aWR0aD0iMi4yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxjaXJjbGUgcj0iMjAiIGZpbGw9IiM1QTJBMkEiIHN0cm9rZT0iI0MwNjA1QSIvPjxwYXRoIGQ9Ik0tOSAtMTcgTDAgLTEyIEw5IC0xNyBNMCAtMTIgTDAgLTI0IiBmaWxsPSJub25lIiBzdHJva2U9IiM3RkFBNEUiLz48cGF0aCBkPSJNLTYgLTE1IHE2IDYgMTIgMCIgZmlsbD0iIzJFM0UyMCIgc3Ryb2tlPSIjN0ZBQTRFIi8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDI1MCA1MCkgcm90YXRlKDE4KSIgc3Ryb2tlLXdpZHRoPSIyLjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PGNpcmNsZSByPSIxOSIgZmlsbD0iIzRBNDAyMCIgc3Ryb2tlPSIjQzlBNDNBIi8+PGNpcmNsZSByPSIxMyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjQzlBNDNBIiBzdHJva2Utd2lkdGg9IjEuNCIvPjxwYXRoIGQ9Ik0wIC0xMyBWMTMgTS0xMyAwIEgxMyBNLTkgLTkgTDkgOSBNOSAtOSBMLTkgOSIgc3Ryb2tlPSIjQzlBNDNBIiBzdHJva2Utd2lkdGg9IjEuMiIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxNzAgMTcwKSByb3RhdGUoOCkiIHN0cm9rZS13aWR0aD0iMi4yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwYXRoIGQ9Ik0tMjQgLTQgQy0yNiAtMjAgLTYgLTI2IDYgLTIwIEMyMiAtMjQgMzAgLTggMjQgNCBDMzAgMTggMTAgMjYgLTIgMjAgQy0xNiAyNiAtMjggMTIgLTI0IC00IFoiIGZpbGw9IiMyRTMxMzYiIHN0cm9rZT0iIzU1NTk1RiIvPjxjaXJjbGUgY3g9IjIiIGN5PSItMSIgcj0iOSIgZmlsbD0iI0M5QTQzQSIgc3Ryb2tlPSIjQzlBNDNBIi8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMyMCAxOTApIHJvdGF0ZSgzNSkiIHN0cm9rZS13aWR0aD0iMi4yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwYXRoIGQ9Ik0wIC0yMiBDOCAtMjIgMTAgLTE2IDggLTggTDAgMjYgTC04IC04IEMtMTAgLTE2IC04IC0yMiAwIC0yMiBaIiBmaWxsPSIjNEUzNDI0IiBzdHJva2U9IiNDODgwNTAiLz48cGF0aCBkPSJNLTQgLTYgaDUgTS0zIDQgaDQiIHN0cm9rZT0iI0M4ODA1MCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48cGF0aCBkPSJNMCAtMjIgTC03IC0zNCBNMCAtMjIgTDAgLTM2IE0wIC0yMiBMNyAtMzQiIHN0cm9rZT0iIzdGQUE0RSIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg4MCAyOTApIHJvdGF0ZSgtNikiIHN0cm9rZS13aWR0aD0iMi4yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwYXRoIGQ9Ik0tMTAgNiBDLTggLTEyIDAgLTIyIDYgLTI2IE0xMiA4IEMxMCAtOCA4IC0xOCA2IC0yNiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjN0ZBQTRFIi8+PHBhdGggZD0iTTYgLTI2IHExMCAtNCAxNCA0IHEtMTAgMiAtMTQgLTQiIGZpbGw9IiMyRTNFMjAiIHN0cm9rZT0iIzdGQUE0RSIvPjxjaXJjbGUgY3g9Ii0xMSIgY3k9IjEzIiByPSIxMCIgZmlsbD0iIzZBMkUzNCIgc3Ryb2tlPSIjQzA2MDVBIi8+PGNpcmNsZSBjeD0iMTMiIGN5PSIxNSIgcj0iMTAiIGZpbGw9IiM2QTJFMzQiIHN0cm9rZT0iI0MwNjA1QSIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzMDAgMzEwKSByb3RhdGUoLTMwKSIgc3Ryb2tlLXdpZHRoPSIyLjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTAgMjIgQy0xNiA4IC0xNCAtMTQgMCAtMjQgQzE0IC0xNCAxNiA4IDAgMjIgWiIgZmlsbD0iIzJFM0UyMCIgc3Ryb2tlPSIjN0ZBQTRFIi8+PHBhdGggZD0iTTAgMjIgVi0xNiBNMCAwIEwtNyAtNyBNMCA4IEw3IDEiIHN0cm9rZT0iIzdGQUE0RSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTkwIDMyMCkgcm90YXRlKDEyKSIgc3Ryb2tlLXdpZHRoPSIyLjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PGNpcmNsZSByPSIyMSIgZmlsbD0iIzQ2M0EyQyIgc3Ryb2tlPSIjQzg4MDUwIi8+PHBhdGggZD0iTS0xNyAtNiBDLTEyIC0xOCAxMiAtMjAgMTcgLTYgQzIwIDQgMTIgMTAgOCA2IEMyIDEyIC00IDQgLTEwIDggQy0xNiAxMCAtMTkgMiAtMTcgLTYgWiIgZmlsbD0iIzVBMkU0MiIgc3Ryb2tlPSIjRDA2Qzk1Ii8+PGNpcmNsZSByPSI2IiBmaWxsPSIjMTQxNjE5IiBzdHJva2U9IiNDODgwNTAiLz48cGF0aCBkPSJNLTExIC03IGwzIC0yIE05IC0xMCBsMiAzIE0xMiAwIGwzIDEiIHN0cm9rZT0iI0QwNkM5NSIgc3Ryb2tlLXdpZHRoPSIxLjYiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTUwIDYwKSByb3RhdGUoLTIwKSIgc3Ryb2tlLXdpZHRoPSIyLjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTAgMjIgQy0xOCAxMCAtMTggLTEyIC0yIC0xNCBDMCAtMTQgMiAtMTQgMiAtMTQgQzE4IC0xMiAxOCAxMCAwIDIyIFoiIGZpbGw9IiM1QTJBMkEiIHN0cm9rZT0iI0MwNjA1QSIvPjxwYXRoIGQ9Ik0tMTAgLTE0IEwtMyAtMTggTDAgLTI0IEwzIC0xOCBMMTAgLTE0IEwyIC0xMiBMLTIgLTEyIFoiIGZpbGw9IiMyRTNFMjAiIHN0cm9rZT0iIzdGQUE0RSIgc3Ryb2tlLXdpZHRoPSIxLjYiLz48cGF0aCBkPSJNLTYgLTIgdjEgTTUgMCB2MSBNLTEgOCB2MSBNLTggOCB2MSBNNyA5IHYxIiBzdHJva2U9IiNDMDYwNUEiIHN0cm9rZS13aWR0aD0iMiIvPjwvZz48cGF0aCBkPSJNMTIwIDEzMCBsNiAwIiB0cmFuc2Zvcm09InJvdGF0ZSgzMCAxMjAgMTMwKSIgc3Ryb2tlPSIjQzA2MDVBIiBzdHJva2Utd2lkdGg9IjIuNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTI0MCAxMjAgbDYgMCIgdHJhbnNmb3JtPSJyb3RhdGUoLTIwIDI0MCAxMjApIiBzdHJva2U9IiM3RkFBNEUiIHN0cm9rZS13aWR0aD0iMi40IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48cGF0aCBkPSJNMzAgMTkwIGw2IDAiIHRyYW5zZm9ybT0icm90YXRlKDYwIDMwIDE5MCkiIHN0cm9rZT0iI0M5QTQzQSIgc3Ryb2tlLXdpZHRoPSIyLjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik0zNjAgMTEwIGw2IDAiIHRyYW5zZm9ybT0icm90YXRlKDEwIDM2MCAxMTApIiBzdHJva2U9IiNDMDYwNUEiIHN0cm9rZS13aWR0aD0iMi40IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48cGF0aCBkPSJNMjQwIDI1MCBsNiAwIiB0cmFuc2Zvcm09InJvdGF0ZSg0NSAyNDAgMjUwKSIgc3Ryb2tlPSIjQzlBNDNBIiBzdHJva2Utd2lkdGg9IjIuNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTMwIDM2MCBsNiAwIiB0cmFuc2Zvcm09InJvdGF0ZSgtMzAgMzAgMzYwKSIgc3Ryb2tlPSIjN0ZBQTRFIiBzdHJva2Utd2lkdGg9IjIuNCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTM2MCAzNzAgbDYgMCIgdHJhbnNmb3JtPSJyb3RhdGUoODAgMzYwIDM3MCkiIHN0cm9rZT0iI0QwNkM5NSIgc3Ryb2tlLXdpZHRoPSIyLjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik0xMjAgMjMwIGw2IDAiIHRyYW5zZm9ybT0icm90YXRlKDAgMTIwIDIzMCkiIHN0cm9rZT0iI0M4ODA1MCIgc3Ryb2tlLXdpZHRoPSIyLjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjwvZz48L3N2Zz4="); --surface: #1D2024; --surface-2: #25292E; --ink: #F3F4F2; --muted: #A3A9B0; --line: #2E3238; --line-strong: #F3F4F2;
   --accent: #FF6B66; --accent-ink: #141619; --accent-soft: #3A2426; --pop: #3A2426;
-  --bf-1: #2B2A26; --bf-ink: #FFC56B; --ln-1: #252B22; --ln-ink: #BDE57A; --dn-1: #2D2523; --dn-ink: #FF9D78; --sn-1: #2D2329; --sn-ink: #FF9DB8;
+  --bf-1: #2B2A26; --bf-ink: #FFC56B; --ln-1: #252B22; --ln-ink: #BDE57A; --dn-1: #2D2523; --dn-ink: #FF9D78; --sn-1: #2D2329; --sn-ink: #FF9DB8; --cf-1: #222A33; --cf-ink: #8CC4FF;
   --warn: #FF9D78; --warn-soft: #3A2426; --ok: #A6D65A;
   --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 6px 18px rgba(0, 0, 0, .3); --shadow-lg: 0 18px 50px rgba(0, 0, 0, .6); color-scheme: dark }
 
@@ -43,6 +44,7 @@ body { min-height: 100%; color: var(--ink); font: 400 15px/1.55 var(--sans); bac
 .m-lunch { --m1: var(--ln-1); --m2: var(--ln-1); --mi: var(--ln-ink) }
 .m-dinner { --m1: var(--dn-1); --m2: var(--dn-1); --mi: var(--dn-ink) }
 .m-snack { --m1: var(--sn-1); --m2: var(--sn-1); --mi: var(--sn-ink) }
+.m-coffee { --m1: var(--cf-1); --m2: var(--cf-1); --mi: var(--cf-ink) }
 
 .wrap { max-width: 1260px; margin: 0 auto; padding-block: 28px 56px;
   padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: grid; gap: 24px }
@@ -90,6 +92,12 @@ a.btn { text-decoration: none; color: inherit }
 .tag { display: inline-block; font-size: 12px; font-weight: 600; padding: 2px 9px; border-radius: 6px; background: var(--accent-soft); color: var(--accent) }
 .chip { display: inline-block; font: 500 10.5px/1.6 var(--mono); letter-spacing: .05em; text-transform: uppercase; padding: 0 7px; border-radius: 5px; background: var(--m1); color: var(--mi); white-space: nowrap }
 .chip.example { background: var(--accent-soft); color: var(--accent) }
+.chip.idea { background: var(--ink); color: var(--bg) }
+.seg { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 4px; border-radius: 14px; background: var(--surface-2) }
+.seg button { display: inline-flex; align-items: center; justify-content: center; gap: 7px; border: 0; background: none; border-radius: 10px; min-height: 40px; font: 700 14.5px/1 var(--sans); color: var(--muted) }
+.seg button svg { width: 18px; height: 18px }
+.seg button[aria-pressed="true"] { background: var(--surface); color: var(--ink); box-shadow: var(--shadow) }
+.seg button.m-coffee[aria-pressed="true"] { background: var(--m1); color: var(--mi) }
 
 /* Icons */
 .thumb { display: inline-grid; place-items: center; border-radius: 12px; flex: none; background: var(--m1); color: var(--mi) }
@@ -307,7 +315,7 @@ const S = {
   appTitle: ["Meal <em>Planner</em>", "План <em>питания</em>"],
   tagline: ["Recipes, meals and shopping", "Рецепты, меню и покупки"],
   tab_today: ["Today", "Сегодня"], tab_week: ["Week", "Неделя"], tab_recipes: ["Recipes", "Рецепты"], tab_shop: ["Shopping", "Покупки"],
-  breakfast: ["Breakfast", "Завтрак"], lunch: ["Lunch", "Обед"], dinner: ["Dinner", "Ужин"], snack: ["Snack", "Перекус"],
+  breakfast: ["Breakfast", "Завтрак"], lunch: ["Lunch", "Обед"], dinner: ["Dinner", "Ужин"], snack: ["Snack", "Перекус"], coffee: ["Coffee", "Кофе"], foodRecipes: ["Food", "Еда"],
   today: ["Today", "Сегодня"], tomorrow: ["Tomorrow", "Завтра"],
   todayHint: ["Tap a meal to swap it, keep it, or open the recipe.", "Нажмите на блюдо, чтобы заменить, закрепить или открыть рецепт."],
   nothingPlanned: ["Nothing planned", "Ничего не запланировано"],
@@ -359,6 +367,15 @@ const S = {
   samplesBanner: ["These are example recipes so you can try the app. Add your own, then remove the examples.", "Это примеры рецептов, чтобы попробовать приложение. Добавьте свои, а затем удалите примеры."],
   removeSamples: ["Remove examples", "Удалить примеры"], samplesRemoved: ["Removed the example recipes and their meals.", "Примеры рецептов и их блюда удалены."],
   loadSamples: ["Try example recipes", "Добавить примеры"], example: ["Example", "Пример"], all: ["All", "Все"],
+  idea: ["Idea", "Идея"],
+  ideasBanner: [["I added {n} recipe idea for you: no lactose, none of the foods you skip, and everything easy to find in Serbian shops. They're marked Idea. Delete any you don't like.", "I added {n} recipe ideas for you: no lactose, none of the foods you skip, and everything easy to find in Serbian shops. They're marked Idea. Delete any you don't like."],
+    ["Для вас добавлена {n} идея рецепта: без лактозы, без продуктов, которые вы не едите, и всё легко купить в Сербии. Они отмечены «Идея». Удалите те, что не понравятся.", "Для вас добавлены {n} идеи рецептов: без лактозы, без продуктов, которые вы не едите, и всё легко купить в Сербии. Они отмечены «Идея». Удалите те, что не понравятся.", "Для вас добавлено {n} идей рецептов: без лактозы, без продуктов, которые вы не едите, и всё легко купить в Сербии. Они отмечены «Идея». Удалите те, что не понравятся."]],
+  gotIt: ["Got it", "Понятно"],
+  coffeeHint: ["Coffee recipes live here, apart from your meals, so the planner never puts them in your week.", "Здесь кофейные рецепты, отдельно от блюд, поэтому планировщик не ставит их в меню."],
+  coffeeEmpty: ["No coffee recipes yet. Paste one or add it by hand.", "Кофейных рецептов пока нет. Вставьте рецепт или добавьте вручную."],
+  newCoffee: ["New coffee", "Новый кофе"],
+  addToList: ["Add to shopping list", "Добавить в покупки"],
+  addedToList: ["Added the ingredients for {name} to Also buy.", "Ингредиенты для «{name}» добавлены в «Ещё купить»."],
   untitled: ["Untitled recipe", "Рецепт без названия"],
   lastHad: ["Last {date}", "Было: {date}"], nextOn: ["Next {date}", "Будет: {date}"], neverPlanned: ["Not planned yet", "Ещё не в плане"],
   addToPlan: ["Add to plan", "Добавить в план"], day: ["Day", "День"], meal: ["Meal", "Приём пищи"],
@@ -386,6 +403,8 @@ const S = {
   saveFail: ["Couldn't save on this device. Check that the browser allows site data.", "Не удалось сохранить на устройстве. Проверьте, что браузер разрешает хранить данные сайтов."]
 };
 const MEALS = ["breakfast", "lunch", "dinner", "snack"];
+const CATS = [...MEALS, "coffee"];
+const isCoffee = r => r.meals.includes("coffee") && !r.meals.some(m => MEALS.includes(m));
 const SECTIONS = ["produce", "meat", "dairy", "bakery", "grains", "tins", "nuts", "frozen", "other", "pantry"];
 const SEC_COLOR = { produce: 1, meat: 2, dairy: 3, bakery: 7, grains: 5, tins: 4, nuts: 9, frozen: 8, other: 6, pantry: 10 };
 
@@ -415,10 +434,11 @@ const ICONS = {
   week: '<path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z"/><path d="M16 3v4"/><path d="M8 3v4"/><path d="M4 11h16"/><path d="M7 14h.01"/><path d="M10 14h.01"/><path d="M13 14h.01"/><path d="M16 14h.01"/><path d="M7 17h.01"/><path d="M10 17h.01"/><path d="M13 17h.01"/>',
   recipes: '<path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0"/><path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0"/><path d="M3 6l0 13"/><path d="M12 6l0 13"/><path d="M21 6l0 13"/>',
   shop: '<path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M17 17h-11v-14h-2"/><path d="M6 5l14 1l-1 7h-13"/>',
-  breakfast: '<path d="M3 14c.83 .642 2.077 1.017 3.5 1c1.423 .017 2.67 -.358 3.5 -1c.83 -.642 2.077 -1.017 3.5 -1c1.423 -.017 2.67 .358 3.5 1"/><path d="M8 3a2.4 2.4 0 0 0 -1 2a2.4 2.4 0 0 0 1 2"/><path d="M12 3a2.4 2.4 0 0 0 -1 2a2.4 2.4 0 0 0 1 2"/><path d="M3 10h14v5a6 6 0 0 1 -6 6h-2a6 6 0 0 1 -6 -6v-5z"/><path d="M16.746 16.726a3 3 0 1 0 .252 -5.555"/>',
+  breakfast: '<path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"/><path d="M14 3a5 5 0 0 1 4.872 6.13a3 3 0 0 1 .178 5.681a3 3 0 1 1 -4.684 3.626a5 5 0 1 1 -8.662 -5a5 5 0 1 1 4.645 -8.856a4.982 4.982 0 0 1 3.651 -1.585z"/>',
   lunch: '<path d="M4 11h16a1 1 0 0 1 1 1v.5c0 1.5 -2.517 5.573 -4 6.5v1a1 1 0 0 1 -1 1h-8a1 1 0 0 1 -1 -1v-1c-1.687 -1.054 -4 -5 -4 -6.5v-.5a1 1 0 0 1 1 -1z"/><path d="M8 8c0 -1.5 1 -2 1 -3.5"/><path d="M12 8c0 -1.5 1 -2 1 -3.5"/><path d="M16 8c0 -1.5 1 -2 1 -3.5"/>',
   dinner: '<path d="M19 3v12h-5c-.023 -3.681 .184 -7.406 5 -12zm0 12v6h-1v-3m-10 -14v17m-3 -17v3a3 3 0 1 0 6 0v-3"/>',
   snack: '<path d="M12 14m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"/><path d="M12 11v-6a2 2 0 0 1 2 -2h2v1a2 2 0 0 1 -2 2h-2"/><path d="M10 10.5c1.333 .667 2.667 .667 4 0"/>',
+  coffee: '<path d="M3 14c.83 .642 2.077 1.017 3.5 1c1.423 .017 2.67 -.358 3.5 -1c.83 -.642 2.077 -1.017 3.5 -1c1.423 -.017 2.67 .358 3.5 1"/><path d="M8 3a2.4 2.4 0 0 0 -1 2a2.4 2.4 0 0 0 1 2"/><path d="M12 3a2.4 2.4 0 0 0 -1 2a2.4 2.4 0 0 0 1 2"/><path d="M3 10h14v5a6 6 0 0 1 -6 6h-2a6 6 0 0 1 -6 -6v-5z"/><path d="M16.746 16.726a3 3 0 1 0 .252 -5.555"/>',
   lock: '<path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6z"/><path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"/><path d="M8 11v-4a4 4 0 1 1 8 0v4"/>'
 };
 const svg = (name, cls = "") => `<svg class="i ${cls}" viewBox="0 0 24 24" aria-hidden="true">${ICONS[name]}</svg>`;
@@ -536,6 +556,7 @@ function metaFrom(line, r) {
 }
 function guessMeals(text) {
   const s = text.toLowerCase(), out = [];
+  if (/coffee|espresso|latte|cappuccino|frapp|mocha|кофе|эспрессо|латте|капучино|фраппе|раф\b|мокко/.test(s)) return ["coffee"];
   if (/breakfast|brunch|завтрак|oat|porridge|pancake|omelet|granola|smoothie|toast|каша|овсян|сырник|блин|оладь|омлет|яичниц|гранол|смузи|тост/.test(s)) out.push("breakfast");
   if (/snack|перекус|energy ball|hummus|хумус|батончик/.test(s)) out.push("snack");
   if (/lunch|обед|salad|soup|салат|суп|борщ|щи/.test(s)) out.push("lunch");
@@ -621,13 +642,13 @@ const SPECIFIC = [
 ];
 const STEMS = {
   dairy: "milk cream cheese butter yogurt yoghurt egg parmesan mozzarella feta ricotta halloumi kefir cottage молок сливк сыр сливочн йогурт яйц яйко яичн сметан кефир творог моцарел пармезан фет рикотт брынз ряженк",
-  meat: "chicken beef pork lamb turkey bacon ham sausage mince steak salmon tuna cod fish shrimp prawn курин куриц кур говя свин баран индейк бекон ветчин колбас сосиск фарш стейк лосос семг тунец треск рыб кревет филе",
-  bakery: "bread baguette tortilla wrap pita bun хлеб багет лаваш тортиль пит булоч батон",
-  grains: "pasta spaghetti penne fusilli noodle rice oat flour quinoa buckwheat couscous bulgur lasagne breadcrumb granola cereal макарон паст спагет пенне лапш рис овсян хлопь мук киноа греч кускус булгур панировоч гранол",
-  tins: "canned tinned stock broth sauce bean chickpea lentil honey jam mustard mayo ketchup olive pesto passata консерв бульон соус фасол нут чечевиц мед варень горчиц майонез кетчуп маслин оливк песто",
+  meat: "trout hake форел хек chicken beef pork lamb turkey bacon ham sausage mince steak salmon tuna cod fish shrimp prawn курин куриц кур говя свин баран индейк бекон ветчин колбас сосиск фарш стейк лосос семг тунец треск рыб кревет филе",
+  bakery: "lepinj flatbread лепин лепешк bread baguette tortilla wrap pita bun хлеб багет лаваш тортиль пит булоч батон",
+  grains: "polenta полент pasta spaghetti penne fusilli noodle rice oat flour quinoa buckwheat couscous bulgur lasagne breadcrumb granola cereal макарон паст спагет пенне лапш рис овсян хлопь мук киноа греч кускус булгур панировоч гранол",
+  tins: "tahini hummus тахини хумус пассат canned tinned stock broth sauce bean chickpea lentil honey jam mustard mayo ketchup olive pesto passata консерв бульон соус фасол нут чечевиц мед варень горчиц майонез кетчуп маслин оливк песто",
   nuts: "nut almond walnut cashew pistachio hazelnut pecan seed chia sesame raisin date prune apricot орех миндал кешью фисташ фундук семен семечк чиа кунжут изюм финик чернослив курага",
   pantry: "salt pepper sugar oil vinegar spice paprika cumin cinnamon oregano thyme rosemary turmeric curry nutmeg vanilla cocoa bay сол перец сахар масл уксус специ паприк зир кориц орегано тимьян розмарин куркум карри мускат ванил сод какао лавров приправ",
-  produce: "onion shallot garlic tomato potato carrot celery lettuce spinach kale rocket cucumber courgette zucchini aubergine eggplant broccoli cauliflower cabbage mushroom avocado apple banana lemon lime orange berr strawberr blueberr raspberr grape pear peach mango herb parsley dill coriander cilantro basil mint ginger chilli chili leek beet pumpkin squash corn pea лук чеснок помидор томат черри картоф картошк морков сельдер салат шпинат руккол огур кабач баклажан брокк цветн капуст гриб шампиньон авокадо яблок банан лимон лайм апельсин ягод клубник черник малин виноград груш персик манго зелен петруш укроп кинз базилик мят имбир чили порей свекл тыкв кукуруз горош батат"
+  produce: "chard мангольд onion shallot garlic tomato potato carrot celery lettuce spinach kale rocket cucumber courgette zucchini aubergine eggplant broccoli cauliflower cabbage mushroom avocado apple banana lemon lime orange berr strawberr blueberr raspberr grape pear peach mango herb parsley dill coriander cilantro basil mint ginger chilli chili leek beet pumpkin squash corn pea лук чеснок помидор томат черри картоф картошк морков сельдер салат шпинат руккол огур кабач баклажан брокк цветн капуст гриб шампиньон авокадо яблок банан лимон лайм апельсин ягод клубник черник малин виноград груш персик манго зелен петруш укроп кинз базилик мят имбир чили порей свекл тыкв кукуруз горош батат"
 };
 const STEM_RE = Object.fromEntries(Object.entries(STEMS).map(([k, v]) => [k, new RegExp(`(^|[^a-zа-я])(${v.split(" ").join("|")})`)]));
 const SEC_ORDER = ["dairy", "meat", "bakery", "grains", "tins", "nuts", "pantry", "produce"];
@@ -708,25 +729,109 @@ const SAMPLES = [
     ru: ["Йогурт с яблоком и орехами", "Греческий йогурт — 150 г\nЯблоко — 1 шт.\nГрецкие орехи — 20 г\nМёд — 1 ч. л.", "Нарежьте яблоко и орехи.\nВыложите на йогурт и полейте мёдом."] }
 ];
 function sampleText(s, r = {}) {
-  const [name, ingr, steps] = s[lang];
-  return Object.assign(r, { name, ingredients: ingr.split("\n"), steps: steps.split("\n") });
+  const [name, ingr, steps, notes = ""] = s[lang];
+  return Object.assign(r, { name, ingredients: ingr.split("\n"), steps: steps.split("\n"), notes });
 }
-const makeSample = s => sampleText(s, { id: uid(), sample: s.key, meals: s.meals.slice(), servings: s.servings, time: s.time, notes: "" });
+const makeSample = s => sampleText(s, { id: uid(), sample: s.key, meals: s.meals.slice(), servings: s.servings, time: s.time });
+
+/* ---------- recipe ideas, added once to everyone's box (marked as ideas). No lactose, no mushrooms, onion, broccoli, baked peppers or sour cream, no soups, and every ingredient is sold in ordinary Serbian supermarkets. ---------- */
+const IDEAS = [
+  { key: "zucchini-omelette", meals: ["breakfast"], servings: 1, time: 15,
+    en: ["Omelette with zucchini and tomato", "3 eggs\n1 zucchini\n1 tomato\n1 tbsp olive oil\n1 pinch salt\nFresh dill, to serve", "Grate the zucchini and squeeze out the water. Dice the tomato.\nFry the zucchini in the oil for 3 minutes.\nBeat the eggs with the salt, pour over and add the tomato.\nCover and cook on low heat for 4–5 minutes. Sprinkle with dill."],
+    ru: ["Омлет с кабачком и помидором", "Яйца — 3 шт.\nКабачок — 1 шт.\nПомидор — 1 шт.\nОливковое масло — 1 ст. л.\nСоль — щепотка\nУкроп — для подачи", "Натрите кабачок и отожмите сок. Нарежьте помидор кубиками.\nОбжарьте кабачок на масле 3 минуты.\nВзбейте яйца с солью, залейте кабачок и добавьте помидор.\nНакройте и готовьте на слабом огне 4–5 минут. Посыпьте укропом."] },
+  { key: "oat-pancakes", meals: ["breakfast"], servings: 1, time: 20,
+    en: ["Banana oat pancakes with raspberries", "1 banana\n2 eggs\n40 g rolled oats\n1/2 tsp cinnamon\n1 tsp sunflower oil\n80 g frozen raspberries\n1 tsp honey", "Mash the ripe banana and whisk in the eggs, oats and cinnamon.\nFry small pancakes in a lightly oiled pan, 2 minutes on each side.\nWarm the raspberries with the honey for 2 minutes and spoon over.", "Frozen Serbian raspberries (smrznute maline) are cheap all year."],
+    ru: ["Овсяные панкейки с бананом и малиной", "Банан — 1 шт.\nЯйца — 2 шт.\nОвсяные хлопья — 40 г\nКорица — ½ ч. л.\nПодсолнечное масло — 1 ч. л.\nМалина замороженная — 80 г\nМёд — 1 ч. л.", "Разомните спелый банан и вмешайте яйца, хлопья и корицу.\nЖарьте небольшие панкейки на слегка смазанной сковороде по 2 минуты с каждой стороны.\nПрогрейте малину с мёдом 2 минуты и полейте панкейки.", "Замороженная сербская малина (smrznute maline) недорогая круглый год."] },
+  { key: "polenta-eggs", meals: ["breakfast"], servings: 1, time: 15,
+    en: ["Polenta with fried eggs and tomato", "60 g instant polenta\n250 ml water\n1 tbsp olive oil\n2 eggs\n1 tomato\n1 pinch salt", "Bring the water to the boil with the salt, whisk in the polenta and stir for 3–4 minutes until thick. Stir in half the oil.\nFry the eggs in the rest of the oil.\nServe the polenta with the eggs and sliced tomato.", "Instant polenta is \"instant palenta\" on Serbian shelves. A dairy-free take on kačamak."],
+    ru: ["Полента с яичницей и помидором", "Полента быстрого приготовления — 60 г\nВода — 250 мл\nОливковое масло — 1 ст. л.\nЯйца — 2 шт.\nПомидор — 1 шт.\nСоль — щепотка", "Доведите воду с солью до кипения, всыпьте поленту и помешивайте 3–4 минуты до густоты. Вмешайте половину масла.\nПожарьте яйца на остальном масле.\nПодавайте поленту с яичницей и нарезанным помидором.", "В Сербии ищите «instant palenta». Это безмолочный вариант качамака."] },
+  { key: "buckwheat-apple", meals: ["breakfast"], servings: 1, time: 20,
+    en: ["Buckwheat porridge with apple and walnuts", "60 g buckwheat\n200 ml lactose-free milk\n1 apple\n20 g walnuts\n1 tsp honey\n1 pinch cinnamon", "Rinse the buckwheat and simmer it in the milk for 15 minutes, stirring now and then.\nGrate or dice the apple and chop the walnuts.\nTop the porridge with the apple, walnuts, honey and cinnamon.", "Buckwheat is \"heljda\". Lactose-free milk is \"mleko bez laktoze\"."],
+    ru: ["Гречневая каша с яблоком и орехами", "Гречка — 60 г\nМолоко без лактозы — 200 мл\nЯблоко — 1 шт.\nГрецкие орехи — 20 г\nМёд — 1 ч. л.\nКорица — щепотка", "Промойте гречку и варите в молоке 15 минут, иногда помешивая.\nНатрите или нарежьте яблоко, порубите орехи.\nВыложите на кашу яблоко, орехи, мёд и корицу.", "Гречка по-сербски «heljda», безлактозное молоко — «mleko bez laktoze»."] },
+  { key: "chickpea-salad", meals: ["lunch"], servings: 2, time: 15,
+    en: ["Chickpea salad with lemon-tahini dressing", "1 can chickpeas, drained\n2 tomatoes\n1 cucumber\n1 bunch parsley\n2 tbsp tahini\n1 lemon\n1 tbsp olive oil\n1 pinch salt", "Chop the tomatoes, cucumber and parsley and add the chickpeas.\nWhisk the tahini with the lemon juice, oil, salt and 2–3 tbsp water until smooth.\nPour over the salad and toss.", "Tahini is sold as \"tahini\" or \"susamova pasta\"."],
+    ru: ["Салат с нутом и лимонно-тахинной заправкой", "Нут консервированный — 1 банка\nПомидоры — 2 шт.\nОгурец — 1 шт.\nПетрушка — 1 пучок\nТахини — 2 ст. л.\nЛимон — 1 шт.\nОливковое масло — 1 ст. л.\nСоль — щепотка", "Нарежьте помидоры, огурец и петрушку, добавьте нут.\nВзбейте тахини с лимонным соком, маслом, солью и 2–3 ст. л. воды до гладкости.\nЗаправьте салат и перемешайте.", "Тахини продаётся как «tahini» или «susamova pasta»."] },
+  { key: "tuna-potato-salad", meals: ["lunch"], servings: 2, time: 25,
+    en: ["Potato salad with tuna, egg and green beans", "400 g potatoes\n2 eggs\n200 g green beans\n1 can tuna\n150 g cherry tomatoes\n2 tbsp olive oil\n1 tbsp apple cider vinegar\n1 tsp mustard\nSalt and pepper, to taste", "Boil the potatoes for 15 minutes and the eggs for 9 minutes. Add the beans to the potatoes for the last 5 minutes.\nWhisk the oil, vinegar and mustard.\nCut the potatoes, eggs and tomatoes, add the tuna and beans, and toss with the dressing.", "Frozen green beans (boranija) work well."],
+    ru: ["Картофельный салат с тунцом, яйцом и стручковой фасолью", "Картофель — 400 г\nЯйца — 2 шт.\nСтручковая фасоль — 200 г\nТунец консервированный — 1 банка\nПомидоры черри — 150 г\nОливковое масло — 2 ст. л.\nЯблочный уксус — 1 ст. л.\nГорчица — 1 ч. л.\nСоль и перец — по вкусу", "Варите картофель 15 минут, яйца — 9 минут. За 5 минут до конца добавьте к картофелю фасоль.\nВзбейте масло, уксус и горчицу.\nНарежьте картофель, яйца и помидоры, добавьте тунец и фасоль и перемешайте с заправкой.", "Подойдёт замороженная стручковая фасоль (boranija)."] },
+  { key: "raznjici", meals: ["lunch", "dinner"], servings: 2, time: 40,
+    en: ["Chicken ražnjići with potato wedges and cabbage salad", "400 g chicken breast\n500 g potatoes\n3 tbsp olive oil\n1 tsp sweet paprika\n2 cloves garlic\n300 g white cabbage\n1 tbsp apple cider vinegar\nSalt and pepper, to taste", "Cut the chicken into cubes and mix with 1 tbsp oil, the paprika, crushed garlic and salt. Thread onto skewers.\nCut the potatoes into wedges and toss with 1 tbsp oil and salt.\nRoast the potatoes at 200 °C for 30 minutes, adding the skewers for the last 15 minutes (or air-fry both at 200 °C for about 18 minutes).\nShred the cabbage finely, salt it, squeeze it with your hands and dress with the vinegar and the last of the oil."],
+    ru: ["Куриные ражньичи с картофелем и салатом из капусты", "Куриное филе — 400 г\nКартофель — 500 г\nОливковое масло — 3 ст. л.\nСладкая паприка — 1 ч. л.\nЧеснок — 2 зубчика\nБелокочанная капуста — 300 г\nЯблочный уксус — 1 ст. л.\nСоль и перец — по вкусу", "Нарежьте курицу кубиками и смешайте с 1 ст. л. масла, паприкой, чесноком и солью. Нанизайте на шпажки.\nНарежьте картофель дольками, смешайте с 1 ст. л. масла и солью.\nЗапекайте картофель при 200 °C 30 минут, за 15 минут до конца добавьте шпажки (или готовьте всё в аэрогриле при 200 °C около 18 минут).\nТонко нашинкуйте капусту, посолите, помните руками и заправьте уксусом и остатком масла."] },
+  { key: "trout", meals: ["lunch", "dinner"], servings: 2, time: 35,
+    en: ["Baked trout with Swiss chard and potatoes", "2 trout, cleaned\n400 g potatoes\n300 g Swiss chard\n3 cloves garlic\n1 lemon\n3 tbsp olive oil\n1 bunch parsley\n1 pinch salt", "Heat the oven to 200 °C. Put lemon slices, parsley and salt inside the trout and brush with 1 tbsp oil.\nBake the trout for 20–25 minutes.\nMeanwhile boil the diced potatoes for 12 minutes, adding the chopped chard for the last 4 minutes. Drain.\nToss with the rest of the oil, crushed garlic and salt, and serve with the fish.", "Trout (pastrmka) and chard (blitva) are in every market. Blitva with potatoes is a Balkan classic."],
+    ru: ["Форель из духовки с мангольдом и картофелем", "Форель — 2 шт.\nКартофель — 400 г\nМангольд — 300 г\nЧеснок — 3 зубчика\nЛимон — 1 шт.\nОливковое масло — 3 ст. л.\nПетрушка — 1 пучок\nСоль — щепотка", "Разогрейте духовку до 200 °C. Положите в рыбу дольки лимона, петрушку и соль, смажьте 1 ст. л. масла.\nЗапекайте форель 20–25 минут.\nТем временем отварите нарезанный картофель 12 минут, за 4 минуты до конца добавьте нарезанный мангольд. Слейте воду.\nПеремешайте с остатком масла, чесноком и солью и подавайте с рыбой.", "Форель (pastrmka) и мангольд (blitva) есть на любом рынке. Блитва с картошкой — балканская классика."] },
+  { key: "djuvec", meals: ["lunch", "dinner"], servings: 2, time: 50,
+    en: ["Chicken đuveč (baked rice with vegetables)", "4 chicken thighs\n150 g rice\n400 g chopped tomatoes\n150 g frozen peas\n1 carrot\n1 zucchini\n2 cloves garlic\n1 tsp sweet paprika\n400 ml water\n2 tbsp sunflower oil\n1 bunch parsley\n1 pinch salt", "Heat the oven to 200 °C. Brown the chicken in the oil in an ovenproof pan, then take it out.\nFry the diced carrot and zucchini with the garlic and paprika for 3 minutes, then stir in the rice.\nAdd the tomatoes, peas, water and salt, and put the chicken on top.\nBake for 35 minutes until the rice is soft. Sprinkle with parsley.", "Made without onion or peppers."],
+    ru: ["Джувеч с курицей (рис, запечённый с овощами)", "Куриные бёдра — 4 шт.\nРис — 150 г\nТоматы в собственном соку — 400 г\nГорошек замороженный — 150 г\nМорковь — 1 шт.\nКабачок — 1 шт.\nЧеснок — 2 зубчика\nСладкая паприка — 1 ч. л.\nВода — 400 мл\nПодсолнечное масло — 2 ст. л.\nПетрушка — 1 пучок\nСоль — щепотка", "Разогрейте духовку до 200 °C. Обжарьте курицу на масле в жаропрочной сковороде и выньте.\nОбжарьте нарезанные морковь и кабачок с чесноком и паприкой 3 минуты, вмешайте рис.\nДобавьте томаты, горошек, воду и соль, сверху выложите курицу.\nЗапекайте 35 минут, пока рис не станет мягким. Посыпьте петрушкой.", "Без лука и перца."] },
+  { key: "stuffed-zucchini", meals: ["lunch", "dinner"], servings: 2, time: 55,
+    en: ["Stuffed zucchini with mince and rice", "2 zucchini\n250 g minced beef\n50 g rice\n1 egg\n2 cloves garlic\n1 tsp sweet paprika\n400 g passata\n1 tbsp olive oil\n1 bunch parsley\nSalt and pepper, to taste", "Heat the oven to 190 °C. Use big zucchini. Halve them lengthways and scoop out the middles. Chop the scooped flesh.\nMix the mince with the rice, egg, garlic, paprika, half the parsley, salt and pepper, and fill the zucchini.\nPour the passata and chopped flesh into a baking dish, add 100 ml water and the oil, and lay the zucchini on top.\nCover with foil and bake for 35 minutes, then uncover for 10. Sprinkle with the rest of the parsley.", "Punjene tikvice. Passata is \"pasirani paradajz\"."],
+    ru: ["Фаршированные кабачки с фаршем и рисом", "Кабачок — 2 шт.\nГовяжий фарш — 250 г\nРис — 50 г\nЯйцо — 1 шт.\nЧеснок — 2 зубчика\nСладкая паприка — 1 ч. л.\nПассата (протёртые томаты) — 400 г\nОливковое масло — 1 ст. л.\nПетрушка — 1 пучок\nСоль и перец — по вкусу", "Разогрейте духовку до 190 °C. Возьмите крупные кабачки. Разрежьте их вдоль и выньте серединку, мякоть порубите.\nСмешайте фарш с рисом, яйцом, чесноком, паприкой, половиной петрушки, солью и перцем и наполните кабачки.\nВлейте в форму пассату и мякоть, добавьте 100 мл воды и масло, сверху положите кабачки.\nНакройте фольгой и запекайте 35 минут, затем 10 минут без фольги. Посыпьте остатком петрушки.", "По-сербски punjene tikvice. Пассата — «pasirani paradajz»."] },
+  { key: "pljeskavica", meals: ["lunch", "dinner"], servings: 2, time: 30,
+    en: ["Pljeskavica with tomato and cucumber salad", "400 g minced beef\n2 cloves garlic\n1 tsp sweet paprika\n1/2 tsp salt\n2 lepinja flatbreads\n2 tomatoes\n1 cucumber\n1 tbsp olive oil\n1 tbsp apple cider vinegar", "Mix the mince with the crushed garlic, paprika and salt and knead for 2 minutes. Chill for 10 minutes.\nShape 2 large thin patties and grill or fry for 4–5 minutes on each side.\nChop the tomatoes and cucumber and dress with the oil, vinegar and a pinch of salt.\nWarm the lepinja and serve with the patties and salad.", "Made without onion. Mixed beef and pork mince (mešano meso) is juicier."],
+    ru: ["Плескавица с салатом из помидоров и огурцов", "Говяжий фарш — 400 г\nЧеснок — 2 зубчика\nСладкая паприка — 1 ч. л.\nСоль — ½ ч. л.\nЛепиня (лепёшка) — 2 шт.\nПомидоры — 2 шт.\nОгурец — 1 шт.\nОливковое масло — 1 ст. л.\nЯблочный уксус — 1 ст. л.", "Смешайте фарш с чесноком, паприкой и солью и вымешивайте 2 минуты. Уберите в холодильник на 10 минут.\nСформируйте 2 большие тонкие котлеты и жарьте на гриле или сковороде по 4–5 минут с каждой стороны.\nНарежьте помидоры и огурец, заправьте маслом, уксусом и щепоткой соли.\nПрогрейте лепиню и подавайте с котлетами и салатом.", "Без лука. Со смешанным фаршем из говядины и свинины (mešano meso) будет сочнее."] },
+  { key: "hake", meals: ["lunch", "dinner"], servings: 2, time: 30,
+    en: ["Hake with olive oil mash and cucumber salad", "400 g hake fillets\n500 g potatoes\n3 tbsp olive oil\n1 lemon\n1 clove garlic\n2 cucumbers\nFresh dill, to serve\n1 pinch salt", "Boil the potatoes for 15 minutes, then mash with 2 tbsp oil, the crushed garlic, salt and a splash of the cooking water.\nSalt the fish and fry in the rest of the oil for 3–4 minutes on each side. Squeeze over half the lemon.\nSlice the cucumbers and dress with the rest of the lemon juice, dill and salt.", "Frozen hake (oslić) is cheap in every supermarket. Thaw it in the fridge overnight."],
+    ru: ["Хек с картофельным пюре на оливковом масле и огуречным салатом", "Филе хека — 400 г\nКартофель — 500 г\nОливковое масло — 3 ст. л.\nЛимон — 1 шт.\nЧеснок — 1 зубчик\nОгурцы — 2 шт.\nУкроп — для подачи\nСоль — щепотка", "Отварите картофель 15 минут и разомните с 2 ст. л. масла, чесноком, солью и небольшим количеством отвара.\nПосолите рыбу и обжарьте на остатке масла по 3–4 минуты с каждой стороны. Полейте соком половины лимона.\nНарежьте огурцы и заправьте остатком лимонного сока, укропом и солью.", "Замороженный хек (oslić) недорогой в любом супермаркете. Разморозьте его в холодильнике за ночь."] },
+  { key: "turkey-stirfry", meals: ["lunch", "dinner"], servings: 2, time: 25,
+    en: ["Turkey stir-fry with zucchini, carrot and rice", "350 g turkey breast\n150 g rice\n1 zucchini\n2 carrots\n2 cloves garlic\n2 tbsp soy sauce\n1 tsp honey\n1 tbsp sunflower oil\n1 tsp sesame seeds", "Cook the rice.\nCut the turkey into strips and the vegetables into sticks.\nFry the turkey in the oil on high heat for 4 minutes, add the vegetables and garlic and cook for 4 more.\nStir in the soy sauce and honey, and serve on the rice with sesame seeds.", "Turkey breast is \"ćureći file\"."],
+    ru: ["Индейка с кабачком и морковью на рисе", "Филе индейки — 350 г\nРис — 150 г\nКабачок — 1 шт.\nМорковь — 2 шт.\nЧеснок — 2 зубчика\nСоевый соус — 2 ст. л.\nМёд — 1 ч. л.\nПодсолнечное масло — 1 ст. л.\nКунжут — 1 ч. л.", "Отварите рис.\nНарежьте индейку полосками, овощи — брусочками.\nОбжарьте индейку на сильном огне 4 минуты, добавьте овощи и чеснок и готовьте ещё 4 минуты.\nВмешайте соевый соус и мёд и подавайте на рисе, посыпав кунжутом.", "Филе индейки по-сербски «ćureći file»."] },
+  { key: "hummus-veg", meals: ["snack"], servings: 1, time: 5,
+    en: ["Hummus with carrot and cucumber sticks", "80 g hummus\n1 carrot\n1/2 cucumber", "Cut the carrot and cucumber into sticks and dip them in the hummus."],
+    ru: ["Хумус с палочками моркови и огурца", "Хумус — 80 г\nМорковь — 1 шт.\nОгурец — ½ шт.", "Нарежьте морковь и огурец палочками и макайте в хумус."] },
+  { key: "baked-apples", meals: ["snack"], servings: 2, time: 30,
+    en: ["Baked apples with walnuts and honey", "2 apples\n30 g walnuts\n2 tsp honey\n1/2 tsp cinnamon", "Core the apples and fill with the chopped walnuts, honey and cinnamon.\nBake at 180 °C for 25 minutes (or air-fry at 180 °C for 15)."],
+    ru: ["Печёные яблоки с орехами и мёдом", "Яблоки — 2 шт.\nГрецкие орехи — 30 г\nМёд — 2 ч. л.\nКорица — ½ ч. л.", "Удалите сердцевину яблок и наполните рублеными орехами, мёдом и корицей.\nЗапекайте при 180 °C 25 минут (или в аэрогриле при 180 °C 15 минут)."] },
+  { key: "yogurt-raspberries", meals: ["snack"], servings: 1, time: 5,
+    en: ["Lactose-free yogurt with raspberries", "150 g lactose-free yogurt\n80 g raspberries\n1 tsp honey\n1 tsp chia seeds", "Spoon the yogurt into a bowl, top with the raspberries and chia, and drizzle with honey.", "Look for \"jogurt bez laktoze\"."],
+    ru: ["Безлактозный йогурт с малиной", "Йогурт без лактозы — 150 г\nМалина — 80 г\nМёд — 1 ч. л.\nСемена чиа — 1 ч. л.", "Выложите йогурт в миску, сверху малину и чиа, полейте мёдом.", "Ищите «jogurt bez laktoze»."] },
+  { key: "domaca-kafa", meals: ["coffee"], servings: 1, time: 5,
+    en: ["Serbian coffee in a džezva", "100 ml water\n2 tsp ground coffee for džezva\nSugar, to taste", "Heat the water in a džezva (with sugar, if you take it) until it just boils.\nTake it off the heat, stir in the coffee and put it back on low heat.\nWhen the foam rises, take it off before it boils over.\nPour into a small cup and wait a minute for the grounds to settle.", "Use very finely ground coffee for domaća kafa, like Grand Kafa or Doncafé Minas."],
+    ru: ["Сербский кофе в джезве", "Вода — 100 мл\nМолотый кофе для джезвы — 2 ч. л.\nСахар — по вкусу", "Нагрейте воду в джезве (с сахаром, если пьёте сладкий) до первого кипения.\nСнимите с огня, всыпьте кофе, перемешайте и верните на слабый огонь.\nКогда поднимется пенка, снимите, не давая убежать.\nПерелейте в маленькую чашку и подождите минуту, пока осядет гуща.", "Нужен кофе очень тонкого помола для «domaća kafa», например Grand Kafa или Doncafé Minas."] },
+  { key: "frappe", meals: ["coffee"], servings: 1, time: 5,
+    en: ["Frappé with oat milk", "2 tsp instant coffee\n2 tsp sugar\n50 ml cold water\n6 ice cubes\n100 ml oat milk", "Shake the coffee, sugar and cold water in a jar or shaker (or whisk with a milk frother) for 30 seconds until thick foam forms.\nPut the ice in a tall glass, spoon in the foam and top up with the oat milk.", "In a café, ask for \"frape sa biljnim mlekom\"."],
+    ru: ["Фраппе на овсяном молоке", "Растворимый кофе — 2 ч. л.\nСахар — 2 ч. л.\nВода холодная — 50 мл\nЛёд — 6 кубиков\nОвсяное молоко — 100 мл", "Взбейте кофе, сахар и холодную воду в банке, шейкере или капучинаторе 30 секунд до густой пены.\nПоложите лёд в высокий стакан, выложите пену и долейте овсяным молоком.", "В кафе просите «frape sa biljnim mlekom»."] },
+  { key: "iced-vanilla-latte", meals: ["coffee"], servings: 1, time: 5,
+    en: ["Iced vanilla oat latte", "60 ml espresso\n200 ml oat milk\n1 tsp vanilla sugar\n6 ice cubes", "Stir the vanilla sugar into the hot espresso.\nFill a glass with the ice, pour in the oat milk, then the espresso.", "Two espresso shots or strong moka-pot coffee both work. Vanilla sugar (vanilin šećer) is in every shop."],
+    ru: ["Холодный ванильный латте на овсяном молоке", "Эспрессо — 60 мл\nОвсяное молоко — 200 мл\nВанильный сахар — 1 ч. л.\nЛёд — 6 кубиков", "Размешайте ванильный сахар в горячем эспрессо.\nНаполните стакан льдом, влейте овсяное молоко, затем эспрессо.", "Подойдут два шота эспрессо или крепкий кофе из гейзерной кофеварки. Ванильный сахар (vanilin šećer) есть в любом магазине."] },
+  { key: "honey-cinnamon-latte", meals: ["coffee"], servings: 1, time: 5,
+    en: ["Honey cinnamon latte", "60 ml espresso\n200 ml lactose-free milk\n1 tsp honey\n1 pinch cinnamon", "Heat the milk with the honey and froth it.\nPour over the espresso and dust with cinnamon."],
+    ru: ["Латте с мёдом и корицей", "Эспрессо — 60 мл\nМолоко без лактозы — 200 мл\nМёд — 1 ч. л.\nКорица — щепотка", "Нагрейте молоко с мёдом и вспеньте.\nВлейте в эспрессо и посыпьте корицей."] },
+  { key: "mocha", meals: ["coffee"], servings: 1, time: 5,
+    en: ["Oat milk mocha", "60 ml espresso\n200 ml oat milk\n1 tbsp cocoa powder\n1 tsp sugar", "Whisk the cocoa and sugar into the hot espresso until smooth.\nHeat and froth the oat milk and pour it over."],
+    ru: ["Мокко на овсяном молоке", "Эспрессо — 60 мл\nОвсяное молоко — 200 мл\nКакао-порошок — 1 ст. л.\nСахар — 1 ч. л.", "Размешайте какао и сахар в горячем эспрессо до гладкости.\nНагрейте и вспеньте овсяное молоко и влейте сверху."] },
+  { key: "espresso-tonic", meals: ["coffee"], servings: 1, time: 3,
+    en: ["Espresso tonic with lemon", "60 ml espresso\n150 ml tonic\n6 ice cubes\n1 slice lemon", "Fill a glass with the ice and pour in the tonic.\nSlowly pour the espresso on top and add the lemon."],
+    ru: ["Эспрессо-тоник с лимоном", "Эспрессо — 60 мл\nТоник — 150 мл\nЛёд — 6 кубиков\nЛимон — 1 долька", "Наполните стакан льдом и влейте тоник.\nМедленно влейте сверху эспрессо и добавьте лимон."] }
+];
+const makeIdea = s => sampleText(s, { id: uid(), idea: s.key, meals: s.meals.slice(), servings: s.servings, time: s.time });
+/* Adds ideas this box hasn't seen yet. Deleted ideas stay deleted. */
+function addIdeas() {
+  const seen = new Set(state.ideasSeen || []);
+  const fresh = IDEAS.filter(s => !seen.has(s.key));
+  if (!fresh.length) return 0;
+  state.recipes.push(...fresh.map(makeIdea));
+  state.ideasSeen = [...seen, ...fresh.map(s => s.key)];
+  state.ideasNew = (state.ideasNew || 0) + fresh.length;
+  return fresh.length;
+}
 
 /* ---------- state and storage ---------- */
 const LKEY = "meal-planner";
-let state = { recipes: [], plan: {}, shop: {} };
-const ui = { tab: matchMedia("(max-width: 700px)").matches ? "today" : "week", weekOffset: 0, recipeFilter: "all", recipeSearch: "", shopRange: "rest", sheet: null };
+let state = { recipes: [], plan: {}, shop: {}, ideasSeen: [], ideasNew: 0 };
+const ui = { tab: matchMedia("(max-width: 700px)").matches ? "today" : "week", weekOffset: 0, recipeSection: "food", recipeFilter: "all", recipeSearch: "", shopRange: "rest", sheet: null };
+const fromData = d => ({ recipes: d.recipes, plan: d.plan || {}, shop: d.shop || {}, ideasSeen: d.ideasSeen || [], ideasNew: d.ideasNew || 0 });
 function load() {
   let data = null;
   try { data = JSON.parse(localStorage.getItem(LKEY) || "null") } catch (e) {}
   if (data && Array.isArray(data.recipes)) {
-    state = { recipes: data.recipes, plan: data.plan || {}, shop: data.shop || {} };
+    state = fromData(data);
     lang = data.lang || lang;
+    if (addIdeas()) save();
     return;
   }
   lang = /^ru|^uk|^be|^kk/i.test(navigator.language || "") ? "ru" : "en";
   state.recipes = SAMPLES.map(makeSample);
+  addIdeas();
   fillWeek(mondayOf(today0()), false);
   save();
 }
@@ -866,6 +971,9 @@ function render() {
   const main = $("#main");
   main.innerHTML = ui.tab === "today" ? viewToday() : ui.tab === "week" ? viewWeek() : ui.tab === "recipes" ? viewRecipes() : viewShop();
 }
+const catChips = r => r.meals.map(m => `<span class="chip m-${m}">${t(m)}</span>`).join("") + (r.sample ? `<span class="chip example">${t("example")}</span>` : "") + (r.idea ? `<span class="chip idea">${t("idea")}</span>` : "");
+const ideasBanner = () => state.ideasNew
+  ? `<div class="banner"><span>${t("ideasBanner", { n: state.ideasNew })}</span><button class="btn small" data-act="ideas-ok">${t("gotIt")}</button></div>` : "";
 const samplesBanner = () => state.recipes.some(r => r.sample)
   ? `<div class="banner"><span>${t("samplesBanner")}</span><button class="btn small" data-act="remove-samples">${t("removeSamples")}</button></div>` : "";
 function metaLine(r, e) {
@@ -934,28 +1042,32 @@ function viewWeek() {
 
 function viewRecipes() {
   const q = low(ui.recipeSearch.trim());
+  const coffee = ui.recipeSection === "coffee";
   const list = state.recipes
-    .filter(r => ui.recipeFilter === "all" || r.meals.includes(ui.recipeFilter))
+    .filter(r => coffee ? r.meals.includes("coffee") : !isCoffee(r))
+    .filter(r => coffee || ui.recipeFilter === "all" || r.meals.includes(ui.recipeFilter))
     .filter(r => !q || low(r.name).includes(q) || r.ingredients.some(i => low(i).includes(q)))
     .sort((a, b) => a.name.localeCompare(b.name, LOCALE()));
   const rows = list.map(r => {
     const { last, next } = recipeDates(r.id);
     const when = next ? t("nextOn", { date: relDay(next) }) : last ? t("lastHad", { date: relDay(last) }) : t("neverPlanned");
-    return `<button class="rec-row" data-act="open-recipe" data-id="${r.id}">${thumb(r.meals[0] || "dinner")}
+    return `<button class="rec-row" data-act="open-recipe" data-id="${r.id}">${thumb(coffee ? "coffee" : r.meals.find(m => m !== "coffee") || "dinner")}
       <span><span class="nm">${esc(r.name)}</span>
-      <span class="sub">${r.meals.map(m => `<span class="chip m-${m}">${t(m)}</span>`).join("")}${r.sample ? `<span class="chip example">${t("example")}</span>` : ""}
-      ${r.time ? `<span>${t("minutes", { n: r.time })}</span>` : ""}<span>${when}</span></span></span></button>`;
+      <span class="sub">${coffee ? (r.idea ? `<span class="chip idea">${t("idea")}</span>` : "") : catChips(r)}
+      ${r.time ? `<span>${t("minutes", { n: r.time })}</span>` : ""}${coffee ? "" : `<span>${when}</span>`}</span></span></button>`;
   }).join("");
   const filters = ["all", ...MEALS].map(m => `<button data-act="recipe-filter" data-f="${m}" aria-pressed="${ui.recipeFilter === m}">${t(m)}</button>`).join("");
   const body = !state.recipes.length
     ? `<div class="empty-state"><h3>${t("tab_recipes")}</h3><p class="muted">${t("recipesEmpty")}</p>
         <div class="btns" style="justify-content:center"><button class="btn primary" data-act="paste">${t("pasteRecipe")}</button><button class="btn" data-act="new-recipe">${t("newRecipe")}</button><button class="btn ghost" data-act="load-samples">${t("loadSamples")}</button></div></div>`
     : `<input class="search" id="recipeSearch" type="search" placeholder="${t("search")}" value="${esc(ui.recipeSearch)}" aria-label="${t("search")}">
-       <div class="pills" role="group">${filters}</div>
-       ${rows ? `<div class="rec-list">${rows}</div>` : `<p class="muted">${t("noMatch")}</p>`}`;
-  return `${samplesBanner()}<section class="panel glass">
+       ${coffee ? `<p class="muted" style="font-size:13.5px">${t("coffeeHint")}</p>` : `<div class="pills" role="group">${filters}</div>`}
+       ${rows ? `<div class="rec-list">${rows}</div>` : `<p class="muted">${coffee && !q ? t("coffeeEmpty") : t("noMatch")}</p>`}`;
+  const seg = `<div class="seg" role="group">${[["food", "lunch", t("foodRecipes")], ["coffee", "coffee", t("coffee")]].map(([k, ic, l]) => `<button class="m-${ic}" data-act="recipe-section" data-s="${k}" aria-pressed="${ui.recipeSection === k}">${svg(ic)}${l}</button>`).join("")}</div>`;
+  return `${ideasBanner()}${samplesBanner()}<section class="panel glass">
     <div class="toolbar"><h2>${t("tab_recipes")}</h2>
-      <div class="btns"><button class="btn primary" data-act="paste">${t("pasteRecipe")}</button><button class="btn" data-act="new-recipe">${t("newRecipe")}</button></div></div>
+      <div class="btns"><button class="btn primary" data-act="paste">${t("pasteRecipe")}</button><button class="btn" data-act="new-recipe">${coffee ? t("newCoffee") : t("newRecipe")}</button></div></div>
+    ${state.recipes.length ? seg : ""}
     ${body}
   </section>
   <section class="backup"><p>${t("backupHelp")}</p><div class="btns"><button class="btn small" data-act="backup">${t("backup")}</button><button class="btn small" data-act="restore">${t("restore")}</button></div></section>`;
@@ -1018,9 +1130,9 @@ function sheetRecipe(s) {
   if (!r) return "";
   const n = s.servings ?? r.servings ?? 1;
   const next = [...Array(14)].map((_, i) => ymd(addDays(today0(), i)));
-  const meal0 = r.meals[0] || "dinner";
+  const cf = isCoffee(r), meal0 = cf ? "coffee" : r.meals.find(m => m !== "coffee") || "dinner";
   const body = `
-    <div class="btns">${r.meals.map(m => `<span class="chip m-${m}">${t(m)}</span>`).join("")}${r.sample ? `<span class="chip example">${t("example")}</span>` : ""}${r.time ? `<span class="muted" style="font-size:13px">${t("minutes", { n: r.time })}</span>` : ""}</div>
+    <div class="btns">${catChips(r)}${r.time ? `<span class="muted" style="font-size:13px">${t("minutes", { n: r.time })}</span>` : ""}</div>
     <div class="sec m-${meal0}">
       <div class="btns" style="justify-content:space-between"><h3>${t("ingrFor", { n: t("servingsN", { n }) })}</h3>
         <span class="stepper"><button data-act="r-serv" data-d="-1" aria-label="−">−</button><span>${n}</span><button data-act="r-serv" data-d="1" aria-label="+">+</button></span></div>
@@ -1028,18 +1140,18 @@ function sheetRecipe(s) {
     </div>
     ${r.steps.length ? `<div class="sec" style="background:none;padding:0"><h3 style="color:inherit">${t("steps")}</h3><ol class="method">${r.steps.map(x => `<li>${esc(x)}</li>`).join("")}</ol></div>` : ""}
     ${r.notes ? `<p class="note">${esc(r.notes)}</p>` : ""}
-    <form class="sec m-${meal0}" data-form="add-plan"><h3>${t("addToPlan")}</h3>
+    ${cf ? `<div class="btns"><button class="btn primary" data-act="add-to-list">${t("addToList")}</button></div>` : `<form class="sec m-${meal0}" data-form="add-plan"><h3>${t("addToPlan")}</h3>
       <div class="row2"><label class="field">${t("day")}<select class="input" id="planDay">${next.map(k => `<option value="${k}">${esc(cap(relDay(k)))}${dayDiff(k, ymd(today0())) < 2 ? " · " + dayMonth(parseYmd(k)) : ""}</option>`).join("")}</select></label>
       <label class="field">${t("meal")}<select class="input" id="planMeal">${MEALS.map(m => `<option value="${m}"${m === meal0 ? " selected" : ""}>${t(m)}</option>`).join("")}</select></label></div>
-      <div class="btns"><button class="btn primary">${t("addToPlan")}</button></div></form>
+      <div class="btns"><button class="btn primary">${t("addToPlan")}</button></div></form>`}
     <div class="btns"><button class="btn" data-act="edit-recipe" data-id="${r.id}">${t("edit")}</button><button class="btn danger" data-act="del-recipe" data-id="${r.id}">${t("del")}</button></div>`;
-  return sheetFrame(t("tab_recipes"), esc(r.name), body);
+  return sheetFrame(cf ? t("coffee") : t("tab_recipes"), esc(r.name), body);
 }
 function sheetForm(s) {
   const d = s.draft;
   const body = `<form data-form="recipe" style="display:grid;gap:14px">
     <label class="field">${t("name")}<input class="input" id="fName" value="${esc(d.name)}" required></label>
-    <div class="field">${t("goodFor")}<div class="meal-picks">${MEALS.map(m => `<label class="m-${m}"><input type="checkbox" name="meals" value="${m}"${d.meals.includes(m) ? " checked" : ""}>${t(m)}</label>`).join("")}</div></div>
+    <div class="field">${t("goodFor")}<div class="meal-picks">${CATS.map(m => `<label class="m-${m}"><input type="checkbox" name="meals" value="${m}"${d.meals.includes(m) ? " checked" : ""}>${t(m)}</label>`).join("")}</div></div>
     <div class="row2"><label class="field">${t("servings")}<input class="input" id="fServ" type="number" min="1" max="50" inputmode="numeric" value="${d.servings || 2}"></label>
       <label class="field">${t("timeMin")}<input class="input" id="fTime" type="number" min="0" max="1440" inputmode="numeric" value="${d.time || ""}"></label></div>
     <label class="field">${t("ingredients")}<textarea class="input" id="fIngr" rows="8" placeholder="${t("ingrHint")}">${esc(d.ingredients.join("\n"))}</textarea><span class="hint">${t("ingrHint")}</span></label>
@@ -1071,7 +1183,7 @@ function sheetPaste(s) {
 function sheetSlot(s) {
   const e = entry(s.date, s.meal), r = e && byId(e.r), d = parseYmd(s.date);
   const q = low(s.q || "");
-  const pool = state.recipes.filter(x => (s.all || x.meals.includes(s.meal)) && (!q || low(x.name).includes(q))).sort((a, b) => a.name.localeCompare(b.name, LOCALE()));
+  const pool = state.recipes.filter(x => (s.all ? !isCoffee(x) : x.meals.includes(s.meal)) && (!q || low(x.name).includes(q))).sort((a, b) => a.name.localeCompare(b.name, LOCALE()));
   const current = r ? `<div class="sec m-${s.meal}">
       <h3>${esc(r.name)}</h3><span class="muted" style="font-size:13px">${r.time ? t("minutes", { n: r.time }) : ""}</span>
       <div class="btns"><span>${t("servings")}</span><span class="stepper"><button data-act="s-serv" data-d="-1" aria-label="−">−</button><span>${e.s || r.servings || 1}</span><button data-act="s-serv" data-d="1" aria-label="+">+</button></span></div>
@@ -1096,7 +1208,7 @@ function toast(msg) { const el = $("#toast"); el.textContent = msg; el.hidden = 
 function commit() { save(); render(); if (ui.sheet) renderSheet() }
 function setLang(l) {
   lang = l;
-  for (const r of state.recipes) if (r.sample && !r.edited) { const s = SAMPLES.find(x => x.key === r.sample); if (s) sampleText(s, r) }
+  for (const r of state.recipes) if ((r.sample || r.idea) && !r.edited) { const s = r.sample ? SAMPLES.find(x => x.key === r.sample) : IDEAS.find(x => x.key === r.idea); if (s) sampleText(s, r) }
   commit();
 }
 function listAsText() {
@@ -1169,7 +1281,7 @@ document.addEventListener("click", ev => {
     case "open-recipe": openSheet({ type: "recipe", id: el.dataset.id }); break;
     case "r-serv": { const r = byId(s.id); s.servings = Math.max(1, Math.min(50, (s.servings ?? r.servings ?? 1) + +el.dataset.d)); renderSheet(); break }
     case "edit-recipe": { const r = byId(el.dataset.id); openSheet({ type: "form", id: r.id, draft: JSON.parse(JSON.stringify(r)) }); break }
-    case "new-recipe": openSheet({ type: "form", draft: { name: "", meals: ["lunch", "dinner"], servings: 2, time: null, ingredients: [], steps: [], notes: "" } }); break;
+    case "new-recipe": openSheet({ type: "form", draft: { name: "", meals: ui.recipeSection === "coffee" ? ["coffee"] : ["lunch", "dinner"], servings: 2, time: null, ingredients: [], steps: [], notes: "" } }); break;
     case "del-recipe": {
       if (!el.dataset.armed) { el.dataset.armed = "1"; el.textContent = t("confirmDelete"); break }
       const r = byId(el.dataset.id);
@@ -1193,6 +1305,17 @@ document.addEventListener("click", ev => {
       save(); closeSheet(); ui.tab = "recipes"; render(); toast(t("addedN", { n: keep.length })); break;
     }
     case "recipe-filter": ui.recipeFilter = el.dataset.f; render(); break;
+    case "recipe-section": ui.recipeSection = el.dataset.s; render(); break;
+    case "ideas-ok": state.ideasNew = 0; commit(); break;
+    case "add-to-list": {
+      const r = byId(s.id), n = s.servings ?? r.servings ?? 1, f = n / (r.servings || n || 1), st = shopStore();
+      for (const line of r.ingredients) {
+        const p = parseIngredient(line);
+        if (!line.trim() || isWater(p.name)) continue;
+        st.extra.push({ id: uid(), text: cap(p.name) + (p.qty != null ? " — " + fmtAmount(p.qty * f, p.unit, true) : ""), done: false });
+      }
+      commit(); toast(t("addedToList", { name: r.name })); break;
+    }
     case "remove-samples": {
       const ids = new Set(state.recipes.filter(r => r.sample).map(r => r.id));
       state.recipes = state.recipes.filter(r => !ids.has(r.id));
@@ -1231,8 +1354,9 @@ document.addEventListener("change", ev => {
     el.files[0].text().then(txt => {
       const d = JSON.parse(txt);
       if (!Array.isArray(d.recipes)) throw new Error("not a backup");
-      state = { recipes: d.recipes, plan: d.plan || {}, shop: d.shop || {} };
+      state = fromData(d);
       if (d.lang) lang = d.lang;
+      addIdeas();
       commit(); toast(t("restored", { n: d.recipes.length }));
     }).catch(() => toast(t("restoreFail"))).finally(() => (el.value = ""));
   }
