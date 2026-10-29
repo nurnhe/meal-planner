@@ -236,6 +236,18 @@ textarea.input { resize: vertical; min-height: 96px; line-height: 1.5 }
 .ingr { margin: 0; padding: 0; list-style: none; display: grid; gap: 0 }
 .ingr li { display: grid; grid-template-columns: minmax(70px, auto) minmax(0, 1fr); gap: 12px; align-items: baseline; padding: 5px 0; border-top: 1px dashed color-mix(in srgb, var(--mi) 30%, transparent); overflow-wrap: anywhere }
 .ingr .q { font: 800 13.5px var(--mono); text-align: right; white-space: nowrap }
+.ingr li.has-ban { grid-template-columns: minmax(70px, auto) minmax(0, 1fr) auto; align-items: center }
+.ingr li.avoided > span:nth-child(2) { text-decoration: line-through; text-decoration-color: var(--warn); color: var(--warn) }
+.ban-btn { display: inline-grid; place-items: center; width: 32px; height: 32px; margin: -4px 0; border: 0; border-radius: 9px; background: none; color: color-mix(in srgb, var(--mi) 55%, transparent) }
+.ban-btn svg { width: 18px; height: 18px }
+.ban-btn[aria-pressed="true"] { color: var(--warn); background: color-mix(in srgb, var(--warn) 14%, transparent) }
+.chip.avoid { background: var(--warn-soft); color: var(--warn) }
+.avoid-list { display: flex; flex-wrap: wrap; gap: 6px }
+.avoid-tag { display: inline-flex; align-items: center; gap: 2px; padding: 0 0 0 12px; border-radius: 999px; background: var(--warn-soft); color: var(--warn); font-weight: 700; font-size: 14px; min-height: 34px }
+.avoid-tag svg { width: 15px; height: 15px; margin-right: 4px }
+.avoid-tag .x-btn { color: inherit }
+.avoid-why { display: flex; gap: 8px; align-items: center; padding: 10px 12px; border-radius: 12px; background: var(--warn-soft); color: var(--warn); font-size: 13.5px; font-weight: 600 }
+.avoid-why svg { width: 18px; height: 18px; flex: none }
 .method { margin: 0; padding: 0; list-style: none; display: grid; gap: 12px; counter-reset: st }
 .method li { counter-increment: st; display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 10px; overflow-wrap: anywhere }
 .method li::before { content: counter(st); font: 700 16px/1.4 var(--display); color: var(--accent) }
@@ -386,6 +398,14 @@ const S = {
   removeSamples: ["Remove examples", "Удалить примеры"], samplesRemoved: ["Removed the example recipes and their meals.", "Примеры рецептов и их блюда удалены."],
   loadSamples: ["Try example recipes", "Добавить примеры"], example: ["Example", "Пример"], all: ["All", "Все"],
   idea: ["Idea", "Идея"],
+  avoidTitle: ["Don't suggest", "Не предлагать"],
+  avoidHint: ["Recipes with these products never go into your plan and aren't added as ideas. Tap the ⊘ next to any ingredient in a recipe to add it here.", "Рецепты с этими продуктами не попадут в план и в идеи. Нажмите ⊘ рядом с любым ингредиентом в рецепте, чтобы добавить его сюда."],
+  avoidPh: ["Add a product, for example celery", "Добавить продукт, например сельдерей"],
+  avoidChip: ["Not suggested", "Не предлагается"],
+  avoidWhy: ["Not suggested for your plan because it has {item}. You can still add it yourself.", "Не попадает в план, потому что в составе {item}. Добавить его вручную можно."],
+  avoidAdded: ["Recipes with {item} won't be suggested. Reshuffle the week to swap any already planned.", "Рецепты, где есть «{item}», больше не будут предлагаться. Перемешайте неделю, чтобы заменить уже запланированные."],
+  avoidRemoved: ["Recipes with {item} can be suggested again.", "Рецепты, где есть «{item}», снова будут предлагаться."],
+  avoidMark: ["Don't suggest {item}", "Не предлагать «{item}»"], avoidUnmark: ["Suggest {item} again", "Снова предлагать «{item}»"],
   ideasBanner: [["I added {n} recipe idea for you: no lactose, none of the foods you skip, and everything easy to find in Serbian shops. They're marked Idea. Delete any you don't like.", "I added {n} recipe ideas for you: no lactose, none of the foods you skip, and everything easy to find in Serbian shops. They're marked Idea. Delete any you don't like."],
     ["Для вас добавлена {n} идея рецепта: без лактозы, без продуктов, которые вы не едите, и всё легко купить в Сербии. Они отмечены «Идея». Удалите те, что не понравятся.", "Для вас добавлены {n} идеи рецептов: без лактозы, без продуктов, которые вы не едите, и всё легко купить в Сербии. Они отмечены «Идея». Удалите те, что не понравятся.", "Для вас добавлено {n} идей рецептов: без лактозы, без продуктов, которые вы не едите, и всё легко купить в Сербии. Они отмечены «Идея». Удалите те, что не понравятся."]],
   gotIt: ["Got it", "Понятно"],
@@ -457,6 +477,7 @@ const ICONS = {
   dinner: '<path d="M19 3v12h-5c-.023 -3.681 .184 -7.406 5 -12zm0 12v6h-1v-3m-10 -14v17m-3 -17v3a3 3 0 1 0 6 0v-3"/>',
   snack: '<path d="M12 14m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"/><path d="M12 11v-6a2 2 0 0 1 2 -2h2v1a2 2 0 0 1 -2 2h-2"/><path d="M10 10.5c1.333 .667 2.667 .667 4 0"/>',
   coffee: '<path d="M3 14c.83 .642 2.077 1.017 3.5 1c1.423 .017 2.67 -.358 3.5 -1c.83 -.642 2.077 -1.017 3.5 -1c1.423 -.017 2.67 .358 3.5 1"/><path d="M8 3a2.4 2.4 0 0 0 -1 2a2.4 2.4 0 0 0 1 2"/><path d="M12 3a2.4 2.4 0 0 0 -1 2a2.4 2.4 0 0 0 1 2"/><path d="M3 10h14v5a6 6 0 0 1 -6 6h-2a6 6 0 0 1 -6 -6v-5z"/><path d="M16.746 16.726a3 3 0 1 0 .252 -5.555"/>',
+  ban: '<path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"/><path d="M5.7 5.7l12.6 12.6"/>',
   lock: '<path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6z"/><path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"/><path d="M8 11v-4a4 4 0 1 1 8 0v4"/>'
 };
 const svg = (name, cls = "") => `<svg class="i ${cls}" viewBox="0 0 24 24" aria-hidden="true">${ICONS[name]}</svg>`;
@@ -825,7 +846,7 @@ const makeIdea = s => sampleText(s, { id: uid(), idea: s.key, meals: s.meals.sli
 /* Adds ideas this box hasn't seen yet. Deleted ideas stay deleted. */
 function addIdeas() {
   const seen = new Set(state.ideasSeen || []);
-  const fresh = IDEAS.filter(s => !seen.has(s.key));
+  const fresh = IDEAS.filter(s => !seen.has(s.key) && !blockedBy(sampleText(s)));
   if (!fresh.length) return 0;
   state.recipes.push(...fresh.map(makeIdea));
   state.ideasSeen = [...seen, ...fresh.map(s => s.key)];
@@ -835,9 +856,9 @@ function addIdeas() {
 
 /* ---------- state and storage ---------- */
 const LKEY = "meal-planner";
-let state = { recipes: [], plan: {}, shop: {}, ideasSeen: [], ideasNew: 0 };
+let state = { recipes: [], plan: {}, shop: {}, ideasSeen: [], ideasNew: 0, avoid: [] };
 const ui = { tab: matchMedia("(max-width: 700px)").matches ? "today" : "week", weekOffset: 0, recipeSection: "food", recipeFilter: "all", recipeSearch: "", shopRange: "rest", sheet: null };
-const fromData = d => ({ recipes: d.recipes, plan: d.plan || {}, shop: d.shop || {}, ideasSeen: d.ideasSeen || [], ideasNew: d.ideasNew || 0 });
+const fromData = d => ({ recipes: d.recipes, plan: d.plan || {}, shop: d.shop || {}, ideasSeen: d.ideasSeen || [], ideasNew: d.ideasNew || 0, avoid: d.avoid || presetAvoid() });
 function load() {
   let data = null;
   try { data = JSON.parse(localStorage.getItem(LKEY) || "null") } catch (e) {}
@@ -849,6 +870,7 @@ function load() {
   }
   lang = /^ru|^uk|^be|^kk/i.test(navigator.language || "") ? "ru" : "en";
   state.recipes = SAMPLES.map(makeSample);
+  state.avoid = presetAvoid();
   addIdeas();
   fillWeek(mondayOf(today0()), false);
   save();
@@ -878,6 +900,28 @@ function relDay(key) {
   return Math.abs(n) < 7 ? `${shortDay(d)} ${d.getDate()}` : fmtDate(d, { day: "numeric", month: "short" });
 }
 
+/* ---------- products not to suggest ---------- */
+/* Pre-filled from the foods KK skips. Each term matches by word start, so "лук" catches "Красный лук" and "onion" catches "onions". */
+const AVOID_PRESET = [
+  { key: "onion", label: { en: "Onion", ru: "Лук" }, terms: ["onion", "shallot", "лук", "шалот"] },
+  { key: "mushroom", label: { en: "Mushrooms", ru: "Грибы" }, terms: ["mushroom", "champignon", "гриб", "шампиньон", "вешенк", "опят", "лисичк"] },
+  { key: "broccoli", label: { en: "Broccoli", ru: "Брокколи" }, terms: ["broccoli", "брокколи"] },
+  { key: "sour-cream", label: { en: "Sour cream", ru: "Сметана" }, terms: ["sour cream", "сметан"] },
+  { key: "roast-pepper", label: { en: "Roasted peppers", ru: "Печёный перец" }, terms: ["roasted pepper", "baked pepper", "печен перец", "печеный перец", "запеченный перец", "ajvar", "айвар"] }
+];
+const presetAvoid = () => AVOID_PRESET.map(a => ({ id: uid(), ...JSON.parse(JSON.stringify(a)) }));
+const avoidLabel = a => typeof a.label === "string" ? a.label : a.label[lang];
+function termHits(name, term) {
+  const n = low(name), words = itemKey(term).split(" ").filter(Boolean);
+  return words.length > 0 && words.every(w => new RegExp(`(^|[^a-zа-я])${reEsc(w)}`).test(n));
+}
+const avoidFor = name => (state.avoid || []).find(a => a.terms.some(x => termHits(name, x)));
+/* The first avoided product in a recipe, or null. */
+function blockedBy(r) {
+  for (const line of r.ingredients) { if (!line.trim()) continue; const a = avoidFor(parseIngredient(line).name); if (a) return a }
+  return null;
+}
+
 /* ---------- planning ---------- */
 const entry = (key, meal) => state.plan[key]?.[meal];
 function setEntry(key, meal, e) {
@@ -887,7 +931,7 @@ function setEntry(key, meal, e) {
 function* allEntries() { for (const [k, day] of Object.entries(state.plan)) for (const [m, e] of Object.entries(day)) yield [k, m, e] }
 /* Picks a recipe for one meal, favouring ones you haven't had for a while and avoiding repeats within the week and on the same day. */
 function pickRecipe(key, meal, exclude = []) {
-  const cands = state.recipes.filter(r => r.meals.includes(meal) && !exclude.includes(r.id));
+  const cands = state.recipes.filter(r => r.meals.includes(meal) && !exclude.includes(r.id) && !blockedBy(r));
   if (!cands.length) return null;
   const ws = ymd(mondayOf(parseYmd(key))), we = ymd(addDays(parseYmd(ws), 6));
   const weights = cands.map(r => {
@@ -1058,6 +1102,15 @@ function viewWeek() {
   <p class="legend"><span>${svg("lock", "lock-ic")} ${t("kept")}</span><span>${t("weekHint")}</span></p>`;
 }
 
+function avoidPanel() {
+  const tags = state.avoid.map(a => `<span class="avoid-tag">${svg("ban")}${esc(avoidLabel(a))}<button class="x-btn" data-act="unavoid" data-id="${a.id}" aria-label="${esc(t("avoidUnmark", { item: avoidLabel(a) }))}">×</button></span>`).join("");
+  return `<section class="panel glass" id="avoidPanel">
+    <div class="toolbar"><h2>${t("avoidTitle")}</h2></div>
+    <p class="muted" style="font-size:13.5px">${t("avoidHint")}</p>
+    ${tags ? `<div class="avoid-list">${tags}</div>` : ""}
+    <form class="add-row" data-form="avoid"><input class="input" id="avoidItem" placeholder="${t("avoidPh")}" aria-label="${t("avoidPh")}"><button class="btn">${t("add")}</button></form>
+  </section>`;
+}
 function viewRecipes() {
   const q = low(ui.recipeSearch.trim());
   const coffee = ui.recipeSection === "coffee";
@@ -1071,7 +1124,7 @@ function viewRecipes() {
     const when = next ? t("nextOn", { date: relDay(next) }) : last ? t("lastHad", { date: relDay(last) }) : t("neverPlanned");
     return `<button class="rec-row" data-act="open-recipe" data-id="${r.id}">${thumb(coffee ? "coffee" : r.meals.find(m => m !== "coffee") || "dinner")}
       <span><span class="nm">${esc(r.name)}</span>
-      <span class="sub">${coffee ? (r.idea ? `<span class="chip idea">${t("idea")}</span>` : "") : catChips(r)}
+      <span class="sub">${coffee ? (r.idea ? `<span class="chip idea">${t("idea")}</span>` : "") : catChips(r)}${!coffee && blockedBy(r) ? `<span class="chip avoid">${t("avoidChip")}</span>` : ""}
       ${r.time ? `<span>${t("minutes", { n: r.time })}</span>` : ""}${coffee ? "" : `<span>${when}</span>`}</span></span></button>`;
   }).join("");
   const filters = ["all", ...MEALS].map(m => `<button data-act="recipe-filter" data-f="${m}" aria-pressed="${ui.recipeFilter === m}">${t(m)}</button>`).join("");
@@ -1088,6 +1141,7 @@ function viewRecipes() {
     ${state.recipes.length ? seg : ""}
     ${body}
   </section>
+  ${coffee ? "" : avoidPanel()}
   <section class="backup"><p>${t("backupHelp")}</p><div class="btns"><button class="btn small" data-act="backup">${t("backup")}</button><button class="btn small" data-act="restore">${t("restore")}</button></div></section>`;
 }
 
@@ -1135,12 +1189,14 @@ function renderSheet() {
   else if (s.type === "copy") root.innerHTML = sheetFrame("", t("listText"), `<p class="muted">${t("copyFail")}</p><textarea class="input" id="copyText" rows="16" readonly>${esc(s.text)}</textarea>`);
   if (s.type === "form") updateParsed();
 }
-function ingrList(r, servings) {
+function ingrList(r, servings, bans = false) {
   const f = servings / (r.servings || servings || 1);
   return `<ul class="ingr">${r.ingredients.filter(l => l.trim()).map(line => {
-    const p = parseIngredient(line);
-    if (p.qty == null) return `<li><span class="q"></span><span>${esc(cap(p.raw))}</span></li>`;
-    return `<li><span class="q">${esc(fmtAmount(p.qty * f, BASE[p.unit] ? p.unit : p.unit, false))}</span><span>${esc(cap(p.rest))}</span></li>`;
+    const p = parseIngredient(line), a = bans && !isWater(p.name) && p.name.trim() ? avoidFor(p.name) : null;
+    const ban = bans && !isWater(p.name) && p.name.trim() ? `<button class="ban-btn" data-act="toggle-avoid" data-name="${esc(p.name)}" aria-pressed="${!!a}" aria-label="${esc(t(a ? "avoidUnmark" : "avoidMark", { item: a ? avoidLabel(a) : cap(p.name) }))}">${svg("ban")}</button>` : "";
+    const cls = [ban ? "has-ban" : "", a ? "avoided" : ""].filter(Boolean).join(" ");
+    const q = p.qty == null ? "" : esc(fmtAmount(p.qty * f, p.unit, false));
+    return `<li${cls ? ` class="${cls}"` : ""}><span class="q">${q}</span><span>${esc(cap(p.qty == null ? p.raw : p.rest))}</span>${ban}</li>`;
   }).join("")}</ul>`;
 }
 function sheetRecipe(s) {
@@ -1154,8 +1210,9 @@ function sheetRecipe(s) {
     <div class="sec m-${meal0}">
       <div class="btns" style="justify-content:space-between"><h3>${t("ingrFor", { n: t("servingsN", { n }) })}</h3>
         <span class="stepper"><button data-act="r-serv" data-d="-1" aria-label="−">−</button><span>${n}</span><button data-act="r-serv" data-d="1" aria-label="+">+</button></span></div>
-      ${ingrList(r, n)}
+      ${ingrList(r, n, true)}
     </div>
+    ${!cf && blockedBy(r) ? `<div class="avoid-why">${svg("ban")}<span>${esc(t("avoidWhy", { item: avoidLabel(blockedBy(r)).toLocaleLowerCase(LOCALE()) }))}</span></div>` : ""}
     ${r.steps.length ? `<div class="sec" style="background:none;padding:0"><h3 style="color:inherit">${t("steps")}</h3><ol class="method">${r.steps.map(x => `<li>${esc(x)}</li>`).join("")}</ol></div>` : ""}
     ${r.notes ? `<p class="note">${esc(r.notes)}</p>` : ""}
     ${cf ? `<div class="btns"><button class="btn primary" data-act="add-to-list">${t("addToList")}</button></div>` : `<form class="sec m-${meal0}" data-form="add-plan"><h3>${t("addToPlan")}</h3>
@@ -1210,7 +1267,7 @@ function sheetSlot(s) {
         <button class="btn small lock-btn" data-act="lock" aria-pressed="${!!e.lock}">${svg("lock", "lock-ic")} ${t("keep")}</button>
         <button class="btn small ghost" data-act="unplan">${t("remove")}</button></div>
       <span class="muted" style="font-size:12.5px">${t("keepHint")}</span></div>` : "";
-  const picks = pool.length ? `<div class="picks">${pool.map(x => `<button class="pick" data-act="choose" data-id="${x.id}"${r && x.id === r.id ? ' aria-current="true"' : ""}>${thumb(x.meals.includes(s.meal) ? s.meal : x.meals[0] || s.meal, 40)}<span><span class="nm">${esc(x.name)}</span><span class="sub">${[x.time ? t("minutes", { n: x.time }) : "", (() => { const { last, next } = recipeDates(x.id); return next ? t("nextOn", { date: relDay(next) }) : last ? t("lastHad", { date: relDay(last) }) : t("neverPlanned") })()].filter(Boolean).join(" · ")}</span></span></button>`).join("")}</div>`
+  const picks = pool.length ? `<div class="picks">${pool.map(x => `<button class="pick" data-act="choose" data-id="${x.id}"${r && x.id === r.id ? ' aria-current="true"' : ""}>${thumb(x.meals.includes(s.meal) ? s.meal : x.meals[0] || s.meal, 40)}<span><span class="nm">${esc(x.name)}</span><span class="sub">${[blockedBy(x) ? t("avoidChip") : "", x.time ? t("minutes", { n: x.time }) : "", (() => { const { last, next } = recipeDates(x.id); return next ? t("nextOn", { date: relDay(next) }) : last ? t("lastHad", { date: relDay(last) }) : t("neverPlanned") })()].filter(Boolean).join(" · ")}</span></span></button>`).join("")}</div>`
     : `<p class="muted">${q ? t("noMatch") : t("noForMeal", { meal: t(s.meal) })}</p>`;
   const body = `${current}
     <div style="display:grid;gap:10px"><h3>${r ? t("changeRecipe") : t("chooseRecipe")}</h3>
@@ -1325,6 +1382,13 @@ document.addEventListener("click", ev => {
     case "recipe-filter": ui.recipeFilter = el.dataset.f; render(); break;
     case "recipe-section": ui.recipeSection = el.dataset.s; render(); break;
     case "ideas-ok": state.ideasNew = 0; commit(); break;
+    case "toggle-avoid": {
+      const name = el.dataset.name, a = avoidFor(name);
+      if (a) { state.avoid = state.avoid.filter(x => x !== a); commit(); toast(t("avoidRemoved", { item: avoidLabel(a) })) }
+      else { const label = cap(name.trim()); state.avoid.push({ id: uid(), label, terms: [label] }); commit(); toast(t("avoidAdded", { item: label })) }
+      break;
+    }
+    case "unavoid": { const a = state.avoid.find(x => x.id === el.dataset.id); state.avoid = state.avoid.filter(x => x !== a); commit(); if (a) toast(t("avoidRemoved", { item: avoidLabel(a) })); break }
     case "add-to-list": {
       const r = byId(s.id), n = s.servings ?? r.servings ?? 1, f = n / (r.servings || n || 1), st = shopStore();
       for (const line of r.ingredients) {
@@ -1402,6 +1466,12 @@ document.addEventListener("submit", ev => {
     if (!v) return;
     shopStore().extra.push({ id: uid(), text: v, done: false });
     commit(); $("#extraItem")?.focus();
+  }
+  if (kind === "avoid") {
+    const v = cap($("#avoidItem").value.trim());
+    if (!v || !itemKey(v)) return;
+    if (!state.avoid.some(a => low(avoidLabel(a)) === low(v))) state.avoid.push({ id: uid(), label: v, terms: [v] });
+    commit(); toast(t("avoidAdded", { item: v })); $("#avoidItem")?.focus();
   }
   if (kind === "add-plan") {
     const r = byId(ui.sheet.id), k = $("#planDay").value, m = $("#planMeal").value;
