@@ -475,7 +475,9 @@ function parseAmount(s) {
   let qty = null, unit = null, rest = s;
   const q = rest.match(QTY_RE);
   if (q && q[0].trim()) { qty = toNum(q[2] || q[1]); rest = rest.slice(q[0].length) }
-  const u = rest.match(UNIT_RE);
+  const adj = rest.match(/^(?:крупн|средн|небольш|больш|маленьк|large|medium|small|big)\p{L}*\s+/iu);
+  const u = rest.slice(adj ? adj[0].length : 0).match(UNIT_RE);
+  if (u && adj) rest = rest.slice(adj[0].length);
   if (u && (qty != null || NO_QTY_UNITS.has(UNIT_ALIAS[u[1].toLowerCase()]))) {
     unit = UNIT_ALIAS[u[1].toLowerCase()];
     if (qty == null) qty = 1;
@@ -518,11 +520,13 @@ const CHATTER = /^(sure|of course|absolutely|great|here(?:'|’)s|here is|here a
 const OUTRO = /^(enjoy|bon app|let me know|hope you|приятного аппетита|наслаждайтесь|если хотите|могу также|хотите,? я)/i;
 const plainHead = l => cleanLine(l).replace(/^#+\s*/, "").replace(/^[^\p{L}\d]+/u, "").replace(/[:：]\s*$/, "").trim();
 const isHeading = (line, re) => { const p = plainHead(line); return p.length < 70 && re.test(p) };
+/* A line that looks like a recipe title: a markdown heading, a bold line, or "3. Name" without a full stop (steps end with one). */
+const isTitleLine = line => { const l = line.trim(); return /^#+\s/.test(l) || /^\*\*[^*]+\*\*:?$/.test(l) || (/^\d+[.)]\s+\S/.test(l) && l.length < 90 && !/[.!?:]$/.test(l)) };
 
 function metaFrom(line, r) {
   const p = cleanLine(line).replace(/^#+\s*/, "");
   let m;
-  if (!r.servings && (m = p.match(/(?:serves|servings?|portions?|makes|yield|порци[йия]|на)\s*:?\s*(\d+)/i) || p.match(/(\d+)\s*(?:servings?|portions?|порци[йия])/i))) r.servings = +m[1];
+  if (!r.servings && (m = p.match(/(?:serves|servings?|portions?|makes|yield|порци[йия]|на)\s*:?\s*(\d+)/i) || p.match(/(\d+)(?:\s*[–-]\s*\d+)?\s+(?:\p{L}+\s+){0,3}?(?:servings?|portions?|порци)/iu))) r.servings = +m[1];
   if (!r.time && /(time|время|cook|prep|готов|мин|min|hour|час)/i.test(p)) {
     const h = p.match(/(\d+(?:[.,]\d+)?)\s*(?:h(?![\p{L}])|hours?|hrs?|ч(?![\p{L}])|час)/iu), mi = p.match(/(\d+)\s*(?:min|minutes?|mins|мин)/i);
     const total = (h ? toNum(h[1]) * 60 : 0) + (mi ? +mi[1] : 0);
@@ -553,13 +557,16 @@ function parseRecipe(text) {
     if (mode === "intro") {
       if (CHATTER.test(c)) continue;
       if (metaFrom(line, r) && r.name) continue;
-      if (!r.name) { r.name = c.replace(/^\d+[.)]\s*/, "").replace(/^(recipe|рецепт)\s*[:—–-]\s*/i, "").replace(/[:.!]+$/, "").replace(/^[^\p{L}\d]+/u, "").trim(); continue }
+      if (r.name && !r.strong && isTitleLine(line) && !r.ingredients.length) { r.notes.push(r.name); r.name = "" }
+      if (!r.name) { r.strong = isTitleLine(line); r.name = c.replace(/^\d+[.)]\s*/, "").replace(/^(recipe|рецепт)\s*[:—–-]\s*/i, "").replace(/[:.!]+$/, "").replace(/^[^\p{L}\d]+/u, "").trim(); continue }
       if (r.name && /^\s*[-*•]\s/.test(line) && /\d/.test(c)) { r.ingredients.push(c); continue }
       r.notes.push(c);
     } else if (mode === "ingr") {
       if (/[:：]\s*$/.test(c) && !/\d/.test(c)) continue; // "For the sauce:"
       if (metaFrom(line, r) && !/^\s*[-*•]/.test(line)) continue;
       r.ingredients.push(c);
+    } else if (mode === "steps" && /^(примечани[ея]|заметка|совет|note|tip)\s*:/i.test(c)) {
+      r.notes.push(c.replace(/^(примечани[ея]|заметка|совет|note|tip)\s*:\s*/i, ""));
     } else if (mode === "steps") {
       const st = c.replace(/^(?:step|шаг)\s*\d+\s*[:.)-]?\s*/i, "").replace(/^\d+[.)]\s*/, "").trim();
       if (st) r.steps.push(st);
@@ -574,17 +581,28 @@ function parseRecipes(text) {
   const lines = text.split(/\r?\n/);
   const heads = lines.map((l, i) => (isHeading(l, H_INGR) ? i : -1)).filter(i => i >= 0);
   if (heads.length < 2) { const one = parseRecipe(text); return one ? [one] : [] }
-  const starts = [0];
-  for (let k = 1; k < heads.length; k++) {
-    let s = heads[k] - 1;
-    while (s > heads[k - 1] && !lines[s].trim()) s--;
-    // walk back over the title and any short meta lines (servings, time) that sit just above the heading
-    let j = s;
-    for (let back = 0; back < 3 && j > heads[k - 1]; back++) {
-      const p = cleanLine(lines[j]);
-      if (/^#+\s/.test(lines[j]) || /^\*\*.+\*\*$/.test(lines[j].trim()) || /^\d+[.)]\s*\*\*/.test(lines[j].trim())) { s = j; break }
-      if (!p || /\d/.test(p) && p.length < 60) { j--; continue }
-      s = j; break;
+  const starts = [];
+  for (let k = 0; k < heads.length; k++) {
+    const floor = k ? heads[k - 1] : -1;
+    let s = -1;
+    // the nearest title-looking line within a few lines above the heading starts the recipe (and drops any preamble before the first one)
+    for (let j = heads[k] - 1, seen = 0; j > floor && seen < 5; j--) {
+      if (!lines[j].trim()) continue;
+      seen++;
+      if (isTitleLine(lines[j])) { s = j; break }
+    }
+    if (s < 0) {
+      if (!k) s = 0;
+      else {
+        s = heads[k] - 1;
+        while (s > floor && !lines[s].trim()) s--;
+        let j = s;
+        for (let back = 0; back < 3 && j > floor; back++) {
+          const p = cleanLine(lines[j]);
+          if (!p || /\d/.test(p) && p.length < 60) { j--; continue }
+          s = j; break;
+        }
+      }
     }
     starts.push(s);
   }
@@ -620,7 +638,7 @@ function sectionOf(name) {
   for (const sec of SEC_ORDER) if (STEM_RE[sec].test(s)) return sec;
   return "other";
 }
-const isWater = name => /(^|\s)(water|вода|воды|воду|кипяток|кипятка)(\s|$)/.test(low(name)) && low(name).split(" ").length <= 3;
+const isWater = name => /(^|\s)(water|вода|воды|воду|кипяток|кипятка)(\s|$)/.test(low(name)) && low(name).split(" ").length <= 2;
 /* A loose key so "Eggs" and "egg", or "Яйца" and "Яйцо", land on one line of the list. */
 function itemKey(name) {
   return low(name).replace(/[^a-zа-я ]/g, " ").split(/\s+/).filter(Boolean).map(w => {
