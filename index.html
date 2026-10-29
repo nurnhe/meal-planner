@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Meal Planner</title>
-<meta name="theme-color" content="#FFFBF5" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#1B1410" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#FAFAF7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141619" media="(prefers-color-scheme: dark)">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Meal Planner">
@@ -20,34 +20,34 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap">
 <style>
-/* Layout: "Citrus & herbs". Clean warm-white page, white cards, today's meals up top, the week as seven day cards with a juicy tile per meal
+/* Layout: "Citrus & herbs". Clean off-white page with charcoal text (no browns), white cards, today's meals up top, the week as seven day cards with a juicy tile per meal
    (breakfast mango, lunch lime, dinner papaya, snack strawberry). Orange for actions and emphasis, lime green for ticks.
    Colours and fonts are this app's own: none of KK's other apps use orange, or Unbounded with Nunito (both have Cyrillic). */
 :root {
-  --bg: #FFFBF5; --dot: transparent; --surface: #FFFFFF; --surface-2: #FFF4E8; --ink: #23180F; --muted: #7D6A5B; --line: #F3E3D2; --line-strong: #23180F;
+  --bg: #FAFAF7; --dot: transparent; --surface: #FFFFFF; --surface-2: #F3F4F1; --ink: #1E2125; --muted: #686E76; --line: #E6E7E3; --line-strong: #1E2125;
   --accent: #F2661B; --accent-ink: #FFFFFF; --accent-soft: #FFE6D6; --pop: #FFE2B0;
   --bf-1: #FFE2B0; --bf-ink: #A45A00;
   --ln-1: #E4F4C2; --ln-ink: #4E7A10;
   --dn-1: #FFD2BF; --dn-ink: #B83A12;
   --sn-1: #FFD7E1; --sn-ink: #B12A55;
   --warn: #C73A12; --warn-soft: #FFD2BF; --ok: #6FA626;
-  --shadow: 0 1px 2px rgba(120, 60, 20, .05), 0 6px 18px rgba(120, 60, 20, .07); --shadow-lg: 0 18px 50px rgba(35, 24, 15, .22);
+  --shadow: 0 1px 2px rgba(30, 33, 37, .05), 0 6px 18px rgba(30, 33, 37, .06); --shadow-lg: 0 18px 50px rgba(30, 33, 37, .22);
   --display: "Unbounded", "Avenir Next", "Segoe UI", sans-serif;
   --sans: "Nunito", "Avenir Next", "Segoe UI", sans-serif;
   --mono: "Nunito", "Avenir Next", "Segoe UI", sans-serif;
   --s1: #6BBF59; --s2: #E0603F; --s3: #5B9BD5; --s4: #C47AC0; --s5: #E8A93A; --s6: #8C8C8C; --s7: #B98552; --s8: #6CC3D5; --s9: #A0785A; --s10: #E8C547;
 }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
-  --bg: #1B1410; --dot: transparent; --surface: #261C16; --surface-2: #2E231C; --ink: #FFF1E6; --muted: #C2A994; --line: #3A2B21; --line-strong: #FFF1E6;
-  --accent: #FF8A47; --accent-ink: #1B1410; --accent-soft: #42261A; --pop: #4A3311;
-  --bf-1: #4A3311; --bf-ink: #FFC56B; --ln-1: #2E4214; --ln-ink: #BDE57A; --dn-1: #4D2414; --dn-ink: #FF9D78; --sn-1: #4D1E2B; --sn-ink: #FF9DB8;
-  --warn: #FF9D78; --warn-soft: #4D2414; --ok: #A6D65A;
+  --bg: #141619; --dot: transparent; --surface: #1D2024; --surface-2: #25292E; --ink: #F3F4F2; --muted: #A3A9B0; --line: #2E3238; --line-strong: #F3F4F2;
+  --accent: #FF8A47; --accent-ink: #141619; --accent-soft: #3A2A22; --pop: #3A2A22;
+  --bf-1: #2B2A26; --bf-ink: #FFC56B; --ln-1: #252B22; --ln-ink: #BDE57A; --dn-1: #2D2523; --dn-ink: #FF9D78; --sn-1: #2D2329; --sn-ink: #FF9DB8;
+  --warn: #FF9D78; --warn-soft: #3A2A22; --ok: #A6D65A;
   --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 6px 18px rgba(0, 0, 0, .3); --shadow-lg: 0 18px 50px rgba(0, 0, 0, .6); color-scheme: dark } }
 :root[data-theme="dark"] {
-  --bg: #1B1410; --dot: transparent; --surface: #261C16; --surface-2: #2E231C; --ink: #FFF1E6; --muted: #C2A994; --line: #3A2B21; --line-strong: #FFF1E6;
-  --accent: #FF8A47; --accent-ink: #1B1410; --accent-soft: #42261A; --pop: #4A3311;
-  --bf-1: #4A3311; --bf-ink: #FFC56B; --ln-1: #2E4214; --ln-ink: #BDE57A; --dn-1: #4D2414; --dn-ink: #FF9D78; --sn-1: #4D1E2B; --sn-ink: #FF9DB8;
-  --warn: #FF9D78; --warn-soft: #4D2414; --ok: #A6D65A;
+  --bg: #141619; --dot: transparent; --surface: #1D2024; --surface-2: #25292E; --ink: #F3F4F2; --muted: #A3A9B0; --line: #2E3238; --line-strong: #F3F4F2;
+  --accent: #FF8A47; --accent-ink: #141619; --accent-soft: #3A2A22; --pop: #3A2A22;
+  --bf-1: #2B2A26; --bf-ink: #FFC56B; --ln-1: #252B22; --ln-ink: #BDE57A; --dn-1: #2D2523; --dn-ink: #FF9D78; --sn-1: #2D2329; --sn-ink: #FF9DB8;
+  --warn: #FF9D78; --warn-soft: #3A2A22; --ok: #A6D65A;
   --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 6px 18px rgba(0, 0, 0, .3); --shadow-lg: 0 18px 50px rgba(0, 0, 0, .6); color-scheme: dark }
 
 * { box-sizing: border-box }
@@ -205,7 +205,7 @@ textarea.input { resize: vertical; min-height: 96px; line-height: 1.5 }
 .stepper span { min-width: 28px; text-align: center; font: 500 14px var(--mono) }
 
 /* Sheet */
-.scrim { position: fixed; inset: 0; background: rgba(27, 20, 16, .5); z-index: 20 }
+.scrim { position: fixed; inset: 0; background: rgba(20, 22, 25, .5); z-index: 20 }
 .sheet { position: fixed; top: 0; right: 0; bottom: 0; width: min(480px, 100%); background: var(--surface); z-index: 21; box-shadow: var(--shadow-lg);
   display: grid; grid-template-rows: auto minmax(0, 1fr); border-radius: 20px 0 0 20px;
   padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); padding-right: env(safe-area-inset-right, 0px) }
